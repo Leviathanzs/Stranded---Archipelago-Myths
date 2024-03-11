@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Stranded - Archipelago Myths.sln"
+    "dotnet.defaultSolution": "Stranded---Archipelago-Myths.sln"
 }
