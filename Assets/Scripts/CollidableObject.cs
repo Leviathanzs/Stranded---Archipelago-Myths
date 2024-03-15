@@ -8,17 +8,22 @@ public class CollidableObject : MonoBehaviour
     [SerializeField] private ContactFilter2D filter;
     private List<Collider2D> collidedObject = new List<Collider2D>(1);
 
-    void Start()
+    protected virtual void Start()
     {
         col = GetComponent<Collider2D>();
     }
 
-    void Update()
+    protected virtual void Update()
     {
         col.OverlapCollider(filter, collidedObject);
         foreach(var o in collidedObject)
         {
-            Debug.Log("Collided with " + o.name);
+            OnCollided(o.gameObject);
         }
+    }
+
+    protected virtual void OnCollided(GameObject collidedObject)
+    {
+        Debug.Log("Collided with " + collidedObject.name);
     }
 }
