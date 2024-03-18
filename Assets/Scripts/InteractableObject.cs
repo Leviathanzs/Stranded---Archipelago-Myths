@@ -27,7 +27,6 @@ public class InteractableObject : CollidableObject
         {
             isInteracted = true;
             animator.SetTrigger(AnimationStrings.openTrigger);
-            Debug.Log("Interact with " + name);
         }
     }
 }
