@@ -32,6 +32,7 @@ public class BoxBreak : MonoBehaviour
     {
         particle.Play();
         sr.enabled = false; 
+        GetComponent<LootBag>().InstantiateLoot(transform.position);
 
         yield return new WaitForSeconds(particle.main.startLifetime.constantMax);
         Destroy(gameObject);

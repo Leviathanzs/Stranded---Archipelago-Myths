@@ -4900,6 +4900,7 @@ GameObject:
   - component: {fileID: 2823841949158421686}
   - component: {fileID: 8053455263883524958}
   - component: {fileID: 2250017786641512084}
+  - component: {fileID: 6605500167997384921}
   m_Layer: 3
   m_Name: Box
   m_TagString: Untagged
@@ -5032,3 +5033,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644babc729150c84db867fddedb5cbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6605500167997384921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936233449027386390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fabef36a811d9d8468fc7721ea8dbb01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItemPrefab: {fileID: 8265125635557912920, guid: f8faa02f2231f5d4595dee3485f840f9, type: 3}
+  lootList:
+  - {fileID: 11400000, guid: 0a46f7e5c6d8bb441922549f5cd665fb, type: 2}
