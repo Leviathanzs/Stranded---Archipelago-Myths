@@ -1,5 +1,116 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1178022783402583780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4888839660593666007}
+  - component: {fileID: 4354141778673284495}
+  - component: {fileID: 7310004918182023592}
+  m_Layer: 9
+  m_Name: SwordAttack 2
+  m_TagString: PlayerHitbox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4888839660593666007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178022783402583780}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5110172578347970920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &4354141778673284495
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178022783402583780}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.3465275, y: -0.057115734}
+      - {x: 1.3237785, y: 0.09041798}
+      - {x: 1.0416663, y: 0.50304663}
+      - {x: 0.7011118, y: 0.7223766}
+      - {x: 0.25951344, y: 0.6892969}
+      - {x: 0.6657456, y: 0.48415014}
+      - {x: 0.7660699, y: 0.27661902}
+      - {x: 0.88796365, y: 0.11713511}
+      - {x: 0.86526763, y: -0.1263637}
+      - {x: 0.6542475, y: -0.5807376}
+      - {x: 0.4968332, y: -0.6462085}
+      - {x: 0.17902303, y: -0.6691552}
+      - {x: 0.17364341, y: -1.0900636}
+      - {x: 0.53075683, y: -1.0769467}
+      - {x: 0.7564372, y: -1.0021651}
+      - {x: 1.0593376, y: -0.8136709}
+      - {x: 1.1740674, y: -0.6877878}
+      - {x: 1.3579303, y: -0.4013617}
+      - {x: 1.343682, y: -0.22520831}
+  m_UseDelaunayMesh: 0
+--- !u!114 &7310004918182023592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178022783402583780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f95f00175a98a4942971a41eeffa3b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 15
+  knocback: {x: 1, y: 0}
 --- !u!1 &3299553266711642218
 GameObject:
   m_ObjectHideFlags: 0
@@ -19,7 +130,7 @@ GameObject:
   - component: {fileID: 7954440568417881670}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,6 +149,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2315372790401179055}
+  - {fileID: 4888839660593666007}
+  - {fileID: 2539038872740234955}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7393705090194799538
@@ -379,6 +492,116 @@ MonoBehaviour:
         m_CallState: 2
   _maxHealth: 100
   _health: 100
+--- !u!1 &6704073668720239542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2539038872740234955}
+  - component: {fileID: 1203951890118170990}
+  - component: {fileID: 4722275376730014667}
+  m_Layer: 9
+  m_Name: SwordAttack 3
+  m_TagString: PlayerHitbox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2539038872740234955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6704073668720239542}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5110172578347970920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &1203951890118170990
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6704073668720239542}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.4118472, y: -0.18900385}
+      - {x: 1.3579911, y: -0.16810381}
+      - {x: 1.2484645, y: -0.11569154}
+      - {x: 0.894922, y: 0.024129868}
+      - {x: 0.54339975, y: 0.14352834}
+      - {x: 0.53674793, y: -0.017894894}
+      - {x: 0.9610723, y: -0.15221137}
+      - {x: 1.0470738, y: -0.22405857}
+      - {x: 1.0799387, y: -0.35260838}
+      - {x: 0.995592, y: -0.44767892}
+      - {x: 0.38069975, y: -0.7067709}
+      - {x: -0.29200798, y: -0.72951066}
+      - {x: -0.2967083, y: -0.97157913}
+      - {x: 0.62987244, y: -0.9622671}
+      - {x: 0.93630385, y: -0.8561001}
+      - {x: 1.2754499, y: -0.76713824}
+      - {x: 1.5288805, y: -0.5581249}
+      - {x: 1.5494225, y: -0.30678406}
+  m_UseDelaunayMesh: 0
+--- !u!114 &4722275376730014667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6704073668720239542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f95f00175a98a4942971a41eeffa3b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 25
+  knocback: {x: 4, y: 0}
 --- !u!1 &6873327095778328276
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,8 +614,8 @@ GameObject:
   - component: {fileID: 8232438514738324371}
   - component: {fileID: 8445575204460801339}
   m_Layer: 9
-  m_Name: SwordAttack
-  m_TagString: Untagged
+  m_Name: SwordAttack 1
+  m_TagString: PlayerHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -486,4 +709,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 10
-  knocback: {x: 2, y: 0}
+  knocback: {x: 1, y: 0}
