@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Large HP Potion
   m_EditorClassIdentifier: 
   lootSprite: {fileID: 21300000, guid: 8848d9b45d7dbea4f9a84e8614828712, type: 3}
-  lootName: HP Potion (Big)
+  lootName: HP Potion (Large)
   dropChance: 35
