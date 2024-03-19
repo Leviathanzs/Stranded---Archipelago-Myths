@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e40f7e4f86c2f045872d2d42748122d, type: 3}
-  m_Name: HP Potion
+  m_Name: Large HP Potion
   m_EditorClassIdentifier: 
   lootSprite: {fileID: 21300000, guid: 8848d9b45d7dbea4f9a84e8614828712, type: 3}
-  lootName: HP Potion (Small)
-  dropChance: 100
+  lootName: HP Potion (Large)
+  dropChance: 35

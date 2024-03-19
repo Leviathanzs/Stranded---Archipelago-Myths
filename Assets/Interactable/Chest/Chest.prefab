@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2426207973019782683}
   - component: {fileID: 3914900326036539052}
   - component: {fileID: 9060981930310419925}
+  - component: {fileID: 4357605319298852009}
   m_Layer: 3
   m_Name: Chest
   m_TagString: Untagged
@@ -179,3 +180,20 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+--- !u!114 &4357605319298852009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7411059564225803219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ace6e329303ae0740aa2fd41f59d88b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItemPrefab: {fileID: 8265125635557912920, guid: f8faa02f2231f5d4595dee3485f840f9, type: 3}
+  lootList:
+  - {fileID: 11400000, guid: 0a46f7e5c6d8bb441922549f5cd665fb, type: 2}
+  - {fileID: 11400000, guid: d341fea3c3539a947a388963adc9ac70, type: 2}
+  - {fileID: 11400000, guid: 9a00c0966bea8e948a01fb15c6ae2411, type: 2}

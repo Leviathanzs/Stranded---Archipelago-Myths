@@ -27,6 +27,7 @@ public class InteractableObject : CollidableObject
         {
             isInteracted = true;
             animator.SetTrigger(AnimationStrings.openTrigger);
+            GetComponent<LootChest>().InstantiateLoot(transform.position);
         }
     }
 }
