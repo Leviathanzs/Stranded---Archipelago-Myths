@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class LootBag : MonoBehaviour
 {
-    [SerializeField] GameObject droppedItemPrefab;
-    [SerializeField] List<Loot> lootList = new List<Loot>();
+    public GameObject droppedItemPrefab;
+    public List<Loot> lootList = new List<Loot>();
 
-    Loot GetDroppedItem()
+    protected virtual Loot GetDroppedItem()
     {
         int randomNumber = Random.Range(1, 101);
         List<Loot> possibleItems = new List<Loot>();
@@ -27,7 +27,7 @@ public class LootBag : MonoBehaviour
         return null;
     }
 
-    public void InstantiateLoot(Vector2 spawnPosition)
+    virtual public void InstantiateLoot(Vector2 spawnPosition)
     {
         Loot droppedItem = GetDroppedItem();
         if(droppedItem != null)
