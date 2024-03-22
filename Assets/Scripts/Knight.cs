@@ -14,6 +14,7 @@ public class Knight : MonoBehaviour
     [SerializeField] private float walkSpeed = 3f;
     [SerializeField] private float walkStopRate = 0.05f;
     [SerializeField] private bool _hasTarget = false;
+    [SerializeField] int expAmount = 300;
 
     public bool HasTarget{get {return _hasTarget;} private set 
     {
@@ -98,5 +99,15 @@ public class Knight : MonoBehaviour
     public void OnHit(int damage, Vector2 knockback)
     {
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+
+        if(damageable.Health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        ExperienceManager.Instance.AddExperience(expAmount);
     }
 }

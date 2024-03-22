@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +8,9 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] Slider healthBar;
     [SerializeField] Slider manaBar;
+    [SerializeField] TextMeshProUGUI levelText;
 
-    void SetMaxHealth(int maxHealth)
+    public void SetMaxHealth(int maxHealth)
     {
         healthBar.maxValue = maxHealth;
         healthBar.value = maxHealth;
@@ -27,5 +29,10 @@ public class HealthBar : MonoBehaviour
     public void SetMana(int mana)
     {
 
+    }
+
+    public void LevelText(string level)
+    {
+        levelText.text = level;
     }
 }

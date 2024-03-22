@@ -236,6 +236,7 @@ MonoBehaviour:
   walkSpeed: 3
   walkStopRate: 0.05
   _hasTarget: 0
+  expAmount: 500
 --- !u!114 &3680550853463660085
 MonoBehaviour:
   m_ObjectHideFlags: 0
