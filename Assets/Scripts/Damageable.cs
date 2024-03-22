@@ -12,11 +12,11 @@ public class Damageable : MonoBehaviour
     [SerializeField] int _health = 100;
     bool _isAlive = true;
 
-    public int MaxHealth{get {return _maxHealth;} private set {
+    public int MaxHealth{get {return _maxHealth;} set {
         _maxHealth = value;
     }}
 
-    public int Health{get {return _health;} private set {
+    public int Health{get {return _health;} set {
         _health = value;
 
         if(_health <= 0)

@@ -128,6 +128,7 @@ GameObject:
   - component: {fileID: 7172320673370083828}
   - component: {fileID: 831964105677150549}
   - component: {fileID: 7954440568417881670}
+  - component: {fileID: 7614083213769862656}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -438,6 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62d975267a97d4f4cb4931186944a7dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
   walkSpeed: 5
   runSpeed: 8
   airWalkSpeed: 3
@@ -492,6 +494,21 @@ MonoBehaviour:
         m_CallState: 2
   _maxHealth: 100
   _health: 100
+--- !u!114 &7614083213769862656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3299553266711642218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8655ab422ccb2ff408e154dcc10effd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentExperience: 0
+  maxExperience: 300
+  currentLevel: 1
 --- !u!1 &6704073668720239542
 GameObject:
   m_ObjectHideFlags: 0

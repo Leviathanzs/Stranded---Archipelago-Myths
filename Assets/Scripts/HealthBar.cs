@@ -8,7 +8,7 @@ public class HealthBar : MonoBehaviour
     [SerializeField] Slider healthBar;
     [SerializeField] Slider manaBar;
 
-    void SetMaxHealth(int maxHealth)
+    public void SetMaxHealth(int maxHealth)
     {
         healthBar.maxValue = maxHealth;
         healthBar.value = maxHealth;
