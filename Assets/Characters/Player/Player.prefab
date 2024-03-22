@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 15
-  knocback: {x: 1, y: 0}
+  knocback: {x: 5, y: 0}
 --- !u!1 &3299553266711642218
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,7 +619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 25
-  knocback: {x: 4, y: 0}
+  knocback: {x: 8, y: 0}
 --- !u!1 &6873327095778328276
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,4 +727,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 10
-  knocback: {x: 1, y: 0}
+  knocback: {x: 5, y: 0}

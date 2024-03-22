@@ -462,4 +462,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 10
-  knocback: {x: 5, y: 0}
+  knocback: {x: 8, y: 0}
