@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     TouchingDirections touchingDirections;
     Damageable damageable;
+    [SerializeField] HealthBar healthBar;
 
     [SerializeField] float walkSpeed = 5f;
     [SerializeField] float runSpeed = 8f;
@@ -168,5 +169,6 @@ public class PlayerController : MonoBehaviour
     public void OnHit(int damage, Vector2 knockback)
     {
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+        healthBar.SetHealth(damageable.Health);
     }
 }
