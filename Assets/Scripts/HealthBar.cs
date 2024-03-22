@@ -5,22 +5,27 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    Slider sliderBar;
-
-
-    void Awake()
-    {
-        sliderBar = GetComponent<Slider>();
-    }
+    [SerializeField] Slider healthBar;
+    [SerializeField] Slider manaBar;
 
     void SetMaxHealth(int maxHealth)
     {
-        sliderBar.maxValue = maxHealth;
-        sliderBar.value = maxHealth;
+        healthBar.maxValue = maxHealth;
+        healthBar.value = maxHealth;
     }
 
     public void SetHealth(int health)
     {
-        sliderBar.value = health;
+        healthBar.value = health;
+    }
+
+    public void SetMaxMana(int maxMana)
+    {
+
+    }
+
+    public void SetMana(int mana)
+    {
+
     }
 }
