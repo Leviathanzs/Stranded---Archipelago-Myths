@@ -38,10 +38,11 @@ public class PlayerStats : MonoBehaviour
         damageable.MaxHealth += 100;
         damageable.Health = damageable.MaxHealth;
         healthBar.SetMaxHealth(damageable.Health);
+        healthBar.LevelText(currentLevel.ToString());
 
 
         currentLevel++;
-        currentExperience = 0;
+        currentExperience = currentExperience - maxExperience;
         maxExperience += 100;
     }
 }
