@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 7172320673370083828}
   - component: {fileID: 831964105677150549}
   - component: {fileID: 7954440568417881670}
-  - component: {fileID: 7614083213769862656}
+  - component: {fileID: 2548601927619433442}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -494,7 +494,7 @@ MonoBehaviour:
         m_CallState: 2
   _maxHealth: 100
   _health: 100
---- !u!114 &7614083213769862656
+--- !u!114 &2548601927619433442
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

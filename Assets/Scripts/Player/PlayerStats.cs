@@ -12,16 +12,35 @@ public class PlayerStats : MonoBehaviour
     void Awake()
     {
         damageable = GetComponent<Damageable>();
+
+        if (healthBar == null)
+        {
+            Debug.LogError("HealthBar reference not assigned in PlayerStats!");
+        }
     }
 
     private void OnEnable()
     {
-        ExperienceManager.Instance.OnExperienceChange += HandleExperienceChange;
+        if (ExperienceManager.Instance != null)
+        {
+            ExperienceManager.Instance.OnExperienceChange += HandleExperienceChange;
+        }
+        else
+        {
+            Debug.LogWarning("ExperienceManager instance is null!");
+        }
     }
 
     private void OnDisable() 
     {
-        ExperienceManager.Instance.OnExperienceChange -= HandleExperienceChange;    
+        if (ExperienceManager.Instance != null)
+        {
+            ExperienceManager.Instance.OnExperienceChange -= HandleExperienceChange;
+        }
+        else
+        {
+            Debug.LogWarning("ExperienceManager instance is null!");
+        }    
     }
 
     private void HandleExperienceChange(int newExperience)
@@ -37,12 +56,15 @@ public class PlayerStats : MonoBehaviour
     {
         damageable.MaxHealth += 100;
         damageable.Health = damageable.MaxHealth;
-        healthBar.SetMaxHealth(damageable.Health);
-        healthBar.LevelText(currentLevel.ToString());
-
+        // Ensure healthBar reference is not null before calling methods on it
+        if (healthBar != null)
+        {
+            healthBar.SetMaxHealth(damageable.MaxHealth);
+            healthBar.LevelText(currentLevel.ToString());
+        }
 
         currentLevel++;
-        currentExperience = currentExperience - maxExperience;
+        currentExperience -= maxExperience; // Adjusting currentExperience after leveling up
         maxExperience += 100;
     }
 }

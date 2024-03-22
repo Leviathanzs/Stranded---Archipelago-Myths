@@ -622,7 +622,7 @@ GameObject:
   - component: {fileID: 4036555404650540343}
   - component: {fileID: 5459334247721166485}
   - component: {fileID: 5538310250111717933}
-  - component: {fileID: 848320205040342191}
+  - component: {fileID: 7506171614528579024}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -717,7 +717,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &848320205040342191
+--- !u!114 &7506171614528579024
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -730,9 +730,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1309584181229614649}
-  manaBar: {fileID: 0}
+  manaBar: {fileID: 6330887721382419788}
   levelText: {fileID: 2806520062769526014}
-  playerStats: {fileID: 0}
 --- !u!1 &7655425798360278346
 GameObject:
   m_ObjectHideFlags: 0

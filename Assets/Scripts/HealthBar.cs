@@ -9,7 +9,6 @@ public class HealthBar : MonoBehaviour
     [SerializeField] Slider healthBar;
     [SerializeField] Slider manaBar;
     [SerializeField] TextMeshProUGUI levelText;
-    [SerializeField] PlayerStats playerStats;
 
     public void SetMaxHealth(int maxHealth)
     {

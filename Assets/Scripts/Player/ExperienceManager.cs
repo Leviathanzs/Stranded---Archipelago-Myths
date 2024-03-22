@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class ExperienceManager : MonoBehaviour
 {
-    public static ExperienceManager Instance;
+    public static ExperienceManager Instance {get; private set;}
 
     public delegate void ExperienceChangeHandler(int amount);
     public event ExperienceChangeHandler OnExperienceChange;
 
     void Awake()
     {
-        if(Instance != null && Instance != this)
+        if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
+            return;
         }
-        else
-        {
-            Instance = this;
-        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void AddExperience(int amount)
