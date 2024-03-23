@@ -56,6 +56,8 @@ public class PlayerStats : MonoBehaviour
     {
         damageable.MaxHealth += 100;
         damageable.Health = damageable.MaxHealth;
+        currentLevel++;
+
         // Ensure healthBar reference is not null before calling methods on it
         if (healthBar != null)
         {
@@ -63,7 +65,6 @@ public class PlayerStats : MonoBehaviour
             healthBar.LevelText(currentLevel.ToString());
         }
 
-        currentLevel++;
         currentExperience -= maxExperience; // Adjusting currentExperience after leveling up
         maxExperience += 100;
     }
