@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ExperienceManager : MonoBehaviour
 {
+    [SerializeField] PlayerStats playerStats;
     private static ExperienceManager _instance;
     public static ExperienceManager Instance => _instance;
 
@@ -25,5 +26,6 @@ public class ExperienceManager : MonoBehaviour
     public void AddExperience(int amount)
     {
         OnExperienceChange?.Invoke(amount);
+        playerStats.UpdateExp();
     }
 }

@@ -9,6 +9,21 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] int currentExperience, maxExperience, currentLevel;
 
+    float CalculateExperiencePercentage(int currentExp, int maxExp)
+    {
+        if (maxExp <= 0)
+        {
+            Debug.LogError("Max experience points should be greater than zero.");
+            return 0f; 
+        }
+
+        float percentage = (float)currentExp / maxExp * 100f;
+
+        percentage = Mathf.Clamp(percentage, 0f, 100f);
+
+        return percentage;
+    }
+
     void Awake()
     {
         damageable = GetComponent<Damageable>();
@@ -57,6 +72,8 @@ public class PlayerStats : MonoBehaviour
         damageable.MaxHealth += 100;
         damageable.Health = damageable.MaxHealth;
         currentLevel++;
+        currentExperience -= maxExperience; // Adjusting currentExperience after leveling up
+        maxExperience += 100;
 
         // Ensure healthBar reference is not null before calling methods on it
         if (healthBar != null)
@@ -64,8 +81,11 @@ public class PlayerStats : MonoBehaviour
             healthBar.SetMaxHealth(damageable.MaxHealth);
             healthBar.LevelText(currentLevel.ToString());
         }
+    }
 
-        currentExperience -= maxExperience; // Adjusting currentExperience after leveling up
-        maxExperience += 100;
+    public void UpdateExp()
+    {
+        healthBar.SetMaxExp(maxExperience, currentExperience);
+        healthBar.ExpPercentage(CalculateExperiencePercentage(currentExperience, maxExperience).ToString("N2") + "%");
     }
 }
