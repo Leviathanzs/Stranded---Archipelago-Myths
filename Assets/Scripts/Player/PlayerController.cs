@@ -11,12 +11,14 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     TouchingDirections touchingDirections;
     Damageable damageable;
+    new Transform transform;
     [SerializeField] HealthBar healthBar;
 
     [SerializeField] float walkSpeed = 5f;
     [SerializeField] float runSpeed = 8f;
     [SerializeField] float airWalkSpeed = 3f;
     [SerializeField] float jumpImpulse = 10f;
+    [SerializeField] float attackImpulse = 0.2f;
     [SerializeField] bool _isMoving = false;
     [SerializeField] bool _isRunning = false;
     [SerializeField] bool _isFacingRight = true;
@@ -105,6 +107,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
+        transform = GetComponent<Transform>();
     }
 
     private void FixedUpdate() 
@@ -173,6 +176,15 @@ public class PlayerController : MonoBehaviour
         if(context.started && !isJumping)
         {
             animator.SetTrigger(AnimationStrings.attackTrigger);
+
+            if(IsFacingRight)
+            {
+                transform.position = new Vector2(transform.position.x + attackImpulse, transform.position.y);
+            }
+            else
+            {
+                transform.position = new Vector2(transform.position.x - attackImpulse, transform.position.y);
+            }
         }
     }
 
