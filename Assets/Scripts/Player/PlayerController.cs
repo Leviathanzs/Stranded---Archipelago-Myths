@@ -11,15 +11,18 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     TouchingDirections touchingDirections;
     Damageable damageable;
+    new Transform transform;
     [SerializeField] HealthBar healthBar;
 
     [SerializeField] float walkSpeed = 5f;
     [SerializeField] float runSpeed = 8f;
     [SerializeField] float airWalkSpeed = 3f;
     [SerializeField] float jumpImpulse = 10f;
+    [SerializeField] float attackImpulse = 0.2f;
     [SerializeField] bool _isMoving = false;
     [SerializeField] bool _isRunning = false;
     [SerializeField] bool _isFacingRight = true;
+    [SerializeField] bool isJumping = false;
 
     //get set method
     public float CurrentMoveSpeed 
@@ -104,6 +107,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
+        transform = GetComponent<Transform>();
     }
 
     private void FixedUpdate() 
@@ -112,6 +116,11 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
 
         animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
+
+        if(touchingDirections.IsGrounded)
+        {
+            isJumping = false;
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -143,6 +152,10 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger(AnimationStrings.jumpTrigger);
             rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+        } 
+        else if(!touchingDirections.IsGrounded)
+        {
+            isJumping = true;
         }
     }
 
@@ -160,9 +173,18 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if(context.started && !isJumping)
         {
             animator.SetTrigger(AnimationStrings.attackTrigger);
+
+            if(IsFacingRight)
+            {
+                transform.position = new Vector2(transform.position.x + attackImpulse, transform.position.y);
+            }
+            else
+            {
+                transform.position = new Vector2(transform.position.x - attackImpulse, transform.position.y);
+            }
         }
     }
 

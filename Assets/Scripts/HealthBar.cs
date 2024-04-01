@@ -8,7 +8,9 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] Slider healthBar;
     [SerializeField] Slider manaBar;
+    [SerializeField] Slider expBar;
     [SerializeField] TextMeshProUGUI levelText;
+    [SerializeField] TextMeshProUGUI expPercentage;
 
     public void SetMaxHealth(int maxHealth)
     {
@@ -34,5 +36,21 @@ public class HealthBar : MonoBehaviour
     public void LevelText(string level)
     {
         levelText.text = level;
+    }
+
+    public void SetMaxExp(int maxExp, int currentExp)
+    {
+        expBar.maxValue = maxExp;
+        expBar.value = currentExp;
+    }
+
+    public void SetExp(int exp)
+    {
+        expBar.value = exp;
+    }
+
+    public void ExpPercentage(string exp)
+    {
+        expPercentage.text = exp;
     }
 }

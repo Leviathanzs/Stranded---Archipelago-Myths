@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class ExperienceManager : MonoBehaviour
 {
-    public static ExperienceManager Instance {get; private set;}
+    [SerializeField] PlayerStats playerStats;
+    private static ExperienceManager _instance;
+    public static ExperienceManager Instance => _instance;
 
     public delegate void ExperienceChangeHandler(int amount);
     public event ExperienceChangeHandler OnExperienceChange;
 
     void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (_instance != null && _instance != this)
         {
             Destroy(gameObject);
             return;
         }
 
-        Instance = this;
+        _instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
     public void AddExperience(int amount)
     {
         OnExperienceChange?.Invoke(amount);
+        playerStats.UpdateExp();
     }
 }
