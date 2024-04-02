@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] ItemSlot[] itemSlots;
     public event Action<Item> OnItemRightClickedEvent;
 
-    private void Awake() 
+    private void Start() 
     {
         for(int i = 0; i < itemSlots.Length; i++)
         {
