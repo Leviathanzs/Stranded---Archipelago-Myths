@@ -146,13 +146,14 @@ GameObject:
   - component: {fileID: 8232189303451785394}
   - component: {fileID: 9168965439259378792}
   - component: {fileID: 6539131647593376891}
+  - component: {fileID: 5941573151660302001}
   m_Layer: 5
   m_Name: ItemTooltip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1862877897253963811
 RectTransform:
   m_ObjectHideFlags: 0
@@ -174,7 +175,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: -60, y: 50}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 450, y: 280}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &8232189303451785394
 MonoBehaviour:
@@ -236,6 +237,21 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &5941573151660302001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208776899423576330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78e7f25af52ee7d4180b8cff74c4e58b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemNameText: {fileID: 608963990005409266}
+  ItemSlotText: {fileID: 1424179619344191910}
+  ItemStatsText: {fileID: 542188127601297117}
 --- !u!1 &238245749291623927
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,10 +359,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1862877897253963811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 225, y: -32.345}
+  m_SizeDelta: {x: 410, y: 44.69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2436603387535221020
 CanvasRenderer:
@@ -552,10 +568,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1862877897253963811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 225, y: -147.11}
+  m_SizeDelta: {x: 410, y: 95.68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1306180227607024036
 CanvasRenderer:
@@ -826,6 +842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 6402776623145838225}
+  tooltip: {fileID: 0}
   EquipmentType: 0
 --- !u!1 &741808796856250081
 GameObject:
@@ -1035,6 +1052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 3404031549050179970}
+  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &884751307246215408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,6 +1142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 673864285660468560}
+  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &976822888938342853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1630,6 +1649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 6493965771725949246}
+  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &1835427231073352521
 GameObject:
   m_ObjectHideFlags: 0
@@ -1719,6 +1739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 4171837058472335619}
+  tooltip: {fileID: 0}
   EquipmentType: 2
 --- !u!1 &1864463198508979462
 GameObject:
@@ -2422,6 +2443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 2051022847935487980}
+  tooltip: {fileID: 0}
   EquipmentType: 5
 --- !u!1 &3103577995735862431
 GameObject:
@@ -2512,6 +2534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 9013425630716590643}
+  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &3292909970577205819
 GameObject:
   m_ObjectHideFlags: 0
@@ -2601,6 +2624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 7156519491703028221}
+  tooltip: {fileID: 0}
   EquipmentType: 4
 --- !u!1 &3296210334978757955
 GameObject:
@@ -3109,6 +3133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 3589139391230689242}
+  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &4172207656580333765
 GameObject:
   m_ObjectHideFlags: 0
@@ -3339,6 +3364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 9007972929012823511}
+  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &4643260915546380202
 GameObject:
   m_ObjectHideFlags: 0
@@ -3428,6 +3454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 6990777180687340541}
+  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &4718870010995719244
 GameObject:
   m_ObjectHideFlags: 0
@@ -3800,6 +3827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 7175594013776571259}
+  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &5393544607383983235
 GameObject:
   m_ObjectHideFlags: 0
@@ -4023,6 +4051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 5047606097219376555}
+  tooltip: {fileID: 0}
   EquipmentType: 3
 --- !u!1 &5526122786324140484
 GameObject:
@@ -4113,6 +4142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 1528681036739122123}
+  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &5575570391226795828
 GameObject:
   m_ObjectHideFlags: 0
@@ -4202,6 +4232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 9125017225789424136}
+  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &5759827324079771872
 GameObject:
   m_ObjectHideFlags: 0
@@ -4291,6 +4322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 1149184475285530228}
+  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &5832649179804825273
 GameObject:
   m_ObjectHideFlags: 0
@@ -5273,6 +5305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 2489985481984615470}
+  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &6879512846526694763
 GameObject:
   m_ObjectHideFlags: 0
@@ -5485,6 +5518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 5470696211473978177}
+  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &6970748534505892312
 GameObject:
   m_ObjectHideFlags: 0
@@ -5574,6 +5608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 1273556852662461806}
+  tooltip: {fileID: 0}
   EquipmentType: 6
 --- !u!1 &6971528535761458067
 GameObject:
@@ -5664,6 +5699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 6376696820399806540}
+  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &7026737059892930631
 GameObject:
   m_ObjectHideFlags: 0
@@ -5962,6 +5998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 7515505354634579389}
+  tooltip: {fileID: 0}
   EquipmentType: 7
 --- !u!1 &7163657375262134146
 GameObject:
@@ -6052,6 +6089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 964639297932620156}
+  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &7231996431554494438
 GameObject:
   m_ObjectHideFlags: 0
@@ -6084,10 +6122,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1862877897253963811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 225, y: -76.98}
+  m_SizeDelta: {x: 410, y: 24.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7449528100216755411
 CanvasRenderer:
@@ -6275,6 +6313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 427764744392846249}
+  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &7655425798360278346
 GameObject:
   m_ObjectHideFlags: 0
@@ -6755,6 +6794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 1195072643924846068}
+  tooltip: {fileID: 0}
   EquipmentType: 1
 --- !u!1 &8195342633592008982
 GameObject:
@@ -6979,6 +7019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 5270559051921130930}
+  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &8705073356817213869
 GameObject:
   m_ObjectHideFlags: 0
@@ -7225,6 +7266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 7918415141327335637}
+  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &9144966537473544200
 GameObject:
   m_ObjectHideFlags: 0
