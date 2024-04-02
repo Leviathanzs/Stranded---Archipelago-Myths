@@ -14,7 +14,8 @@ public class EquipmentPanel : MonoBehaviour
     {
         for(int i = 0; i < equipmentSlots.Length; i++)
         {
-            equipmentSlots[i].OnRightClickEvent += OnItemRightClickedEvent;
+            if(OnItemRightClickedEvent != null)
+                equipmentSlots[i].OnRightClickEvent += OnItemRightClickedEvent;
         }    
     }
 

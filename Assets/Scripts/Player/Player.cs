@@ -7,4 +7,7 @@ using UnityEngine.Assertions.Must;
 public class Player : MonoBehaviour
 {
     public PlayerBaseStats Strenght;
+    public PlayerBaseStats Agility;
+    public PlayerBaseStats Intelligence;
+    public PlayerBaseStats Vitality;
 }

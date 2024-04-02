@@ -528,6 +528,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Strenght:
     BaseValue: 10
+  Agility:
+    BaseValue: 10
+  Intelligence:
+    BaseValue: 10
+  Vitality:
+    BaseValue: 10
 --- !u!1 &6704073668720239542
 GameObject:
   m_ObjectHideFlags: 0
