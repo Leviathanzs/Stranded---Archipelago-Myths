@@ -55,7 +55,6 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         {
             if(OnRightClickEvent != null)
                 OnRightClickEvent(this);
-                Debug.Log("clicked");
             
         }
     }
