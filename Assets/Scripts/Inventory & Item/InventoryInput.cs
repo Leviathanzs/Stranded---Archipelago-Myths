@@ -10,6 +10,10 @@ public class InventoryInput : MonoBehaviour
     [SerializeField] KeyCode[] toggleCharacterPanelKeys;
     [SerializeField] KeyCode[] toggleInventoryKeys;
 
+    private bool _isOpen;
+    public bool IsOpen {get {return _isOpen;}}
+
+
     void Update()
     {
         for(int i = 0; i < toggleCharacterPanelKeys.Length; i++)
@@ -21,10 +25,12 @@ public class InventoryInput : MonoBehaviour
                 if(characterPanelGameObject.activeSelf)
                 {
                     equipmentPanelGameObject.SetActive(true);
+                    _isOpen = true;
                     ShowMouseCursor();
                 }
                 else
                 {
+                    _isOpen = false;
                     HideMouseCursor();
                 }
 
@@ -40,6 +46,7 @@ public class InventoryInput : MonoBehaviour
                 {
                     characterPanelGameObject.SetActive(true);
                     equipmentPanelGameObject.SetActive(false);
+                    _isOpen = true;
                     ShowMouseCursor();
                 }
                 else if(equipmentPanelGameObject.activeSelf)
@@ -48,6 +55,7 @@ public class InventoryInput : MonoBehaviour
                 }
                 else
                 {
+                    _isOpen = false;
                     characterPanelGameObject.SetActive(false);
                     HideMouseCursor();
                 }
