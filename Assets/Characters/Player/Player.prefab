@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 831964105677150549}
   - component: {fileID: 7954440568417881670}
   - component: {fileID: 2548601927619433442}
+  - component: {fileID: 8509478259481154514}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -444,9 +445,11 @@ MonoBehaviour:
   runSpeed: 8
   airWalkSpeed: 3
   jumpImpulse: 15
+  attackImpulse: 0.2
   _isMoving: 0
   _isRunning: 0
   _isFacingRight: 1
+  isJumping: 0
 --- !u!114 &831964105677150549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,9 +510,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
+  levelTextPanel: {fileID: 0}
   currentExperience: 0
   maxExperience: 300
   currentLevel: 1
+--- !u!114 &8509478259481154514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3299553266711642218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7b774cb35e41142936d5f5d2d3590c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Strenght:
+    BaseValue: 10
+  Agility:
+    BaseValue: 10
+  Intelligence:
+    BaseValue: 10
+  Vitality:
+    BaseValue: 10
 --- !u!1 &6704073668720239542
 GameObject:
   m_ObjectHideFlags: 0

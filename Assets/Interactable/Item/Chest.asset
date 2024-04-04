@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Chest
   Icon: {fileID: 21300000, guid: e31ff316fef1e324baff054307fb82e9, type: 3}
-  StrenghtBonus: 0
+  StrenghtBonus: 20
   AgilityBonus: 0
   IntelligenceBonus: 0
-  VitalityBonus: 0
+  VitalityBonus: 10
   StrenghtPercentBonus: 0
   AgilityPercentBonus: 0
   IntelligencePercentBonus: 0

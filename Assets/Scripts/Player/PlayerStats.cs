@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
     Damageable damageable;
-    [SerializeField]HealthBar healthBar;
+    [SerializeField] HealthBar healthBar;
+    [SerializeField] TextMeshProUGUI levelTextPanel;
 
     [SerializeField] int currentExperience, maxExperience, currentLevel;
 
@@ -81,6 +83,8 @@ public class PlayerStats : MonoBehaviour
             healthBar.SetMaxHealth(damageable.MaxHealth);
             healthBar.LevelText(currentLevel.ToString());
         }
+
+        levelTextPanel.text = currentLevel.ToString();
     }
 
     public void UpdateExp()
