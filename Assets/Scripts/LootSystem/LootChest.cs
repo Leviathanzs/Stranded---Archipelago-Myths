@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class LootChest : LootBag
 {
+    [SerializeField] Inventory inventory;
     List<Item> GetDroppedItems()
     {
         int randomNumber = Random.Range(1, 101);
@@ -27,8 +28,7 @@ public class LootChest : LootBag
         {
             foreach (Item loot in droppedItems)
             {
-                GameObject lootGameObject = Instantiate(droppedItemPrefab, spawnPosition, Quaternion.identity);
-                lootGameObject.GetComponent<SpriteRenderer>().sprite = loot.Icon;
+               inventory.AddItem(loot);
             }
         }
     }
