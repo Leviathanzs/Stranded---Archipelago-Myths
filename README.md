@@ -12,7 +12,11 @@ Game Outline: Fight against monsters, doing quest (defeat monster, find material
 
 Unique Selling Point (USP)
 •	Based on Indonesia Folk Story
+
 •	Unique Monster
+
 •	Various Items and Food
+
 •	Serene Environment
+
 •	Branching Decision-Based Stories
