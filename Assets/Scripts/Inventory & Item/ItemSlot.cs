@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 using System.Data.Common;
+using TMPro;
 
 public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
 {
@@ -41,6 +42,11 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     {
         if(Image == null)
             Image = GetComponent<Image>();
+    }
+
+    public virtual bool CanReceiveItem(Item item)
+    {
+        return true;
     }
 
     public void OnPointerClick(PointerEventData eventData)

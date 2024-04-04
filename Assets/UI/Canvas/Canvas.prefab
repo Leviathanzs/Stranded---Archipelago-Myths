@@ -842,7 +842,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 6402776623145838225}
-  tooltip: {fileID: 5941573151660302001}
   EquipmentType: 0
 --- !u!1 &741808796856250081
 GameObject:
@@ -1024,7 +1023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1054,7 +1053,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 3404031549050179970}
-  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &884751307246215408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,7 +1112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1144,7 +1142,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 673864285660468560}
-  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &976822888938342853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1369,6 +1366,81 @@ MonoBehaviour:
   - Agility
   - Intelligence
   - Vitality
+--- !u!1 &1070753676134450855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1522599774076336437}
+  - component: {fileID: 215260389747866089}
+  - component: {fileID: 504346620087090223}
+  m_Layer: 5
+  m_Name: DraggableItem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1522599774076336437
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070753676134450855}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4399626086810863281}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1239, y: -469}
+  m_SizeDelta: {x: 150, y: 150}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &215260389747866089
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070753676134450855}
+  m_CullTransparentMesh: 1
+--- !u!114 &504346620087090223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070753676134450855}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1648181321116303037
 GameObject:
   m_ObjectHideFlags: 0
@@ -1621,7 +1693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1651,7 +1723,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 6493965771725949246}
-  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &1835427231073352521
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,7 +1812,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 4171837058472335619}
-  tooltip: {fileID: 5941573151660302001}
   EquipmentType: 2
 --- !u!1 &1864463198508979462
 GameObject:
@@ -2522,7 +2592,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 2051022847935487980}
-  tooltip: {fileID: 5941573151660302001}
   EquipmentType: 5
 --- !u!1 &3103577995735862431
 GameObject:
@@ -2583,7 +2652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2613,7 +2682,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 9013425630716590643}
-  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &3292909970577205819
 GameObject:
   m_ObjectHideFlags: 0
@@ -2703,7 +2771,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 7156519491703028221}
-  tooltip: {fileID: 5941573151660302001}
   EquipmentType: 4
 --- !u!1 &3296210334978757955
 GameObject:
@@ -3257,7 +3324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3287,7 +3354,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 3589139391230689242}
-  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &4172207656580333765
 GameObject:
   m_ObjectHideFlags: 0
@@ -3488,7 +3554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3518,7 +3584,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 9007972929012823511}
-  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &4643260915546380202
 GameObject:
   m_ObjectHideFlags: 0
@@ -3578,7 +3643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3608,7 +3673,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 6990777180687340541}
-  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &4718870010995719244
 GameObject:
   m_ObjectHideFlags: 0
@@ -4028,7 +4092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4058,7 +4122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 7175594013776571259}
-  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &5393544607383983235
 GameObject:
   m_ObjectHideFlags: 0
@@ -4282,7 +4345,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 5047606097219376555}
-  tooltip: {fileID: 5941573151660302001}
   EquipmentType: 3
 --- !u!1 &5526122786324140484
 GameObject:
@@ -4343,7 +4405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4373,7 +4435,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 1528681036739122123}
-  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &5575570391226795828
 GameObject:
   m_ObjectHideFlags: 0
@@ -4463,7 +4524,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 9125017225789424136}
-  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &5759827324079771872
 GameObject:
   m_ObjectHideFlags: 0
@@ -4523,7 +4583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4553,7 +4613,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 1149184475285530228}
-  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &5832649179804825273
 GameObject:
   m_ObjectHideFlags: 0
@@ -5506,7 +5565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5536,7 +5595,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 2489985481984615470}
-  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &6879512846526694763
 GameObject:
   m_ObjectHideFlags: 0
@@ -5573,6 +5631,7 @@ RectTransform:
   - {fileID: 7106966089124978380}
   - {fileID: 1862877897253963811}
   - {fileID: 1805060878637048216}
+  - {fileID: 1522599774076336437}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5749,7 +5808,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 5470696211473978177}
-  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &6970748534505892312
 GameObject:
   m_ObjectHideFlags: 0
@@ -5839,7 +5897,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 1273556852662461806}
-  tooltip: {fileID: 5941573151660302001}
   EquipmentType: 6
 --- !u!1 &6971528535761458067
 GameObject:
@@ -5930,7 +5987,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 6376696820399806540}
-  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &7026737059892930631
 GameObject:
   m_ObjectHideFlags: 0
@@ -6229,7 +6285,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 7515505354634579389}
-  tooltip: {fileID: 5941573151660302001}
   EquipmentType: 7
 --- !u!1 &7163657375262134146
 GameObject:
@@ -6320,7 +6375,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 964639297932620156}
-  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &7231996431554494438
 GameObject:
   m_ObjectHideFlags: 0
@@ -6544,7 +6598,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 427764744392846249}
-  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &7655425798360278346
 GameObject:
   m_ObjectHideFlags: 0
@@ -7039,7 +7092,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 1195072643924846068}
-  tooltip: {fileID: 5941573151660302001}
   EquipmentType: 1
 --- !u!1 &8195342633592008982
 GameObject:
@@ -7264,7 +7316,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 5270559051921130930}
-  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &8705073356817213869
 GameObject:
   m_ObjectHideFlags: 0
@@ -7422,6 +7473,8 @@ MonoBehaviour:
   inventory: {fileID: 155547931505255833}
   equipmentPanel: {fileID: 158901750220327695}
   statPanel: {fileID: 4834885671452759988}
+  itemTooltip: {fileID: 5941573151660302001}
+  draggableItem: {fileID: 504346620087090223}
 --- !u!1 &8906953508526682359
 GameObject:
   m_ObjectHideFlags: 0
@@ -7586,7 +7639,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 7918415141327335637}
-  tooltip: {fileID: 5941573151660302001}
 --- !u!1 &9144966537473544200
 GameObject:
   m_ObjectHideFlags: 0
