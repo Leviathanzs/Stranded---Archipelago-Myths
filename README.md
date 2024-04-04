@@ -1,5 +1,6 @@
 # Stranded---Archipelago-Myths
 Game Project!!!
+
 Tittle: Stranded:Archipelago Myths
 Genre: Action-RPG Side Scroller
 Platform: Windows
