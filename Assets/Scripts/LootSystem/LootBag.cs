@@ -5,22 +5,22 @@ using UnityEngine;
 public class LootBag : MonoBehaviour
 {
     public GameObject droppedItemPrefab;
-    public List<Loot> lootList = new List<Loot>();
+    public List<Item> lootList = new List<Item>();
 
-    protected virtual Loot GetDroppedItem()
+    protected virtual Item GetDroppedItem()
     {
         int randomNumber = Random.Range(1, 101);
-        List<Loot> possibleItems = new List<Loot>();
-        foreach(Loot item in lootList)
+        List<Item> possibleItems = new List<Item>();
+        foreach(Item item in lootList)
         {
-            if(randomNumber <= item.dropChance)
+            if(randomNumber <= item.DropChance)
             {
                 possibleItems.Add(item);
             }
         } 
         if(possibleItems.Count > 0)
         {
-            Loot droppedItem = possibleItems[Random.Range(0, possibleItems.Count)]; 
+            Item droppedItem = possibleItems[Random.Range(0, possibleItems.Count)]; 
             return droppedItem;
         }
         Debug.Log("No loot dropped");
@@ -29,11 +29,11 @@ public class LootBag : MonoBehaviour
 
     virtual public void InstantiateLoot(Vector2 spawnPosition)
     {
-        Loot droppedItem = GetDroppedItem();
+        Item droppedItem = GetDroppedItem();
         if(droppedItem != null)
         {
             GameObject lootGameObject = Instantiate(droppedItemPrefab, spawnPosition, Quaternion.identity);
-            lootGameObject.GetComponent<SpriteRenderer>().sprite = droppedItem.lootSprite;
+            lootGameObject.GetComponent<SpriteRenderer>().sprite = droppedItem.Icon;
         }
     }
 }

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Chest
   m_EditorClassIdentifier: 
   ItemName: Chest
+  DropChance: 100
   Icon: {fileID: 21300000, guid: e31ff316fef1e324baff054307fb82e9, type: 3}
   StrenghtBonus: 20
   AgilityBonus: 0
