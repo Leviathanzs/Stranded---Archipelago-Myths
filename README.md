@@ -2,7 +2,9 @@
 Game Project!!!
 
 Tittle: Stranded:Archipelago Myths
+
 Genre: Action-RPG Side Scroller
+
 Platform: Windows
 
 Game Summary: A boy awaken in another world where legends, myths, and magic exist. explore the fantasy world and unlock new stories.
