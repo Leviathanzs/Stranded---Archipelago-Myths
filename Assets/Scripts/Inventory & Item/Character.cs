@@ -37,8 +37,8 @@ public class Character : MonoBehaviour
         inventory.OnPointerEnterEvent += ShowTooltip;
         equipmentPanel.OnPointerEnterEvent += ShowTooltip;
         //PointerExit
-        inventory.OnPointerEnterEvent += HideTooltip;
-        equipmentPanel.OnPointerEnterEvent += HideTooltip;
+        inventory.OnPointerExitEvent += HideTooltip;
+        equipmentPanel.OnPointerExitEvent += HideTooltip;
         //Begin Drag
         inventory.OnBeginDragEvent += BeginDrag;
         equipmentPanel.OnBeginDragEvent += BeginDrag;

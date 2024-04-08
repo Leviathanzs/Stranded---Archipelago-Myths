@@ -79,7 +79,7 @@ public class Inventory : MonoBehaviour
             if(item != null && item.ID == itemID)
             {
                 itemSlots[i].Item = null;
-                return true;
+                return item;
             }
         }
         return false;
