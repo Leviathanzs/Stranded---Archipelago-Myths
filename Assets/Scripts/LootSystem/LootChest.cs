@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class LootChest : LootBag
 {
-    [SerializeField] Inventory inventory;
     List<Item> GetDroppedItems()
     {
         int randomNumber = Random.Range(1, 101);

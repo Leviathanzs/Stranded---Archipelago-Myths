@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LootBag : MonoBehaviour
 {
+    public Inventory inventory;
+
     public GameObject droppedItemPrefab;
     public List<Item> lootList = new List<Item>();
 
@@ -32,8 +34,7 @@ public class LootBag : MonoBehaviour
         Item droppedItem = GetDroppedItem();
         if(droppedItem != null)
         {
-            GameObject lootGameObject = Instantiate(droppedItemPrefab, spawnPosition, Quaternion.identity);
-            lootGameObject.GetComponent<SpriteRenderer>().sprite = droppedItem.Icon;
+           inventory.AddItem(droppedItem);
         }
     }
 }

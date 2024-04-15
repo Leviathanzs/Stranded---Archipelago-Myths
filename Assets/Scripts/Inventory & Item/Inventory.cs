@@ -64,8 +64,8 @@ public class Inventory : MonoBehaviour
         {
             if(itemSlots[i].Item == null)
             {
-                itemSlots[i].Item = item;
-                return true;
+                itemSlots[i].Item = Instantiate(item);
+                return item;
             }
         }
         return false;
