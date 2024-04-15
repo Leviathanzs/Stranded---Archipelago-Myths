@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &344023947 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4834885671452759988, guid: 1e95bd7f02f6e8542b01872abec2a435, type: 3}
+  m_PrefabInstance: {fileID: 5034322763737565476}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dc758e4cd35b4d408df19d9844f8bfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,6 +664,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9e2a24d2997149488d3c974a656a5a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1231067911 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2517805892954126383, guid: 1e95bd7f02f6e8542b01872abec2a435, type: 3}
+  m_PrefabInstance: {fileID: 5034322763737565476}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb4d7fd56a9280f49bbadb6d0188b5be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1232767456 stripped
@@ -4647,9 +4669,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1232767456}
     - target: {fileID: 2548601927619433442, guid: caa6a267eba789a438e8b27611b3ae01, type: 3}
+      propertyPath: statValues
+      value: 
+      objectReference: {fileID: 1231067911}
+    - target: {fileID: 2548601927619433442, guid: caa6a267eba789a438e8b27611b3ae01, type: 3}
       propertyPath: levelTextPanel
       value: 
       objectReference: {fileID: 1864255940}
+    - target: {fileID: 2548601927619433442, guid: caa6a267eba789a438e8b27611b3ae01, type: 3}
+      propertyPath: displayStatValues
+      value: 
+      objectReference: {fileID: 344023947}
     - target: {fileID: 3299553266711642218, guid: caa6a267eba789a438e8b27611b3ae01, type: 3}
       propertyPath: m_Name
       value: Player
