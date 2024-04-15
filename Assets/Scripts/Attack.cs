@@ -7,8 +7,10 @@ public class Attack : MonoBehaviour
     [SerializeField] int attackDamage = 10;
     [SerializeField] Vector2 knocback = Vector2.zero;
 
+    public Vector2 Knocback {get { return knocback;} set {knocback = value;}}
 
-    void OnTriggerEnter2D(Collider2D other)
+
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         Damageable damageable = other.GetComponent<Damageable>();
 
