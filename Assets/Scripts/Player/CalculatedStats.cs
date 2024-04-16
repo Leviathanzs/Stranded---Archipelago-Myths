@@ -14,8 +14,7 @@ public class CalculatedStats : MonoBehaviour
 
     public int CalculatedStrenght()
     {
-        stats.Strenght.BaseValue *= damageMultipler;
-        damage = Mathf.RoundToInt(stats.Strenght.BaseValue);
+        damage = Mathf.RoundToInt(stats.StrenghtFinalValue * damageMultipler);
         
         return damage;
     }

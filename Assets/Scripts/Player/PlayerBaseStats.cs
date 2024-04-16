@@ -109,6 +109,6 @@ public class PlayerBaseStats
             }
             
         }
-        return (float)Math.Round(finalValue, 4);
+        return Mathf.RoundToInt(finalValue);
    }
 }

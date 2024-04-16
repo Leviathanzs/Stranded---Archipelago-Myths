@@ -10,8 +10,12 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] Character statValues;
     [SerializeField] HealthBar healthBar;
     [SerializeField] TextMeshProUGUI levelTextPanel;
-
     [SerializeField] int currentExperience, maxExperience, currentLevel;
+
+    public int CurrentLevel {get { return currentLevel; } set { currentLevel = value; }}
+
+    private bool _isLevelUp = false;
+    public bool IsLevelUp {get { return _isLevelUp; } set { _isLevelUp = value; }}
 
     float CalculateExperiencePercentage(int currentExp, int maxExp)
     {
@@ -67,11 +71,13 @@ public class PlayerStats : MonoBehaviour
         if(currentExperience >= maxExperience)
         {
             LevelUp();
+            IsLevelUp = false;
         }
     }
 
-    void LevelUp()
+    public void LevelUp()
     {
+        IsLevelUp = true;
         damageable.MaxHealth += 100;
         damageable.Health = damageable.MaxHealth;
         currentLevel++;
@@ -91,6 +97,7 @@ public class PlayerStats : MonoBehaviour
         }
 
         displayStatValues.UpdateStatValues();
+        statValues.RecalculateBaseStats();
 
         levelTextPanel.text = currentLevel.ToString();
     }

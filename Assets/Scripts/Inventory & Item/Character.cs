@@ -10,6 +10,9 @@ public class Character : MonoBehaviour
     public PlayerBaseStats Intelligence;
     public PlayerBaseStats Vitality;
 
+    private float _strenghtFinalValue;
+    public float StrenghtFinalValue {get { return _strenghtFinalValue; } set { _strenghtFinalValue = value;}}
+
     [SerializeField] Inventory inventory;
     [SerializeField] EquipmentPanel equipmentPanel;
     [SerializeField] StatPanel statPanel;
@@ -29,6 +32,7 @@ public class Character : MonoBehaviour
     {
         statPanel.SetStats(Strenght, Agility, Intelligence, Vitality);
         statPanel.UpdateStatValues();
+        _strenghtFinalValue = Strenght.BaseValue;
 
         //setup Events:
         //Right Click
@@ -55,22 +59,27 @@ public class Character : MonoBehaviour
     }
 
     // Method to recalculate base stats based on equipped items
-    private void RecalculateBaseStats()
+    public void RecalculateBaseStats()
     {
-        // Reset base stats to default values
-        Strenght.BaseValue = 10;
-        Agility.BaseValue = 10;
-        Intelligence.BaseValue = 10;
-        Vitality.BaseValue = 10;
+        // Accumulate bonuses from equipped items
+        float strengthBonusTotal = 0;
+        float agilityBonusTotal = 0;
+        float intelligenceBonusTotal = 0;
+        float vitalityBonusTotal = 0;
 
-        // Apply bonuses from equipped items
         foreach (var item in equippedItems.Values)
         {
-            Strenght.BaseValue += item.StrenghtBonus;
-            Agility.BaseValue += item.AgilityBonus;
-            Intelligence.BaseValue += item.IntelligenceBonus;
-            Vitality.BaseValue += item.VitalityBonus;
+            strengthBonusTotal += item.StrenghtBonus;
+            agilityBonusTotal += item.AgilityBonus;
+            intelligenceBonusTotal += item.IntelligenceBonus;
+            vitalityBonusTotal += item.VitalityBonus;
         }
+
+        // Apply accumulated bonuses
+        _strenghtFinalValue = Strenght.BaseValue + strengthBonusTotal;
+        Agility.BaseValue += agilityBonusTotal;
+        Intelligence.BaseValue += intelligenceBonusTotal;
+        Vitality.BaseValue += vitalityBonusTotal;
     }
 
     private void Equip(ItemSlot itemSlot)
