@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce7249274de4e947805ef71e76c6326, type: 3}
   m_Name: Acc1
   m_EditorClassIdentifier: 
-  ItemName: Accessory1
+  id: ad6c944d0ce44eb49904d7602831cb24
+  ItemName: Silver Necklace
+  DropChance: 100
   Icon: {fileID: 21300000, guid: 67f0cf2d308f4084e86c5d3cfd4c020f, type: 3}
   StrenghtBonus: 0
   AgilityBonus: 0

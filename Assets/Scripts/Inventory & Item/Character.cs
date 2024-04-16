@@ -10,6 +10,9 @@ public class Character : MonoBehaviour
     public PlayerBaseStats Intelligence;
     public PlayerBaseStats Vitality;
 
+    private float _strenghtFinalValue;
+    public float StrenghtFinalValue {get { return _strenghtFinalValue; } set { _strenghtFinalValue = value;}}
+
     [SerializeField] Inventory inventory;
     [SerializeField] EquipmentPanel equipmentPanel;
     [SerializeField] StatPanel statPanel;
@@ -17,6 +20,7 @@ public class Character : MonoBehaviour
     [SerializeField] Image draggableItem;
 
     private ItemSlot draggedSlot;
+    private Dictionary<EquipmentType, EquippableItem> equippedItems = new Dictionary<EquipmentType, EquippableItem>();
 
     private void OnValidate()
     {
@@ -28,6 +32,7 @@ public class Character : MonoBehaviour
     {
         statPanel.SetStats(Strenght, Agility, Intelligence, Vitality);
         statPanel.UpdateStatValues();
+        _strenghtFinalValue = Strenght.BaseValue;
 
         //setup Events:
         //Right Click
@@ -37,8 +42,8 @@ public class Character : MonoBehaviour
         inventory.OnPointerEnterEvent += ShowTooltip;
         equipmentPanel.OnPointerEnterEvent += ShowTooltip;
         //PointerExit
-        inventory.OnPointerEnterEvent += HideTooltip;
-        equipmentPanel.OnPointerEnterEvent += HideTooltip;
+        inventory.OnPointerExitEvent += HideTooltip;
+        equipmentPanel.OnPointerExitEvent += HideTooltip;
         //Begin Drag
         inventory.OnBeginDragEvent += BeginDrag;
         equipmentPanel.OnBeginDragEvent += BeginDrag;
@@ -53,9 +58,34 @@ public class Character : MonoBehaviour
         equipmentPanel.OnDropEvent += Drop;
     }
 
+    // Method to recalculate base stats based on equipped items
+    public void RecalculateBaseStats()
+    {
+        // Accumulate bonuses from equipped items
+        float strengthBonusTotal = 0;
+        float agilityBonusTotal = 0;
+        float intelligenceBonusTotal = 0;
+        float vitalityBonusTotal = 0;
+
+        foreach (var item in equippedItems.Values)
+        {
+            strengthBonusTotal += item.StrenghtBonus;
+            agilityBonusTotal += item.AgilityBonus;
+            intelligenceBonusTotal += item.IntelligenceBonus;
+            vitalityBonusTotal += item.VitalityBonus;
+        }
+
+        // Apply accumulated bonuses
+        _strenghtFinalValue = Strenght.BaseValue + strengthBonusTotal;
+        Agility.BaseValue += agilityBonusTotal;
+        Intelligence.BaseValue += intelligenceBonusTotal;
+        Vitality.BaseValue += vitalityBonusTotal;
+    }
+
     private void Equip(ItemSlot itemSlot)
     {
         EquippableItem equippableItem = itemSlot.Item as EquippableItem;
+
         if(equippableItem != null)
         {
             Equip(equippableItem);
@@ -112,6 +142,8 @@ public class Character : MonoBehaviour
 
     private void Drop(ItemSlot dropItemSlot)
     {
+        if(draggedSlot == null) return;
+
         if(dropItemSlot.CanReceiveItem(draggedSlot.Item) && draggedSlot.CanReceiveItem(dropItemSlot.Item))
         {
             EquippableItem dragItem = draggedSlot.Item as EquippableItem;
@@ -137,7 +169,20 @@ public class Character : MonoBehaviour
 
     public void Equip(EquippableItem item)
     {
-        if(inventory.RemoveItem(item))
+        EquipmentType equipmentType = item.EquipmentType;
+
+        // Unequip previous item of the same type, if any
+        if (equippedItems.ContainsKey(equipmentType))
+        {
+            Unequip(equippedItems[equipmentType]);
+        }
+
+        //Equip the new item
+        item.Equip(this);
+        equippedItems[equipmentType] = item;
+        statPanel.UpdateStatValues();
+
+        if(inventory.RemoveItem(item.ID))
         {
             EquippableItem previousItem;
             if(equipmentPanel.AddItem(item, out previousItem))
@@ -146,9 +191,9 @@ public class Character : MonoBehaviour
                 {
                     inventory.AddItem(previousItem);
                     previousItem.Unequip(this);
+                    item.Equip(this);
                     statPanel.UpdateStatValues();
                 }
-                item.Equip(this);
                 statPanel.UpdateStatValues();
             }
             else
@@ -156,6 +201,7 @@ public class Character : MonoBehaviour
                 inventory.AddItem(item);
             }
         }
+        RecalculateBaseStats();
     }
 
     public void Unequip(EquippableItem item)
@@ -163,8 +209,10 @@ public class Character : MonoBehaviour
         if(!inventory.IsFull() && equipmentPanel.RemoveItem(item))
         {
             item.Unequip(this);
-            statPanel.UpdateStatValues();
             inventory.AddItem(item);
+            equippedItems.Remove(item.EquipmentType);
+            RecalculateBaseStats();
+            statPanel.UpdateStatValues();
         }
     }
 }

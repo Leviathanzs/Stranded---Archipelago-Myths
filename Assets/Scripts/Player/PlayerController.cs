@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     Damageable damageable;
     new Transform transform;
     [SerializeField] HealthBar healthBar;
+    [SerializeField] InventoryInput inventoryInput;
 
     [SerializeField] float walkSpeed = 5f;
     [SerializeField] float runSpeed = 8f;
@@ -173,7 +174,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if(context.started && !isJumping)
+        if(context.started && !isJumping && !inventoryInput.IsOpen)
         {
             animator.SetTrigger(AnimationStrings.attackTrigger);
 

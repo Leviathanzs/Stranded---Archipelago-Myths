@@ -6,10 +6,16 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     Damageable damageable;
+    [SerializeField] StatPanel displayStatValues;
+    [SerializeField] Character statValues;
     [SerializeField] HealthBar healthBar;
     [SerializeField] TextMeshProUGUI levelTextPanel;
-
     [SerializeField] int currentExperience, maxExperience, currentLevel;
+
+    public int CurrentLevel {get { return currentLevel; } set { currentLevel = value; }}
+
+    private bool _isLevelUp = false;
+    public bool IsLevelUp {get { return _isLevelUp; } set { _isLevelUp = value; }}
 
     float CalculateExperiencePercentage(int currentExp, int maxExp)
     {
@@ -29,7 +35,6 @@ public class PlayerStats : MonoBehaviour
     void Awake()
     {
         damageable = GetComponent<Damageable>();
-
         if (healthBar == null)
         {
             Debug.LogError("HealthBar reference not assigned in PlayerStats!");
@@ -66,16 +71,23 @@ public class PlayerStats : MonoBehaviour
         if(currentExperience >= maxExperience)
         {
             LevelUp();
+            IsLevelUp = false;
         }
     }
 
-    void LevelUp()
+    public void LevelUp()
     {
+        IsLevelUp = true;
         damageable.MaxHealth += 100;
         damageable.Health = damageable.MaxHealth;
         currentLevel++;
         currentExperience -= maxExperience; // Adjusting currentExperience after leveling up
         maxExperience += 100;
+
+        statValues.Strenght.BaseValue += 5;
+        statValues.Agility.BaseValue += 5;
+        statValues.Intelligence.BaseValue += 5;
+        statValues.Vitality.BaseValue += 5;
 
         // Ensure healthBar reference is not null before calling methods on it
         if (healthBar != null)
@@ -83,6 +95,9 @@ public class PlayerStats : MonoBehaviour
             healthBar.SetMaxHealth(damageable.MaxHealth);
             healthBar.LevelText(currentLevel.ToString());
         }
+
+        displayStatValues.UpdateStatValues();
+        statValues.RecalculateBaseStats();
 
         levelTextPanel.text = currentLevel.ToString();
     }

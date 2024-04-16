@@ -441,6 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
+  inventoryInput: {fileID: 0}
   walkSpeed: 5
   runSpeed: 8
   airWalkSpeed: 3
@@ -509,6 +510,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8655ab422ccb2ff408e154dcc10effd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayStatValues: {fileID: 0}
+  statValues: {fileID: 0}
   healthBar: {fileID: 0}
   levelTextPanel: {fileID: 0}
   currentExperience: 0
@@ -655,6 +658,7 @@ GameObject:
   - component: {fileID: 2315372790401179055}
   - component: {fileID: 8232438514738324371}
   - component: {fileID: 8445575204460801339}
+  - component: {fileID: 7679114036260634064}
   m_Layer: 9
   m_Name: SwordAttack 1
   m_TagString: PlayerHitbox
@@ -752,3 +756,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage: 10
   knocback: {x: 5, y: 0}
+--- !u!114 &7679114036260634064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6873327095778328276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa5c12bc5a75a34d8b5d3ad590d5b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}

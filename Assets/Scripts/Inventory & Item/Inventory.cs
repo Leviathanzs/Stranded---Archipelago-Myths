@@ -49,7 +49,7 @@ public class Inventory : MonoBehaviour
         int i = 0;
         for(; i < startingItems.Count && i < itemSlots.Length; i++)
         {
-            itemSlots[i].Item = startingItems[i];
+            itemSlots[i].Item = Instantiate(startingItems[i]);
         }
 
         for(; i <itemSlots.Length; i++)
@@ -84,6 +84,20 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
+    public Item RemoveItem(string itemID)
+    {
+        for(int i =  0; i <itemSlots.Length; i++)
+        {
+            Item item = itemSlots[i].Item;
+            if(item != null && item.ID == itemID)
+            {
+                itemSlots[i].Item = null;
+                return item;
+            }
+        }
+        return null;
+    }
+
     public bool IsFull()
     {
         for(int i =  0; i <itemSlots.Length; i++)
@@ -94,5 +108,19 @@ public class Inventory : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public int ItemCount(string itemID)
+    {
+        int number = 0;
+
+        for(int i  = 0; i < itemSlots.Length; i++)
+        {
+            if(itemSlots[i].Item.ID == itemID)
+            {
+                number++;
+            }
+        }
+        return number;
     }
 }
