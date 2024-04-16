@@ -29,7 +29,7 @@ public class StatTooltip : MonoBehaviour
         sb.Length = 0;
         sb.Append(statName);
         sb.Append(" ");
-        sb.Append(stat.Value);
+        sb.Append(stat.BaseValue);
 
         if(stat.Value != stat.BaseValue)
         {
