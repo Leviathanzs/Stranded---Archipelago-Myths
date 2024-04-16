@@ -27,7 +27,7 @@ public class LootChest : LootBag
         {
             foreach (Item loot in droppedItems)
             {
-               inventory.AddItem(loot);
+               inventory.AddItem(Instantiate(loot));
             }
         }
     }

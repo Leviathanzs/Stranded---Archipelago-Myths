@@ -109,7 +109,6 @@ public class PlayerBaseStats
             }
             
         }
-
         return (float)Math.Round(finalValue, 4);
    }
 }

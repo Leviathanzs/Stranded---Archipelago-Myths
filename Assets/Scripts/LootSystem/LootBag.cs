@@ -34,7 +34,7 @@ public class LootBag : MonoBehaviour
         Item droppedItem = GetDroppedItem();
         if(droppedItem != null)
         {
-           inventory.AddItem(droppedItem);
+           inventory.AddItem(Instantiate(droppedItem));
         }
     }
 }
