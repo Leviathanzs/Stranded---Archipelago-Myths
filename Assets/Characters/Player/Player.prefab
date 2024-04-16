@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 7954440568417881670}
   - component: {fileID: 2548601927619433442}
   - component: {fileID: 8509478259481154514}
+  - component: {fileID: 6217923059183311491}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -537,6 +538,19 @@ MonoBehaviour:
     BaseValue: 10
   Vitality:
     BaseValue: 10
+--- !u!114 &6217923059183311491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3299553266711642218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa5c12bc5a75a34d8b5d3ad590d5b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
 --- !u!1 &6704073668720239542
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,8 +671,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2315372790401179055}
   - component: {fileID: 8232438514738324371}
-  - component: {fileID: 8445575204460801339}
-  - component: {fileID: 7679114036260634064}
+  - component: {fileID: 1442630340213218456}
   m_Layer: 9
   m_Name: SwordAttack 1
   m_TagString: PlayerHitbox
@@ -742,7 +755,7 @@ PolygonCollider2D:
       - {x: 1.4205943, y: -0.114151835}
       - {x: 1.4557638, y: 0.38198695}
   m_UseDelaunayMesh: 0
---- !u!114 &8445575204460801339
+--- !u!114 &1442630340213218456
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -751,21 +764,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6873327095778328276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f95f00175a98a4942971a41eeffa3b67, type: 3}
+  m_Script: {fileID: 11500000, guid: d7db1eeb30752b54d8fe74bd5f510e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 10
   knocback: {x: 5, y: 0}
---- !u!114 &7679114036260634064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6873327095778328276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fa5c12bc5a75a34d8b5d3ad590d5b37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats: {fileID: 0}
