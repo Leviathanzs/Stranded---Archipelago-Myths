@@ -89,15 +89,15 @@ public class PlayerStats : MonoBehaviour
         statValues.Intelligence.BaseValue += 5;
         statValues.Vitality.BaseValue += 5;
 
+        displayStatValues.UpdateStatValues();
+        statValues.RecalculateBaseStats();
+
         // Ensure healthBar reference is not null before calling methods on it
         if (healthBar != null)
         {
-            healthBar.SetMaxHealth(damageable.MaxHealth);
+            healthBar.SetMaxHealth(damageable.MaxHealth, damageable.Health);
             healthBar.LevelText(currentLevel.ToString());
         }
-
-        displayStatValues.UpdateStatValues();
-        statValues.RecalculateBaseStats();
 
         levelTextPanel.text = currentLevel.ToString();
     }

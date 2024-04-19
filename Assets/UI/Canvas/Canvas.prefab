@@ -7928,6 +7928,7 @@ MonoBehaviour:
   statPanel: {fileID: 4834885671452759988}
   itemTooltip: {fileID: 7211210306078048591}
   draggableItem: {fileID: 504346620087090223}
+  damageable: {fileID: 0}
 --- !u!1 &8906953508526682359
 GameObject:
   m_ObjectHideFlags: 0

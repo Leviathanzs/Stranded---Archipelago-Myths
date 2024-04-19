@@ -12,10 +12,25 @@ public class HealthBar : MonoBehaviour
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] TextMeshProUGUI expPercentage;
 
-    public void SetMaxHealth(int maxHealth)
+    public static HealthBar healthInstance;
+
+    public void Awake()
+    {
+        // Singleton pattern initialization
+        if (healthInstance == null)
+        {
+            healthInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void SetMaxHealth(int maxHealth, int health)
     {
         healthBar.maxValue = maxHealth;
-        healthBar.value = maxHealth;
+        healthBar.value = health;
     }
 
     public void SetHealth(int health)

@@ -10,14 +10,33 @@ public class Character : MonoBehaviour
     public PlayerBaseStats Intelligence;
     public PlayerBaseStats Vitality;
 
+    private int originalMaxHealth = 100;
+
+    // Current max health value after considering all equipped items
+    private int currentMaxHealth;
+
+    // Original current health value
+    private int originalCurrentHealth = 100;
+
+    // Current health value
+    private int currentHealth = 100;
+
+
     private float _strenghtFinalValue;
+    private float _agilityFinalValue;
+    private float _intelligenceFinalValue;
+    private float _vitalityFinalValue;
     public float StrenghtFinalValue {get { return _strenghtFinalValue; } set { _strenghtFinalValue = value;}}
+    public float AgilityFinalValue {get { return _agilityFinalValue; } set { _agilityFinalValue = value;}}
+    public float IntelligenceFinalValue {get { return _intelligenceFinalValue; } set { _intelligenceFinalValue = value;}}
+    public float VitalityFinalValue {get { return _vitalityFinalValue; } set { _vitalityFinalValue = value;}}
 
     [SerializeField] Inventory inventory;
     [SerializeField] EquipmentPanel equipmentPanel;
     [SerializeField] StatPanel statPanel;
     [SerializeField] ItemTooltip itemTooltip;
     [SerializeField] Image draggableItem;
+    [SerializeField] Damageable damageable;
 
     private ItemSlot draggedSlot;
     private Dictionary<EquipmentType, EquippableItem> equippedItems = new Dictionary<EquipmentType, EquippableItem>();
@@ -77,9 +96,9 @@ public class Character : MonoBehaviour
 
         // Apply accumulated bonuses
         _strenghtFinalValue = Strenght.BaseValue + strengthBonusTotal;
-        Agility.BaseValue += agilityBonusTotal;
-        Intelligence.BaseValue += intelligenceBonusTotal;
-        Vitality.BaseValue += vitalityBonusTotal;
+        _agilityFinalValue = Agility.BaseValue + agilityBonusTotal;
+        _intelligenceFinalValue = Intelligence.BaseValue + intelligenceBonusTotal;
+        _vitalityFinalValue = Vitality.BaseValue + vitalityBonusTotal;
     }
 
     private void Equip(ItemSlot itemSlot)
@@ -182,6 +201,8 @@ public class Character : MonoBehaviour
         equippedItems[equipmentType] = item;
         statPanel.UpdateStatValues();
 
+        
+
         if(inventory.RemoveItem(item.ID))
         {
             EquippableItem previousItem;
@@ -202,6 +223,8 @@ public class Character : MonoBehaviour
             }
         }
         RecalculateBaseStats();
+        HealthBar.healthInstance.SetMaxHealth(CalculateMaxHealth(), currentHealth);
+        Debug.Log("Max Health: " + CalculateMaxHealth());
     }
 
     public void Unequip(EquippableItem item)
@@ -211,8 +234,29 @@ public class Character : MonoBehaviour
             item.Unequip(this);
             inventory.AddItem(item);
             equippedItems.Remove(item.EquipmentType);
+            // Remove the item from the dictionary of equipped items
+            equippedItems.Remove(item.EquipmentType);
+
+            // Update the current max health value
+            currentMaxHealth = CalculateMaxHealth();
+
+            // Restore the current health value if it exceeds the new max health value
+            currentHealth = Mathf.Min(currentHealth, currentMaxHealth);
+
             RecalculateBaseStats();
             statPanel.UpdateStatValues();
+            HealthBar.healthInstance.SetMaxHealth(CalculateMaxHealth(), currentHealth);
+            Debug.Log("Max Health: " + CalculateMaxHealth());
         }
+    }
+
+    private int CalculateMaxHealth()
+    {
+        int totalMaxHealth = originalMaxHealth;
+        foreach (EquippableItem item in equippedItems.Values)
+        {
+            totalMaxHealth += item.StrenghtBonus; // Add the HP increase from each equipped item
+        }
+        return totalMaxHealth;
     }
 }
