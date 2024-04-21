@@ -11,7 +11,7 @@ public class Damageable : MonoBehaviour
     [SerializeField] Character calculatedStats;
 
     [SerializeField] int _maxHealth = 100;
-    [SerializeField] int _health = 80;
+    [SerializeField] int _health = 100;
     bool _isAlive = true;
 
     public int MaxHealth{get {return _maxHealth;} set {

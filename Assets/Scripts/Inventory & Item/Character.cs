@@ -13,10 +13,7 @@ public class Character : MonoBehaviour
     private int originalMaxHealth = 100;
 
     // Current max health value after considering all equipped items
-    private int currentMaxHealth;
-
-    // Original current health value
-    private int originalCurrentHealth = 100;
+    private int currentMaxHealth = 100;
 
     // Current health value
     private int currentHealth = 100;
@@ -189,6 +186,8 @@ public class Character : MonoBehaviour
     public void Equip(EquippableItem item)
     {
         EquipmentType equipmentType = item.EquipmentType;
+        // Store the current health before equipping the item
+        int previousHealth = currentHealth;
 
         // Unequip previous item of the same type, if any
         if (equippedItems.ContainsKey(equipmentType))
@@ -196,23 +195,46 @@ public class Character : MonoBehaviour
             Unequip(equippedItems[equipmentType]);
         }
 
-        //Equip the new item
+        // Equip the new item
         item.Equip(this);
         equippedItems[equipmentType] = item;
         statPanel.UpdateStatValues();
 
-        
+        // Calculate the new maximum health
+        int newMaxHealth = CalculateMaxHealth();
 
-        if(inventory.RemoveItem(item.ID))
+        if (previousHealth > currentMaxHealth)
+        {
+            // If previous health exceeds the new maximum health, set current health to the new maximum health
+            currentHealth = currentMaxHealth;
+        }
+        else
+        {
+            // Otherwise, adjust current health proportionally to maintain the same percentage of health
+           currentHealth = damageable.Health;
+        }
+
+        // Update the current and maximum health values
+        currentMaxHealth = newMaxHealth;
+
+        // Update the UI and other necessary components
+        statPanel.UpdateStatValues();
+
+        // Update the inventory
+        if (inventory.RemoveItem(item.ID))
         {
             EquippableItem previousItem;
-            if(equipmentPanel.AddItem(item, out previousItem))
+            if (equipmentPanel.AddItem(item, out previousItem))
             {
-                if(previousItem != null)
+                if (previousItem != null)
                 {
                     inventory.AddItem(previousItem);
                     previousItem.Unequip(this);
-                    item.Equip(this);
+                    // Adjust current health if needed after unequipping the previous item
+                    if (currentHealth > currentMaxHealth)
+                    {
+                        currentHealth = currentMaxHealth;
+                    }
                     statPanel.UpdateStatValues();
                 }
                 statPanel.UpdateStatValues();
@@ -222,9 +244,11 @@ public class Character : MonoBehaviour
                 inventory.AddItem(item);
             }
         }
+
+        // Recalculate base stats and update health
         RecalculateBaseStats();
         HealthBar.healthInstance.SetMaxHealth(CalculateMaxHealth(), currentHealth);
-        Debug.Log("Max Health: " + CalculateMaxHealth());
+        Debug.Log(currentHealth);
     }
 
     public void Unequip(EquippableItem item)
@@ -233,7 +257,7 @@ public class Character : MonoBehaviour
         {
             item.Unequip(this);
             inventory.AddItem(item);
-            equippedItems.Remove(item.EquipmentType);
+
             // Remove the item from the dictionary of equipped items
             equippedItems.Remove(item.EquipmentType);
 
@@ -246,7 +270,6 @@ public class Character : MonoBehaviour
             RecalculateBaseStats();
             statPanel.UpdateStatValues();
             HealthBar.healthInstance.SetMaxHealth(CalculateMaxHealth(), currentHealth);
-            Debug.Log("Max Health: " + CalculateMaxHealth());
         }
     }
 
