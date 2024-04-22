@@ -12,6 +12,8 @@ public class Damageable : MonoBehaviour
 
     [SerializeField] int _maxHealth = 100;
     [SerializeField] int _health = 100;
+    [SerializeField] int _maxMana = 100;
+    [SerializeField] int _mana = 100;
     bool _isAlive = true;
 
     public int MaxHealth{get {return _maxHealth;} set {
@@ -25,6 +27,14 @@ public class Damageable : MonoBehaviour
         {
             IsAlive = false;
         }
+    }}
+
+    public int MaxMana{get {return _maxMana;} set {
+        _maxMana = value;
+    }}
+
+    public int Mana{get {return _mana;} set {
+        _mana = value;
     }}
 
     public bool IsAlive{get {return _isAlive;} private set {

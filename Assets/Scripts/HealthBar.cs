@@ -38,14 +38,15 @@ public class HealthBar : MonoBehaviour
         healthBar.value = health;
     }
 
-    public void SetMaxMana(int maxMana)
+    public void SetMaxMana(int maxMana, int mana)
     {
-
+        manaBar.maxValue = maxMana;
+        manaBar.maxValue = mana;
     }
 
     public void SetMana(int mana)
     {
-
+        manaBar.value = mana;
     }
 
     public void LevelText(string level)
