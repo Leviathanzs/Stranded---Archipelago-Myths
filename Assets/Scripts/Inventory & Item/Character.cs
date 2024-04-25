@@ -271,7 +271,6 @@ public class Character : MonoBehaviour
         // Update the UI and other necessary components
         statPanel.UpdateStatValues();
         UpdateBarInstance();
-        Debug.Log("Max mana: " + newMaxMana);
     }
 
     public void Unequip(EquippableItem item)
