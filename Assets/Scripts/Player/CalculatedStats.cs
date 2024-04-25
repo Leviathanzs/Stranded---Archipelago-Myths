@@ -9,11 +9,14 @@ public class CalculatedStats : MonoBehaviour
 
     private int damage;
     private int HP;
+    private int mana;
     private float damageMultipler = 1f;
-    private float hpMultipler = 50f;
+    private float hpMultipler = 5f;
+    private float manaMultipler = 2f;
 
     public int StrenghtToDamage {get { return CalculatedStrenghtToDamage();} }
     public int StrenghtToHP {get { return CalculatedStrenghtToHP();}}
+    public int IntelligenceToMana {get { return CalculatedIntelligenceToMana();}}
 
     private int CalculatedStrenghtToDamage()
     {
@@ -27,5 +30,11 @@ public class CalculatedStats : MonoBehaviour
         HP = Mathf.RoundToInt(stats.StrenghtFinalValue * hpMultipler);
 
         return HP;
+    }
+
+    private int CalculatedIntelligenceToMana()
+    {
+        mana = Mathf.RoundToInt(stats.IntelligenceFinalValue * manaMultipler);
+        return mana;
     }
 }

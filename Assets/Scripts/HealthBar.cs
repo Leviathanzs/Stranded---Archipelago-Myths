@@ -12,14 +12,14 @@ public class HealthBar : MonoBehaviour
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] TextMeshProUGUI expPercentage;
 
-    public static HealthBar healthInstance;
+    public static HealthBar barInstance;
 
     public void Awake()
     {
         // Singleton pattern initialization
-        if (healthInstance == null)
+        if (barInstance == null)
         {
-            healthInstance = this;
+            barInstance = this;
         }
         else
         {
@@ -41,7 +41,7 @@ public class HealthBar : MonoBehaviour
     public void SetMaxMana(int maxMana, int mana)
     {
         manaBar.maxValue = maxMana;
-        manaBar.maxValue = mana;
+        manaBar.value = mana;
     }
 
     public void SetMana(int mana)

@@ -18,10 +18,10 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 123a13aa4ca6ae74286b319733d85622, type: 3}
   StrenghtBonus: 0
   AgilityBonus: 0
-  IntelligenceBonus: 0
+  IntelligenceBonus: 15
   VitalityBonus: 0
   StrenghtPercentBonus: 0
   AgilityPercentBonus: 0
-  IntelligencePercentBonus: 0.15
-  VitalityPercentBonus: 0.5
+  IntelligencePercentBonus: 0
+  VitalityPercentBonus: 0
   EquipmentType: 1

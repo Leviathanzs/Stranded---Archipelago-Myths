@@ -18,6 +18,10 @@ public class Character : MonoBehaviour
     // Current health value
     private int currentHealth = 100;
 
+    private int originalMaxMana = 100;
+    private int currentMaxMana = 100;
+    private int currentMana = 100;
+
 
     private float _strenghtFinalValue;
     private float _agilityFinalValue;
@@ -188,6 +192,7 @@ public class Character : MonoBehaviour
         EquipmentType equipmentType = item.EquipmentType;
         // Store the current health before equipping the item
         int previousHealth = currentHealth;
+        int previousMana = currentMana;
 
         // Unequip previous item of the same type, if any
         if (equippedItems.ContainsKey(equipmentType))
@@ -217,8 +222,18 @@ public class Character : MonoBehaviour
         // Update the current and maximum health values
         currentMaxHealth = newMaxHealth;
 
-        // Update the UI and other necessary components
-        statPanel.UpdateStatValues();
+        int newMaxMana = CalculateMaxMana();
+
+        if (previousMana > currentMaxMana)
+        {
+            currentMana = currentMaxMana;
+        }
+        else
+        {
+            currentMana = damageable.Mana;
+        }
+
+        currentMaxMana = newMaxMana;
 
         // Update the inventory
         if (inventory.RemoveItem(item.ID))
@@ -235,6 +250,12 @@ public class Character : MonoBehaviour
                     {
                         currentHealth = currentMaxHealth;
                     }
+
+                    if (currentMana > currentMaxMana)
+                    {
+                        currentMana = currentMaxMana;
+                    }
+
                     statPanel.UpdateStatValues();
                 }
                 statPanel.UpdateStatValues();
@@ -247,8 +268,10 @@ public class Character : MonoBehaviour
 
         // Recalculate base stats and update health
         RecalculateBaseStats();
-        HealthBar.healthInstance.SetMaxHealth(CalculateMaxHealth(), currentHealth);
-        Debug.Log(currentHealth);
+        // Update the UI and other necessary components
+        statPanel.UpdateStatValues();
+        UpdateBarInstance();
+        Debug.Log("Max mana: " + newMaxMana);
     }
 
     public void Unequip(EquippableItem item)
@@ -267,9 +290,13 @@ public class Character : MonoBehaviour
             // Restore the current health value if it exceeds the new max health value
             currentHealth = Mathf.Min(currentHealth, currentMaxHealth);
 
+            currentMaxMana = CalculateMaxMana();
+
+            currentMana = Mathf.Min(currentMana, currentMaxMana);
+
             RecalculateBaseStats();
             statPanel.UpdateStatValues();
-            HealthBar.healthInstance.SetMaxHealth(CalculateMaxHealth(), currentHealth);
+            UpdateBarInstance();
         }
     }
 
@@ -278,8 +305,25 @@ public class Character : MonoBehaviour
         int totalMaxHealth = originalMaxHealth;
         foreach (EquippableItem item in equippedItems.Values)
         {
-            totalMaxHealth += item.StrenghtBonus; // Add the HP increase from each equipped item
+            totalMaxHealth += item.StrenghtBonus * 2; // Add the HP increase from each equipped item
         }
         return totalMaxHealth;
+    }
+
+    private int CalculateMaxMana()
+    {
+        int totalMaxMana = originalMaxMana;
+        foreach (EquippableItem item in equippedItems.Values)
+        {
+            totalMaxMana += item.IntelligenceBonus * 5;
+        }
+
+        return totalMaxMana;
+    }
+
+    void UpdateBarInstance()
+    {
+        HealthBar.barInstance.SetMaxHealth(CalculateMaxHealth(), currentHealth);
+        HealthBar.barInstance.SetMaxMana(CalculateMaxMana(), currentMana);
     }
 }
