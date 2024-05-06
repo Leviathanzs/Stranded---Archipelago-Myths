@@ -10,13 +10,13 @@ public class Character : MonoBehaviour
     public PlayerBaseStats Intelligence;
     public PlayerBaseStats Vitality;
 
-    private int originalMaxHealth = 100;
+    private int originalMaxHealth;
 
     // Current max health value after considering all equipped items
-    private int currentMaxHealth = 100;
+    private int currentMaxHealth;
 
     // Current health value
-    private int currentHealth = 100;
+    private int currentHealth;
 
     private int originalMaxMana = 100;
     private int currentMaxMana = 100;
@@ -79,6 +79,10 @@ public class Character : MonoBehaviour
     }
 
     private void Start() {
+        originalMaxHealth = damageable.MaxHealth;
+        currentMaxHealth = damageable.MaxHealth;
+        currentHealth = damageable.Health;
+
         SetStartingHpMana();
     }
 
@@ -211,6 +215,7 @@ public class Character : MonoBehaviour
 
         // Calculate the new maximum health
         int newMaxHealth = CalculateMaxHealth();
+        damageable.MaxHealth = CalculateMaxHealth();
 
         if (previousHealth > currentMaxHealth)
         {
@@ -259,8 +264,6 @@ public class Character : MonoBehaviour
                     {
                         currentMana = currentMaxMana;
                     }
-
-                    statPanel.UpdateStatValues();
                 }
                 statPanel.UpdateStatValues();
             }
@@ -275,6 +278,7 @@ public class Character : MonoBehaviour
         // Update the UI and other necessary components
         statPanel.UpdateStatValues();
         UpdateBarInstance();
+        Debug.Log(CalculateMaxHealth());
     }
 
     public void Unequip(EquippableItem item)
@@ -305,12 +309,13 @@ public class Character : MonoBehaviour
 
     private int CalculateMaxHealth()
     {
-        int totalMaxHealth = originalMaxHealth;
+        int totalMaxHealth = damageable.MaxHealth;
+        currentHealth = damageable.Health;
         foreach (EquippableItem item in equippedItems.Values)
         {
             totalMaxHealth += item.StrenghtBonus * 2; 
-            
-        }
+        }   
+        
         return totalMaxHealth;
     }
 
@@ -335,6 +340,8 @@ public class Character : MonoBehaviour
     {
         int Hp = originalMaxHealth + (int)Strenght.BaseValue * 2;
         Hp += (int)Vitality.BaseValue * 5;
+        damageable.MaxHealth = Hp;
+        damageable.Health = Hp;
         currentHealth = Hp;
 
         int Mana = originalMaxMana + (int)Intelligence.BaseValue * 3;
