@@ -10,7 +10,7 @@ public class CalculatedStats : MonoBehaviour
     private int damage;
     private int HP;
     private int mana;
-    private float damageMultipler = 1f;
+    private float damageMultipler = 1.5f;
     private float hpMultipler = 5f;
     private float manaMultipler = 2f;
 

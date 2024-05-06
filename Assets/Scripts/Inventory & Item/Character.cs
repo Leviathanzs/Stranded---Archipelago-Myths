@@ -78,14 +78,18 @@ public class Character : MonoBehaviour
         equipmentPanel.OnDropEvent += Drop;
     }
 
+    private void Start() {
+        SetStartingHpMana();
+    }
+
     // Method to recalculate base stats based on equipped items
     public void RecalculateBaseStats()
     {
         // Accumulate bonuses from equipped items
-        float strengthBonusTotal = 0;
-        float agilityBonusTotal = 0;
-        float intelligenceBonusTotal = 0;
-        float vitalityBonusTotal = 0;
+        int strengthBonusTotal = 0;
+        int agilityBonusTotal = 0;
+        int intelligenceBonusTotal = 0;
+        int vitalityBonusTotal = 0;
 
         foreach (var item in equippedItems.Values)
         {
@@ -304,7 +308,8 @@ public class Character : MonoBehaviour
         int totalMaxHealth = originalMaxHealth;
         foreach (EquippableItem item in equippedItems.Values)
         {
-            totalMaxHealth += item.StrenghtBonus * 2; // Add the HP increase from each equipped item
+            totalMaxHealth += item.StrenghtBonus * 2; 
+            
         }
         return totalMaxHealth;
     }
@@ -324,5 +329,18 @@ public class Character : MonoBehaviour
     {
         HealthBar.barInstance.SetMaxHealth(CalculateMaxHealth(), currentHealth);
         HealthBar.barInstance.SetMaxMana(CalculateMaxMana(), currentMana);
+    }
+
+    void SetStartingHpMana()
+    {
+        int Hp = originalMaxHealth + (int)Strenght.BaseValue * 2;
+        Hp += (int)Vitality.BaseValue * 5;
+        currentHealth = Hp;
+
+        int Mana = originalMaxMana + (int)Intelligence.BaseValue * 3;
+        currentMana = Mana;
+
+        HealthBar.barInstance.SetMaxHealth(Hp, currentHealth);
+        HealthBar.barInstance.SetMaxMana(Mana, currentMana);
     }
 }

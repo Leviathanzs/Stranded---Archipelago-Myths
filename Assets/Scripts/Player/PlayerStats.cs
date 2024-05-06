@@ -78,16 +78,17 @@ public class PlayerStats : MonoBehaviour
     public void LevelUp()
     {
         IsLevelUp = true;
-        damageable.MaxHealth += 100;
-        damageable.Health = damageable.MaxHealth;
-        currentLevel++;
-        currentExperience -= maxExperience; // Adjusting currentExperience after leveling up
-        maxExperience += 100;
 
         statValues.Strenght.BaseValue += 5;
         statValues.Agility.BaseValue += 5;
         statValues.Intelligence.BaseValue += 5;
         statValues.Vitality.BaseValue += 5;
+
+        HpLevelUp();
+        damageable.Health = damageable.MaxHealth;
+        currentLevel++;
+        currentExperience -= maxExperience; // Adjusting currentExperience after leveling up
+        maxExperience += 100;
 
         displayStatValues.UpdateStatValues();
         statValues.RecalculateBaseStats();
@@ -106,5 +107,13 @@ public class PlayerStats : MonoBehaviour
     {
         healthBar.SetMaxExp(maxExperience, currentExperience);
         healthBar.ExpPercentage(CalculateExperiencePercentage(currentExperience, maxExperience).ToString("N2") + "%");
+    }
+
+    public void HpLevelUp()
+    {
+        int strenghtHP = (int)statValues.Strenght.BaseValue * 2;
+        int vitalityHP = (int)statValues.Vitality.BaseValue * 5;
+
+        damageable.MaxHealth += strenghtHP + vitalityHP; 
     }
 }

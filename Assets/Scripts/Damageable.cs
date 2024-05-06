@@ -7,8 +7,6 @@ public class Damageable : MonoBehaviour
 {
     public UnityEvent<int, Vector2> damageableHit; 
     Animator animator;
-    CalculatedStats stats;
-    [SerializeField] Character calculatedStats;
 
     [SerializeField] int _maxHealth = 100;
     [SerializeField] int _health = 100;
@@ -48,7 +46,6 @@ public class Damageable : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
-        stats = GetComponent<CalculatedStats>();    
     }
 
     public bool Hit(int damage, Vector2 knockback)
