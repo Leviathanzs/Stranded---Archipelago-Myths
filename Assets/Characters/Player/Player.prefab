@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4888839660593666007}
   - component: {fileID: 4354141778673284495}
-  - component: {fileID: 7310004918182023592}
+  - component: {fileID: 8074564463110031417}
   m_Layer: 9
   m_Name: SwordAttack 2
   m_TagString: PlayerHitbox
@@ -97,7 +97,7 @@ PolygonCollider2D:
       - {x: 1.3579303, y: -0.4013617}
       - {x: 1.343682, y: -0.22520831}
   m_UseDelaunayMesh: 0
---- !u!114 &7310004918182023592
+--- !u!114 &8074564463110031417
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,10 +106,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1178022783402583780}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f95f00175a98a4942971a41eeffa3b67, type: 3}
+  m_Script: {fileID: 11500000, guid: d7db1eeb30752b54d8fe74bd5f510e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 15
+  attackDamage: 10
   knocback: {x: 5, y: 0}
 --- !u!1 &3299553266711642218
 GameObject:
@@ -499,6 +499,8 @@ MonoBehaviour:
         m_CallState: 2
   _maxHealth: 100
   _health: 100
+  _maxMana: 100
+  _mana: 100
 --- !u!114 &2548601927619433442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,7 +563,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2539038872740234955}
   - component: {fileID: 1203951890118170990}
-  - component: {fileID: 4722275376730014667}
+  - component: {fileID: 7541413115929025171}
   m_Layer: 9
   m_Name: SwordAttack 3
   m_TagString: PlayerHitbox
@@ -647,7 +649,7 @@ PolygonCollider2D:
       - {x: 1.5288805, y: -0.5581249}
       - {x: 1.5494225, y: -0.30678406}
   m_UseDelaunayMesh: 0
---- !u!114 &4722275376730014667
+--- !u!114 &7541413115929025171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -656,10 +658,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6704073668720239542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f95f00175a98a4942971a41eeffa3b67, type: 3}
+  m_Script: {fileID: 11500000, guid: d7db1eeb30752b54d8fe74bd5f510e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 25
+  attackDamage: 10
   knocback: {x: 8, y: 0}
 --- !u!1 &6873327095778328276
 GameObject:

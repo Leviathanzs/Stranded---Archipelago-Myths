@@ -244,7 +244,7 @@ public class Character : MonoBehaviour
             inventory.AddItem(item);
         }
     }
-
+    
     // Recalculate base stats and update health
     RecalculateBaseStats();
     // Update the UI and other necessary components
@@ -285,10 +285,7 @@ public class Character : MonoBehaviour
         currentHealth = damageable.Health;
         foreach (EquippableItem item in equippedItems.Values)
         {
-            if(item.StrenghtBonus > 0)
-            {
-                totalMaxHealth += item.StrenghtBonus * 2; 
-            }
+            totalMaxHealth += item.StrenghtBonus * 2; 
         }   
         
         return totalMaxHealth;
