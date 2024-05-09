@@ -78,13 +78,16 @@ public class Character : MonoBehaviour
         equipmentPanel.OnDropEvent += Drop;
     }
 
-    private void Start() {
+   private void Start() 
+    {
         originalMaxHealth = damageable.MaxHealth;
         currentMaxHealth = damageable.MaxHealth;
         currentHealth = damageable.Health;
-
+        originalMaxMana = damageable.MaxMana;
+        currentMaxMana = damageable.MaxMana;
         SetStartingHpMana();
     }
+
 
     // Method to recalculate base stats based on equipped items
     public void RecalculateBaseStats()
@@ -196,61 +199,65 @@ public class Character : MonoBehaviour
     }
 
     public void Equip(EquippableItem item)
-{
-    EquipmentType equipmentType = item.EquipmentType;
-
-    // Unequip previous item of the same type, if any
-    if (equippedItems.ContainsKey(equipmentType))
     {
-        Unequip(equippedItems[equipmentType]);
-    }
+        EquipmentType equipmentType = item.EquipmentType;
 
-    // Equip the new item
-    item.Equip(this);
-    equippedItems[equipmentType] = item;
-    statPanel.UpdateStatValues();
-
-    // Calculate the new maximum health
-    int newMaxHealth = CalculateMaxHealth();
-
-    // Update the current and maximum health values
-    currentMaxHealth = newMaxHealth;
-
-    // Restore the current health value if it exceeds the new maximum health value
-    currentHealth = Mathf.Min(currentHealth, currentMaxHealth);
-
-    int newMaxMana = CalculateMaxMana();
-
-    // Update the current and maximum mana values
-    currentMaxMana = newMaxMana;
-
-    // Restore the current mana value if it exceeds the new maximum mana value
-    currentMana = Mathf.Min(currentMana, currentMaxMana);
-
-    // Update the inventory
-    if (inventory.RemoveItem(item.ID))
-    {
-        EquippableItem previousItem;
-        if (equipmentPanel.AddItem(item, out previousItem))
+        // Unequip previous item of the same type, if any
+        if (equippedItems.ContainsKey(equipmentType))
         {
-            if (previousItem != null)
+            Unequip(equippedItems[equipmentType]);
+        }
+
+        // Equip the new item
+        item.Equip(this);
+        equippedItems[equipmentType] = item;
+        statPanel.UpdateStatValues();
+
+        // Calculate the new maximum health
+        int newMaxHealth = CalculateMaxHealth();
+
+        // Update the current and maximum health values
+        currentMaxHealth = newMaxHealth;
+
+        // Restore the current health value if it exceeds the new maximum health value
+        currentHealth = Mathf.Min(currentHealth, currentMaxHealth);
+
+        int newMaxMana = CalculateMaxMana();
+
+        // Update the current and maximum mana values
+        currentMaxMana = newMaxMana;
+
+        // Restore the current mana value if it exceeds the new maximum mana value
+        currentMana = Mathf.Min(currentMana, currentMaxMana);
+
+        // Update the inventory
+        if (inventory.RemoveItem(item.ID))
+        {
+            EquippableItem previousItem;
+            if (equipmentPanel.AddItem(item, out previousItem))
             {
-                inventory.AddItem(previousItem);
-                previousItem.Unequip(this);
+                if (previousItem != null)
+                {
+                    inventory.AddItem(previousItem);
+                    previousItem.Unequip(this);
+                }
+            }
+            else
+            {
+                inventory.AddItem(item);
             }
         }
-        else
-        {
-            inventory.AddItem(item);
-        }
+        
+        // Recalculate base stats and update health
+        RecalculateBaseStats();
+        // Update the UI and other necessary components
+        statPanel.UpdateStatValues();
+        UpdateBarInstance();
+
+        // Set damageable MaxHealth
+        damageable.MaxHealth = newMaxHealth;
     }
-    
-    // Recalculate base stats and update health
-    RecalculateBaseStats();
-    // Update the UI and other necessary components
-    statPanel.UpdateStatValues();
-    UpdateBarInstance();
-}
+
 
 
     public void Unequip(EquippableItem item)
@@ -266,11 +273,13 @@ public class Character : MonoBehaviour
             // Update the current max health value
             currentMaxHealth = CalculateMaxHealth();
 
+            // Set damageable MaxHealth to original value
+            damageable.MaxHealth = currentMaxHealth;
+
             // Restore the current health value if it exceeds the new max health value
             currentHealth = Mathf.Min(currentHealth, currentMaxHealth);
 
             currentMaxMana = CalculateMaxMana();
-
             currentMana = Mathf.Min(currentMana, currentMaxMana);
 
             RecalculateBaseStats();
@@ -281,11 +290,11 @@ public class Character : MonoBehaviour
 
     private int CalculateMaxHealth()
     {
-        int totalMaxHealth = damageable.MaxHealth;
+        int totalMaxHealth = originalMaxHealth;
         currentHealth = damageable.Health;
         foreach (EquippableItem item in equippedItems.Values)
         {
-            totalMaxHealth += item.StrenghtBonus * 2; 
+            totalMaxHealth += item.StrenghtBonus * 2; // Ubah ke StrengthBonus
         }   
         
         return totalMaxHealth;
@@ -317,8 +326,12 @@ public class Character : MonoBehaviour
         currentHealth = Hp;
 
         int Mana = originalMaxMana + (int)Intelligence.BaseValue * 3;
+        damageable.MaxMana = Mana;
+        damageable.Mana = Mana;
         currentMana = Mana;
 
+        originalMaxHealth = damageable.MaxHealth; 
+        originalMaxMana = damageable.MaxMana;
         HealthBar.barInstance.SetMaxHealth(Hp, currentHealth);
         HealthBar.barInstance.SetMaxMana(Mana, currentMana);
     }
