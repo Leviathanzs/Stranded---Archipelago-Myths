@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
 using JetBrains.Annotations;
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [CreateAssetMenu]
 public class Item : ScriptableObject
@@ -13,10 +15,4 @@ public class Item : ScriptableObject
     public string ItemName;
     public int DropChance;
     public Sprite Icon;
-
-    private void OnValidate()
-    {
-        string path = AssetDatabase.GetAssetPath(this);
-        id = AssetDatabase.AssetPathToGUID(path);
-    }
 }

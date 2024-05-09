@@ -62,7 +62,7 @@ public class PlayerStats : MonoBehaviour
         else
         {
             Debug.LogWarning("ExperienceManager instance is null!");
-        }    
+        }
     }
 
     private void HandleExperienceChange(int newExperience)
