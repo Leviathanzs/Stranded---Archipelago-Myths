@@ -18,9 +18,9 @@ public class Character : MonoBehaviour
     // Current health value
     private int currentHealth;
 
-    private int originalMaxMana = 100;
-    private int currentMaxMana = 100;
-    private int currentMana = 100;
+    private int originalMaxMana;
+    private int currentMaxMana;
+    private int currentMana;
 
 
     private float _strenghtFinalValue;
@@ -85,6 +85,7 @@ public class Character : MonoBehaviour
         currentHealth = damageable.Health;
         originalMaxMana = damageable.MaxMana;
         currentMaxMana = damageable.MaxMana;
+        currentMaxMana = damageable.Mana;
         SetStartingHpMana();
     }
 
@@ -256,6 +257,7 @@ public class Character : MonoBehaviour
 
         // Set damageable MaxHealth
         damageable.MaxHealth = newMaxHealth;
+        damageable.MaxMana = newMaxMana;
     }
 
 
@@ -281,6 +283,7 @@ public class Character : MonoBehaviour
 
             currentMaxMana = CalculateMaxMana();
             currentMana = Mathf.Min(currentMana, currentMaxMana);
+            damageable.MaxMana = currentMaxMana;
 
             RecalculateBaseStats();
             statPanel.UpdateStatValues();
@@ -303,6 +306,7 @@ public class Character : MonoBehaviour
     private int CalculateMaxMana()
     {
         int totalMaxMana = originalMaxMana;
+        currentMana = damageable.Mana;
         foreach (EquippableItem item in equippedItems.Values)
         {
             totalMaxMana += item.IntelligenceBonus * 5;

@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExperienceManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1363200966551364864, guid: 98502fc2f23698c469499363f8ee8cae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3709279481364241507, guid: 98502fc2f23698c469499363f8ee8cae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.633404
