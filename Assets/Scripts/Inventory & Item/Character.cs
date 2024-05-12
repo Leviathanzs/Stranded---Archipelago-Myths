@@ -10,7 +10,7 @@ public class Character : MonoBehaviour
     public PlayerBaseStats Intelligence;
     public PlayerBaseStats Vitality;
 
-    private int originalMaxHealth;
+    public int originalMaxHealth;
 
     // Current max health value after considering all equipped items
     private int currentMaxHealth;
@@ -18,7 +18,7 @@ public class Character : MonoBehaviour
     // Current health value
     private int currentHealth;
 
-    private int originalMaxMana;
+    public int originalMaxMana;
     private int currentMaxMana;
     private int currentMana;
 

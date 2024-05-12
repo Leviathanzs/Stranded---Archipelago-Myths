@@ -6,10 +6,10 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     Damageable damageable;
-    [SerializeField] StatPanel displayStatValues;
-    [SerializeField] Character statValues;
-    [SerializeField] HealthBar healthBar;
-    [SerializeField] TextMeshProUGUI levelTextPanel;
+    StatPanel displayStatValues;
+    Character statValues;
+    HealthBar healthBar;
+    TextMeshProUGUI levelTextPanel;
     [SerializeField] int currentExperience, maxExperience, currentLevel;
 
     public int CurrentLevel {get { return currentLevel; } set { currentLevel = value; }}
@@ -34,7 +34,11 @@ public class PlayerStats : MonoBehaviour
 
     void Awake()
     {
+        displayStatValues = FindObjectOfType<StatPanel>();
+        statValues = FindObjectOfType<Character>();
+        healthBar = FindObjectOfType<HealthBar>();
         damageable = GetComponent<Damageable>();
+        levelTextPanel = GameObject.Find("Level_Text").GetComponent<TextMeshProUGUI>();
         if (healthBar == null)
         {
             Debug.LogError("HealthBar reference not assigned in PlayerStats!");
@@ -101,6 +105,8 @@ public class PlayerStats : MonoBehaviour
         }
 
         levelTextPanel.text = currentLevel.ToString();
+        statValues.originalMaxHealth = damageable.MaxHealth;
+        statValues.originalMaxMana = damageable.MaxMana;
     }
 
     public void UpdateExp()
