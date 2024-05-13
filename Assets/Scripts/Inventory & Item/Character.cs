@@ -309,7 +309,7 @@ public class Character : MonoBehaviour
         currentMana = damageable.Mana;
         foreach (EquippableItem item in equippedItems.Values)
         {
-            totalMaxMana += item.IntelligenceBonus * 5;
+            totalMaxMana += item.IntelligenceBonus * 3;
         }
 
         return totalMaxMana;

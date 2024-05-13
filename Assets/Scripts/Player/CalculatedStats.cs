@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CalculatedStats : MonoBehaviour
 {
-    [SerializeField] Character stats;
+    Character stats;
 
     private int damage;
     private int HP;
@@ -17,6 +17,11 @@ public class CalculatedStats : MonoBehaviour
     public int StrenghtToDamage {get { return CalculatedStrenghtToDamage();} }
     public int StrenghtToHP {get { return CalculatedStrenghtToHP();}}
     public int IntelligenceToMana {get { return CalculatedIntelligenceToMana();}}
+
+    private void Start()
+    {
+        stats = FindObjectOfType<Character>();
+    }
 
     private int CalculatedStrenghtToDamage()
     {

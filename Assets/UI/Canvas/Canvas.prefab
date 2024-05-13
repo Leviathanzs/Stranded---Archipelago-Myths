@@ -7923,6 +7923,8 @@ MonoBehaviour:
     BaseValue: 10
   Vitality:
     BaseValue: 10
+  originalMaxHealth: 0
+  originalMaxMana: 0
   inventory: {fileID: 155547931505255833}
   equipmentPanel: {fileID: 158901750220327695}
   statPanel: {fileID: 4834885671452759988}

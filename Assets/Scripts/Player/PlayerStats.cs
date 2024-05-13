@@ -89,7 +89,9 @@ public class PlayerStats : MonoBehaviour
         statValues.Vitality.BaseValue += 5;
 
         HpLevelUp();
+        ManaLevelUp();
         damageable.Health = damageable.MaxHealth;
+        damageable.Mana = damageable.MaxMana;
         currentLevel++;
         currentExperience -= maxExperience; // Adjusting currentExperience after leveling up
         maxExperience += 100;
@@ -122,4 +124,11 @@ public class PlayerStats : MonoBehaviour
 
         damageable.MaxHealth += strenghtHP + vitalityHP; 
     }
+
+    public void ManaLevelUp()
+    {
+        int intelligenceMana = (int)statValues.Intelligence.BaseValue * 3;
+
+        damageable.MaxMana += intelligenceMana;
+    } 
 }
