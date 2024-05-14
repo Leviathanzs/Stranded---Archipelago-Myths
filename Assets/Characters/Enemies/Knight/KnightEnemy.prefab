@@ -80,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1912552864, guid: f50974d819e347c44b91a7daa57ccfe2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -159,7 +159,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.37801504, y: -0.5196997}
+  m_Offset: {x: 0.43, y: -1.3738623}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.47, y: 0.23}
@@ -170,7 +170,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.12386322, y: 1.9519928}
+  m_Size: {x: 0.01955223, y: 0.2436676}
   m_EdgeRadius: 0
 --- !u!50 &3596557017800849118
 Rigidbody2D:
@@ -180,7 +180,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 264139911547560380}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -197,7 +197,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 6
 --- !u!95 &4696907509127288018
 Animator:
@@ -264,8 +264,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _maxHealth: 100
-  _health: 100
+  _maxHealth: 500
+  _health: 500
+  _maxMana: 100
+  _mana: 100
 --- !u!1 &6234161596713240453
 GameObject:
   m_ObjectHideFlags: 0
