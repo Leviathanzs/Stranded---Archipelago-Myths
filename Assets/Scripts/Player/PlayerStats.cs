@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    Damageable damageable;
-    StatPanel displayStatValues;
-    Character statValues;
+    [SerializeField]Damageable damageable;
+    [SerializeField]StatPanel displayStatValues;
+    [SerializeField]Character statValues;
     HealthBar healthBar;
     TextMeshProUGUI levelTextPanel;
     [SerializeField] int currentExperience, maxExperience, currentLevel;
@@ -34,10 +34,7 @@ public class PlayerStats : MonoBehaviour
 
     void Awake()
     {
-        displayStatValues = FindObjectOfType<StatPanel>();
-        statValues = FindObjectOfType<Character>();
         healthBar = FindObjectOfType<HealthBar>();
-        damageable = GetComponent<Damageable>();
         levelTextPanel = GameObject.Find("Level_Text").GetComponent<TextMeshProUGUI>();
         if (healthBar == null)
         {

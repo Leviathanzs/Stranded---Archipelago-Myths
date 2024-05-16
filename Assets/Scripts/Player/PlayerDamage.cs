@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class PlayerDamage : Attack
 {
-    CalculatedStats stats;
-
-    void Awake()
-    {
-        stats = GetComponentInParent<CalculatedStats>();
-    }
+    [SerializeField]CalculatedStats stats;
 
     protected override void OnTriggerEnter2D(Collider2D other)
     {

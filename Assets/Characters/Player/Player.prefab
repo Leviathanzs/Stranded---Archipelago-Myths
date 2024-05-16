@@ -111,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage: 10
   knocback: {x: 5, y: 0}
+  stats: {fileID: 6217923059183311491}
 --- !u!1 &3299553266711642218
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,10 +514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8655ab422ccb2ff408e154dcc10effd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayStatValues: {fileID: 0}
-  statValues: {fileID: 0}
-  healthBar: {fileID: 0}
-  levelTextPanel: {fileID: 0}
   currentExperience: 0
   maxExperience: 300
   currentLevel: 1
@@ -663,6 +660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage: 10
   knocback: {x: 8, y: 0}
+  stats: {fileID: 6217923059183311491}
 --- !u!1 &6873327095778328276
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,3 +769,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage: 10
   knocback: {x: 5, y: 0}
+  stats: {fileID: 6217923059183311491}
