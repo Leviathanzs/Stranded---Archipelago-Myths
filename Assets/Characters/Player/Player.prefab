@@ -514,6 +514,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8655ab422ccb2ff408e154dcc10effd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageable: {fileID: 7954440568417881670}
+  displayStatValues: {fileID: 0}
+  statValues: {fileID: 0}
   currentExperience: 0
   maxExperience: 300
   currentLevel: 1
