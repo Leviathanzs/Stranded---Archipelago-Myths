@@ -221,8 +221,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00025001168, y: 0, z: 0}
-    m_Extent: {x: 0.99775004, y: 0.9973, z: 0}
+    m_Center: {x: 0, y: 0.00019997358, z: 0}
+    m_Extent: {x: 0.9974, y: 0.9975, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -6058,6 +6058,7 @@ GameObject:
   - component: {fileID: 1256570637}
   - component: {fileID: 1256570636}
   - component: {fileID: 1256570635}
+  - component: {fileID: 1256570638}
   m_Layer: 0
   m_Name: shop_anim_4
   m_TagString: Untagged
@@ -6156,6 +6157,51 @@ Transform:
   - {fileID: 1702207916}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1256570638
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256570634}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0988884, y: -2.6149273}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 7.375, y: 7}
+    newSize: {x: 7.375, y: 7}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.67865, y: 1.7701452}
+  m_EdgeRadius: 0
 --- !u!1 &1304977692
 GameObject:
   m_ObjectHideFlags: 0
@@ -17234,7 +17280,7 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 1
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
+  m_FalloffIntensity: 0.814
   m_Color: {r: 0.9333334, g: 0.37254903, b: 0.1254902, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
@@ -17253,8 +17299,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.03005004, y: -1.34215, z: 0}
-    m_Extent: {x: 2.08515, y: 1.37585, z: 0}
+    m_Center: {x: 0.04160005, y: -1.43585, z: 0}
+    m_Extent: {x: 1.9625001, y: 1.1615499, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -17265,12 +17311,12 @@ MonoBehaviour:
   m_ShapeLightFalloffSize: 0.5
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
-  - {x: 1.5552044, y: -0.4667251, z: 0}
-  - {x: 0.41233826, y: -0.9671631, z: 0}
-  - {x: -0.3717556, y: -0.8859937, z: 0}
-  - {x: -1.6160831, y: -0.8725734, z: 0}
-  - {x: -1.3660812, y: -2.1984515, z: 0}
-  - {x: 1.5487137, y: -2.2187438, z: 0}
+  - {x: 1.5048141, y: -0.82953763, z: 0}
+  - {x: 0.51312065, y: -0.9268503, z: 0}
+  - {x: -0.4423027, y: -0.88599396, z: 0}
+  - {x: -1.4245987, y: -0.7717922, z: 0}
+  - {x: -1.2854557, y: -2.0976706, z: 0}
+  - {x: 1.4781666, y: -2.097806, z: 0}
 --- !u!1 &1729448587
 GameObject:
   m_ObjectHideFlags: 0
