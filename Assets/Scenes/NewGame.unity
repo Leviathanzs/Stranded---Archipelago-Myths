@@ -221,8 +221,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0, y: 0.00019997358, z: 0}
-    m_Extent: {x: 0.9974, y: 0.9975, z: 0}
+    m_Center: {x: -0.00024998188, y: -0.00065001845, z: 0}
+    m_Extent: {x: 0.99755, y: 0.99765, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -5340,7 +5340,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 4.0064163
+  orthographic size: 4.24
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5822,6 +5822,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3680550853463660085, guid: dc53925db8ab5c54c9c6bf648be1b4ad, type: 3}
+      propertyPath: _health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680550853463660085, guid: dc53925db8ab5c54c9c6bf648be1b4ad, type: 3}
+      propertyPath: _maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6255,7 +6263,7 @@ MonoBehaviour:
   m_Follow: {fileID: 822817447}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 4.0064163
+    OrthographicSize: 4.24
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -17299,8 +17307,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.04160005, y: -1.43585, z: 0}
-    m_Extent: {x: 1.9625001, y: 1.1615499, z: 0}
+    m_Center: {x: 0.041099966, y: -1.43555, z: 0}
+    m_Extent: {x: 1.9635999, y: 1.16275, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
