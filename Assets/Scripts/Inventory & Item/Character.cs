@@ -16,7 +16,7 @@ public class Character : MonoBehaviour
     private int currentMaxHealth;
 
     // Current health value
-    private int currentHealth;
+    public int currentHealth;
 
     public int originalMaxMana;
     private int currentMaxMana;
@@ -56,8 +56,8 @@ public class Character : MonoBehaviour
 
         //setup Events:
         //Right Click
-        inventory.OnRightClickEvent += Equip;
-        equipmentPanel.OnRightClickEvent += Unequip;
+        inventory.OnRightClickEvent += InventoryRightClick;
+        equipmentPanel.OnRightClickEvent += EquipmentPanelRightClick;
         //Pointer Enter
         inventory.OnPointerEnterEvent += ShowTooltip;
         equipmentPanel.OnPointerEnterEvent += ShowTooltip;
@@ -114,22 +114,35 @@ public class Character : MonoBehaviour
         _vitalityFinalValue = Vitality.BaseValue + vitalityBonusTotal;
     }
 
-    private void Equip(ItemSlot itemSlot)
+    private void InventoryRightClick(ItemSlot itemSlot)
     {
-        EquippableItem equippableItem = itemSlot.Item as EquippableItem;
-
-        if(equippableItem != null)
+        if(itemSlot.Item is EquippableItem)
         {
-            Equip(equippableItem);
+            Equip((EquippableItem)itemSlot.Item);
+        }
+        else if(itemSlot.Item is UsableItem)
+        {
+            UsableItem usableItem = (UsableItem)itemSlot.Item;
+            usableItem.Use(damageable);
+
+            if(damageable.Health > damageable.MaxHealth)
+            {
+                damageable.Health = damageable.MaxHealth;
+            }
+
+            if(usableItem.IsConsumable)
+            {
+                inventory.RemoveItem(usableItem);
+                usableItem.Destroy();
+            }
         }
     }
 
-    private void Unequip(ItemSlot itemSlot)
+    private void EquipmentPanelRightClick(ItemSlot itemSlot)
     {
-        EquippableItem equippableItem = itemSlot.Item as EquippableItem;
-        if(equippableItem != null)
+        if(itemSlot.Item is EquippableItem)
         {
-            Unequip(equippableItem);
+            Unequip((EquippableItem)itemSlot.Item);
         }
     }
 

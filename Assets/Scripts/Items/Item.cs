@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Items/Item")]
 public class Item : ScriptableObject
 {
     [SerializeField] string id;

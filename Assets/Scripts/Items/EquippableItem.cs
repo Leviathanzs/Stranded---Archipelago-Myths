@@ -14,7 +14,7 @@ public enum EquipmentType
     SubWeapon,
 }
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Items/Equippable Item")]
 public class EquippableItem : Item
 {
     public int StrenghtBonus;
