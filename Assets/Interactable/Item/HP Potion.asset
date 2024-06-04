@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0a256d4b496eab846a6eb42030610fb6
   ItemName: HP  Potion
-  DropChance: 10
+  DropChance: 90
   Icon: {fileID: 21300000, guid: 8848d9b45d7dbea4f9a84e8614828712, type: 3}
+  MaximumStacks: 10

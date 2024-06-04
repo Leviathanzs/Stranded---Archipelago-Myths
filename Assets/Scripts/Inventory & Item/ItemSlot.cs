@@ -10,6 +10,7 @@ using TMPro;
 public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
 {
     [SerializeField] Image Image;
+    [SerializeField] TextMeshProUGUI amountText;
 
     public event Action<ItemSlot> OnPointerEnterEvent;
     public event Action<ItemSlot> OnPointerExitEvent;
@@ -38,10 +39,26 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         }
     }
 
+    private int _amount;
+    public int Amount {
+        get { return _amount;}
+        set {
+            _amount = value;
+            amountText.enabled = _item != null && _item.MaximumStacks > 1 && _amount > 1;
+            if(amountText.enabled)
+            {
+                amountText.text = _amount.ToString();
+            }
+        }
+    }
+
     protected virtual void OnValidate()
     {
         if(Image == null)
             Image = GetComponent<Image>();
+
+        if(amountText == null)
+            amountText = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     public virtual bool CanReceiveItem(Item item)

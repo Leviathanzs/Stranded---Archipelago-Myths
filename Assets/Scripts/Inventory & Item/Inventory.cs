@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
@@ -49,12 +50,14 @@ public class Inventory : MonoBehaviour
         int i = 0;
         for(; i < startingItems.Count && i < itemSlots.Length; i++)
         {
-            itemSlots[i].Item = Instantiate(startingItems[i]);
+            itemSlots[i].Item = startingItems[i].GetCopy();
+            itemSlots[i].Amount = 1;
         }
 
         for(; i <itemSlots.Length; i++)
         {
             itemSlots[i].Item = null;
+            itemSlots[i].Amount = 0;
         }
     }
 
@@ -62,9 +65,10 @@ public class Inventory : MonoBehaviour
     {
         for(int i =  0; i <itemSlots.Length; i++)
         {
-            if(itemSlots[i].Item == null)
+            if(itemSlots[i].Item == null || (itemSlots[i].Item.ID == item.ID && itemSlots[i].Amount < item.MaximumStacks))
             {
                 itemSlots[i].Item = item;
+                itemSlots[i].Amount++;
                 return true;
             }
         }
@@ -77,7 +81,12 @@ public class Inventory : MonoBehaviour
         {
             if(itemSlots[i].Item == item)
             {
-                itemSlots[i].Item = null;
+                itemSlots[i].Amount--;
+
+                if(itemSlots[i].Amount == 0)
+                {
+                    itemSlots[i].Item = null;
+                }
                 return true;
             }
         }
@@ -91,7 +100,11 @@ public class Inventory : MonoBehaviour
             Item item = itemSlots[i].Item;
             if(item != null && item.ID == itemID)
             {
-                itemSlots[i].Item = null;
+                itemSlots[i].Amount--;
+                if(itemSlots[i].Amount == 0) 
+                {
+                    itemSlots[i].Item = null;
+                }
                 return item;
             }
         }

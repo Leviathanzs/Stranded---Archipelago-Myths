@@ -174,6 +174,7 @@ public class Character : MonoBehaviour
 
     private void Drop(ItemSlot dropItemSlot)
     {
+        statPanel.UpdateStatValues();   
         if(draggedSlot == null) return;
 
         if(dropItemSlot.CanReceiveItem(draggedSlot.Item) && draggedSlot.CanReceiveItem(dropItemSlot.Item))
@@ -192,11 +193,17 @@ public class Character : MonoBehaviour
                 if(dropItem != null) dragItem.Unequip(this);
             }
 
-            Item draggedItem = draggedSlot.Item;
-            draggedSlot.Item = dropItemSlot.Item;
-            dropItemSlot.Item = draggedItem;
-
             statPanel.UpdateStatValues();
+
+            Item draggedItem = draggedSlot.Item;
+            int draggedItemAmount = draggedSlot.Amount;
+
+            draggedSlot.Item = dropItemSlot.Item;
+            draggedSlot.Amount = dropItemSlot.Amount;
+
+            dropItemSlot.Item = draggedItem;
+            dropItemSlot.Amount = draggedItemAmount;
+
         }
     }
 
@@ -217,15 +224,12 @@ public class Character : MonoBehaviour
 
         // Calculate the new maximum health
         int newMaxHealth = CalculateMaxHealth();
-         Debug.Log("New Max Health: " + newMaxHealth);
 
         // Update the current and maximum health values
         currentMaxHealth = newMaxHealth;
-        Debug.Log("Current Max Health: " + currentMaxHealth);
 
         // Restore the current health value if it exceeds the new maximum health value
         currentHealth = Mathf.Min(currentHealth, currentMaxHealth);
-        Debug.Log("Current Health: " + currentHealth);
 
         int newMaxMana = CalculateMaxMana();
 
