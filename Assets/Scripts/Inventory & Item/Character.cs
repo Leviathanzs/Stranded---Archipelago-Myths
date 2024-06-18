@@ -124,6 +124,7 @@ public class Character : MonoBehaviour
         {
             UsableItem usableItem = (UsableItem)itemSlot.Item;
             usableItem.Use(damageable);
+            usableItem.Use2(this);
 
             if(damageable.Health > damageable.MaxHealth)
             {
@@ -359,5 +360,10 @@ public class Character : MonoBehaviour
         originalMaxMana = damageable.MaxMana;
         HealthBar.barInstance.SetMaxHealth(Hp, currentHealth);
         HealthBar.barInstance.SetMaxMana(Mana, currentMana);
+    }
+
+    public void UpdateStatValues()
+    {
+        statPanel.UpdateStatValues();
     }
 }

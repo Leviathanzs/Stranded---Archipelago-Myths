@@ -15,7 +15,6 @@ public class PlayerDamage : Attack
         if(damageable != null)
         {
             damageable.Hit(stats.StrenghtToDamage, deliveredKnockback);
-            Debug.Log(stats.StrenghtToDamage);
         }
     }
 }

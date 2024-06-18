@@ -20,3 +20,5 @@ MonoBehaviour:
   IsConsumable: 1
   Effects:
   - {fileID: 11400000, guid: 06b4c3499c0e97143b4cdc15e110f421, type: 2}
+  Buff:
+  - {fileID: 11400000, guid: 72b9ff27bc9e979469339f61d6d1d159, type: 2}
