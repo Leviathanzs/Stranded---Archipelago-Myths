@@ -94,25 +94,33 @@ public class Character : MonoBehaviour
     // Method to recalculate base stats based on equipped items
     public void RecalculateBaseStats()
     {
-        // Accumulate bonuses from equipped items
-        int strengthBonusTotal = 0;
-        int agilityBonusTotal = 0;
-        int intelligenceBonusTotal = 0;
-        int vitalityBonusTotal = 0;
+       // Clear current modifiers from equipped items
+    Strenght.RemoveAllModifiersFromSource(this);
+    Agility.RemoveAllModifiersFromSource(this);
+    Intelligence.RemoveAllModifiersFromSource(this);
+    Vitality.RemoveAllModifiersFromSource(this);
 
-        foreach (var item in equippedItems.Values)
-        {
-            strengthBonusTotal += item.StrenghtBonus;
-            agilityBonusTotal += item.AgilityBonus;
-            intelligenceBonusTotal += item.IntelligenceBonus;
-            vitalityBonusTotal += item.VitalityBonus;
-        }
+    // Accumulate bonuses from equipped items and add as modifiers
+    foreach (var item in equippedItems.Values)
+    {
+        if (item.StrenghtBonus != 0)
+            Strenght.AddModifier(new StatModifier(item.StrenghtBonus, StatModType.Flat, this));
+        if (item.AgilityBonus != 0)
+            Agility.AddModifier(new StatModifier(item.AgilityBonus, StatModType.Flat, this));
+        if (item.IntelligenceBonus != 0)
+            Intelligence.AddModifier(new StatModifier(item.IntelligenceBonus, StatModType.Flat, this));
+        if (item.VitalityBonus != 0)
+            Vitality.AddModifier(new StatModifier(item.VitalityBonus, StatModType.Flat, this));
+    }
 
-        // Apply accumulated bonuses
-        _strenghtFinalValue = Strenght.BaseValue + strengthBonusTotal;
-        _agilityFinalValue = Agility.BaseValue + agilityBonusTotal;
-        _intelligenceFinalValue = Intelligence.BaseValue + intelligenceBonusTotal;
-        _vitalityFinalValue = Vitality.BaseValue + vitalityBonusTotal;
+    // Update final values based on modifiers
+    _strenghtFinalValue = Strenght.Value;
+    _agilityFinalValue = Agility.Value;
+    _intelligenceFinalValue = Intelligence.Value;
+    _vitalityFinalValue = Vitality.Value;
+
+    // Update UI or other dependent systems
+    UpdateStatValues();
     }
 
     private void InventoryRightClick(ItemSlot itemSlot)
@@ -365,5 +373,15 @@ public class Character : MonoBehaviour
     public void UpdateStatValues()
     {
         statPanel.UpdateStatValues();
+    }
+
+    public float CalculateDamage()
+    {
+        return StrenghtFinalValue; // Adjust this based on how you calculate damage
+    }
+
+    public void RecalculatStatValues()
+    {
+        RecalculateBaseStats();
     }
 }

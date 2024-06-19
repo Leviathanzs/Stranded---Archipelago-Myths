@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerDamage : Attack
 {
-    [SerializeField]CalculatedStats stats;
+     [SerializeField] private Character character;
+     private float damageMultiplier = 1.2f;
 
     protected override void OnTriggerEnter2D(Collider2D other)
     {
@@ -12,9 +13,11 @@ public class PlayerDamage : Attack
 
         Vector2 deliveredKnockback = transform.parent.localScale.x > 0 ? 
         Knocback : new Vector2(-Knocback.x, Knocback.y);
-        if(damageable != null)
+        
+        if (damageable != null)
         {
-            damageable.Hit(stats.StrenghtToDamage, deliveredKnockback);
+            float damage = character.CalculateDamage() * damageMultiplier;
+            damageable.Hit((int)damage, deliveredKnockback);
         }
     }
 }

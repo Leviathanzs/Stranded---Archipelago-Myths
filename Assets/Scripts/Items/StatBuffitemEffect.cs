@@ -18,6 +18,7 @@ public class StatBuffitemEffect : UsableItemEffect
         StatModifier statModifier = new StatModifier(StrenghtBuff, StatModType.Flat, parentItem);
         character.Strenght.AddModifier(statModifier);
         CoroutineManager.Instance.RunCoroutine(RemoveBuff(character, statModifier, Duration));
+        character.RecalculatStatValues();
         character.UpdateStatValues();
     }
 
