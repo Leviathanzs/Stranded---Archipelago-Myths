@@ -19,6 +19,6 @@ public class HealItemEffect : UsableItemEffect
 
     public override string GetDescription()
     {
-        throw new System.NotImplementedException();
+        return "Heals for " + healthAmount + " health.";
     }
 }

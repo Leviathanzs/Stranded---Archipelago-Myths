@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
 using JetBrains.Annotations;
+using System.Text;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -18,6 +19,8 @@ public class Item : ScriptableObject
     [Range(1,999)]
     public int MaximumStacks = 1;
 
+    protected static readonly StringBuilder sb = new StringBuilder();
+
     private void OnValidate()
     {
         string path = AssetDatabase.GetAssetPath(this);
@@ -32,5 +35,15 @@ public class Item : ScriptableObject
     public virtual void Destroy()
     {
         
+    }
+
+    public virtual string GetItemType()
+    {
+        return "";
+    }
+
+    public virtual string GetDescription()
+    {
+        return "";
     }
 }

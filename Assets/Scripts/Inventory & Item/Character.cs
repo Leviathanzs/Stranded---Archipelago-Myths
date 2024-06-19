@@ -150,10 +150,9 @@ public class Character : MonoBehaviour
 
     private void ShowTooltip(ItemSlot itemSlot)
     {
-        EquippableItem equippableItem = itemSlot.Item as EquippableItem;
-        if(equippableItem != null)
+        if(itemSlot.Item != null)
         {
-            itemTooltip.ShowTooltip(equippableItem);
+            itemTooltip.ShowTooltip(itemSlot.Item);
         }
     }
 
