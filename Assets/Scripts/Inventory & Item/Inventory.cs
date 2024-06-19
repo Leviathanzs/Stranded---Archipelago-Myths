@@ -25,13 +25,13 @@ public class Inventory : MonoBehaviour
     {
         for(int i = 0; i < itemSlots.Length; i++)
         {
-            itemSlots[i].OnPointerEnterEvent += OnPointerEnterEvent;
-            itemSlots[i].OnPointerExitEvent += OnPointerExitEvent;
-            itemSlots[i].OnRightClickEvent += OnRightClickEvent;
-            itemSlots[i].OnBeginDragEvent += OnBeginDragEvent;
-            itemSlots[i].OnEndDragEvent += OnEndDragEvent;
-            itemSlots[i].OnDragEvent += OnDragEvent;
-            itemSlots[i].OnDropEvent += OnDropEvent;
+            itemSlots[i].OnPointerEnterEvent += slot => OnPointerEnterEvent(slot);
+            itemSlots[i].OnPointerExitEvent += slot => OnPointerExitEvent(slot);
+            itemSlots[i].OnRightClickEvent += slot => OnRightClickEvent(slot);
+            itemSlots[i].OnBeginDragEvent += slot => OnBeginDragEvent(slot);
+            itemSlots[i].OnEndDragEvent += slot => OnEndDragEvent(slot);
+            itemSlots[i].OnDragEvent += slot => OnDragEvent(slot);
+            itemSlots[i].OnDropEvent += slot => OnDropEvent(slot);
         }    
 
         SetStartingItems();
@@ -47,17 +47,14 @@ public class Inventory : MonoBehaviour
 
     private void SetStartingItems()
     {
-        int i = 0;
-        for(; i < startingItems.Count && i < itemSlots.Length; i++)
-        {
-            itemSlots[i].Item = startingItems[i].GetCopy();
-            itemSlots[i].Amount = 1;
-        }
-
-        for(; i <itemSlots.Length; i++)
+        for(int i = 0; i < itemSlots.Length; i++)
         {
             itemSlots[i].Item = null;
-            itemSlots[i].Amount = 0;
+        }
+
+        for(int i = 0; i < startingItems.Count; i++)
+        {
+           AddItem(startingItems[i].GetCopy());
         }
     }
 

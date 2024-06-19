@@ -51,7 +51,7 @@ public class Character : MonoBehaviour
     private void Awake()
     {
         statPanel.SetStats(Strenght, Agility, Intelligence, Vitality);
-        statPanel.UpdateStatValues();
+        
         _strenghtFinalValue = Strenght.BaseValue;
 
         //setup Events:
@@ -87,6 +87,7 @@ public class Character : MonoBehaviour
         currentMaxMana = damageable.MaxMana;
         currentMaxMana = damageable.Mana;
         SetStartingHpMana();
+        UpdateStatValues();
     }
 
 

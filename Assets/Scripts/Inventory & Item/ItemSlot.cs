@@ -20,6 +20,8 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     public event Action<ItemSlot> OnDragEvent;
     public event Action<ItemSlot> OnDropEvent;
 
+    protected bool isPointerOver;
+
     private Color normalColor = Color.white;
     private Color disabledColor = new Color(1, 1, 1, 0);
 
@@ -28,6 +30,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         get {return _item;}
         set {
             _item = value;
+            if (_item == null && Amount != 0) Amount = 0;
 
             if(_item == null)
             {
@@ -35,6 +38,12 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
             } else {
                 Image.sprite = _item.Icon;
                 Image.color = normalColor;
+            }
+
+            if (isPointerOver)
+            {
+                OnPointerExit(null);
+                OnPointerEnter(null);
             }
         }
     }
@@ -44,10 +53,15 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         get { return _amount;}
         set {
             _amount = value;
-            amountText.enabled = _item != null && _item.MaximumStacks > 1 && _amount > 1;
-            if(amountText.enabled)
+            if (_amount < 0) _amount = 0;
+            if (_amount == 0 && Item != null) Item = null;
+            
+            if(amountText != null)
             {
-                amountText.text = _amount.ToString();
+                amountText.enabled = _item != null && _item.MaximumStacks > 1 && _amount > 1;
+                if (amountText.enabled) {
+                    amountText.text = _amount.ToString();
+                }
             }
         }
     }
@@ -59,6 +73,14 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
         if(amountText == null)
             amountText = GetComponentInChildren<TextMeshProUGUI>();
+    }
+
+    protected private void OnDisable() 
+    {
+        if (isPointerOver)
+        {
+            OnPointerExit(null);
+        }
     }
 
     public virtual bool CanReceiveItem(Item item)
@@ -78,12 +100,16 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        isPointerOver = true;
+
         if(OnPointerEnterEvent != null)
             OnPointerEnterEvent(this);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        isPointerOver = false;
+
         if(OnPointerExitEvent != null)
             OnPointerExitEvent(this);
     }
