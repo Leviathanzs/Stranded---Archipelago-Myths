@@ -15,10 +15,16 @@ public class StatBuffitemEffect : UsableItemEffect
 
     public override void ExecuteEffect2(UsableItem parentItem, Character character)
     {
+       
         StatModifier statModifier = new StatModifier(StrenghtBuff, StatModType.Flat, parentItem);
         character.Strenght.AddModifier(statModifier);
+
+        // Recalculate stats and update max health
+        character.RecalculateBaseStats();
+        character.UpdateHealthAfterBuff();
+
+        // Start coroutine to remove the buff after duration
         CoroutineManager.Instance.RunCoroutine(RemoveBuff(character, statModifier, Duration));
-        character.RecalculatStatValues();
         character.UpdateStatValues();
     }
 
@@ -30,7 +36,11 @@ public class StatBuffitemEffect : UsableItemEffect
     public static IEnumerator RemoveBuff(Character character, StatModifier statModifier, float duration)
     {
         yield return new WaitForSeconds(duration);
+
+        // Remove strength modifier and recalculate stats
         character.Strenght.RemoveModifier(statModifier);
+        character.RecalculateBaseStats();
+        character.UpdateHealthAfterBuff();
         character.UpdateStatValues();
     }
 

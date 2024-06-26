@@ -38,6 +38,8 @@ public class Character : MonoBehaviour
     [SerializeField] ItemTooltip itemTooltip;
     [SerializeField] Image draggableItem;
     [SerializeField] Damageable damageable;
+    [SerializeField] DropItemArea dropItemArea;
+    [SerializeField] QuestionItem questionItem;
 
     private ItemSlot draggedSlot;
     private Dictionary<EquipmentType, EquippableItem> equippedItems = new Dictionary<EquipmentType, EquippableItem>();
@@ -76,6 +78,8 @@ public class Character : MonoBehaviour
         //Drop
         inventory.OnDropEvent += Drop;
         equipmentPanel.OnDropEvent += Drop;
+        dropItemArea.OnDropEvent +=  DropItemOutsideUI;
+
     }
 
    private void Start() 
@@ -118,6 +122,8 @@ public class Character : MonoBehaviour
     _agilityFinalValue = Agility.Value;
     _intelligenceFinalValue = Intelligence.Value;
     _vitalityFinalValue = Vitality.Value;
+
+    UpdateHealthAfterBuff();
 
     // Update UI or other dependent systems
     UpdateStatValues();
@@ -205,7 +211,7 @@ public class Character : MonoBehaviour
             EquippableItem dropItem = dropItemSlot.Item as EquippableItem;
 
             if(draggedSlot is EquipmentSlot)
-            {
+            {   
                 if(dragItem != null) dragItem.Unequip(this);
                 if(dropItem != null) dragItem.Equip(this);
             }
@@ -227,6 +233,22 @@ public class Character : MonoBehaviour
             dropItemSlot.Amount = draggedItemAmount;
 
         }
+    }
+
+    private void DropItemOutsideUI()
+    {
+        if (draggedSlot == null) return;
+
+        questionItem.Show();
+        ItemSlot itemSlot = draggedSlot;
+        questionItem.OnYesEvent += () => DestroyItemInSlot(itemSlot);
+
+    }
+
+    private void DestroyItemInSlot(ItemSlot itemSlot)
+    {
+        itemSlot.Item.Destroy();
+        itemSlot.Item = null;
     }
 
     public void Equip(EquippableItem item)
@@ -321,16 +343,37 @@ public class Character : MonoBehaviour
         }
     }
 
-    private int CalculateMaxHealth()
+    public int CalculateMaxHealth()
     {
         int totalMaxHealth = originalMaxHealth;
         currentHealth = damageable.Health;
+        
+        totalMaxHealth += Mathf.RoundToInt(Strenght.Value) * 2;
+        
         foreach (EquippableItem item in equippedItems.Values)
         {
-            totalMaxHealth += item.StrenghtBonus * 2; // Ubah ke StrengthBonus
-        }   
+            totalMaxHealth += item.StrenghtBonus * 2;
+        }
         
         return totalMaxHealth;
+    }
+
+    // Example method to update health after recalculating stats
+    public void UpdateHealthAfterBuff()
+    {
+        // Recalculate max health based on strength bonus
+        int newMaxHealth = CalculateMaxHealth();
+        damageable.MaxHealth = newMaxHealth;
+
+        // Adjust current health if it exceeds the new max health
+        if (currentHealth > damageable.MaxHealth)
+        {
+            currentHealth = damageable.MaxHealth;
+            damageable.Health = currentHealth;
+        }
+
+        // Update UI with new max health
+        UpdateBarInstance();
     }
 
     private int CalculateMaxMana()
@@ -384,4 +427,6 @@ public class Character : MonoBehaviour
     {
         RecalculateBaseStats();
     }
+
+
 }
