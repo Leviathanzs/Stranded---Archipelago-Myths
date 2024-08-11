@@ -387,8 +387,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00034999847, y: -0.000100016594, z: 0}
-    m_Extent: {x: 0.99805, y: 0.9978, z: 0}
+    m_Center: {x: 0, y: -0.00020000339, z: 0}
+    m_Extent: {x: 0.9974, y: 0.9977, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -23749,8 +23749,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.04180008, y: -1.4355, z: 0}
-    m_Extent: {x: 1.9632001, y: 1.1628, z: 0}
+    m_Center: {x: 0.041700065, y: -1.4361501, z: 0}
+    m_Extent: {x: 1.9638, y: 1.16185, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -26986,6 +26986,22 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 1145292369}
+    - target: {fileID: 4357605319298852009, guid: 9ba699ce92c112348973a8e1a21d6752, type: 3}
+      propertyPath: lootList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357605319298852009, guid: 9ba699ce92c112348973a8e1a21d6752, type: 3}
+      propertyPath: lootList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: a2bb2770bc875384aa73c47655f2ca7d, type: 2}
+    - target: {fileID: 4357605319298852009, guid: 9ba699ce92c112348973a8e1a21d6752, type: 3}
+      propertyPath: lootList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: e2804e24c6d6b29418d89ec8f46322d5, type: 2}
+    - target: {fileID: 4357605319298852009, guid: 9ba699ce92c112348973a8e1a21d6752, type: 3}
+      propertyPath: lootList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 603614b28d5fb0a48bcd31651a9fe492, type: 2}
     - target: {fileID: 5582069244916539953, guid: 9ba699ce92c112348973a8e1a21d6752, type: 3}
       propertyPath: m_SortingLayer
       value: 0
