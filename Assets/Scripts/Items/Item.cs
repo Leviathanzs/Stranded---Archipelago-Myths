@@ -29,7 +29,7 @@ public class Item : ScriptableObject
 
     public virtual Item GetCopy()
     {
-        return this;   
+        return Instantiate(this);
     }
 
     public virtual void Destroy()
