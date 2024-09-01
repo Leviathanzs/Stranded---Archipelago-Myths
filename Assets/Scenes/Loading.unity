@@ -892,6 +892,10 @@ PrefabInstance:
       propertyPath: loadingSlider
       value: 
       objectReference: {fileID: 1738586094}
+    - target: {fileID: 1200119151623801300, guid: 1a4c3f00b19f5e240a0b3f1779be911d, type: 3}
+      propertyPath: nextSceneName
+      value: TrialStage
+      objectReference: {fileID: 0}
     - target: {fileID: 1449767970042905031, guid: 1a4c3f00b19f5e240a0b3f1779be911d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 454.6881

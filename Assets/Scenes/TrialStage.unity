@@ -453,8 +453,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.00020000339, y: -0.00034999847, z: 0}
-    m_Extent: {x: 0.9977, y: 0.99785, z: 0}
+    m_Center: {x: -0.00014999509, y: 0.00045001507, z: 0}
+    m_Extent: {x: 0.99745, y: 0.99785, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -5650,7 +5650,7 @@ Transform:
   m_GameObject: {fileID: 252477379}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.03, y: -2.66, z: 0}
+  m_LocalPosition: {x: 22.03, y: -2.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24523,8 +24523,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.040799975, y: -1.4358, z: 0}
-    m_Extent: {x: 1.9629999, y: 1.1628, z: 0}
+    m_Center: {x: 0.042050064, y: -1.43565, z: 0}
+    m_Extent: {x: 1.96345, y: 1.1625501, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -27877,6 +27877,18 @@ PrefabInstance:
     - target: {fileID: 7149425662442579203, guid: 33447a1cd43c1e94bb2eb67f4bef5d64, type: 3}
       propertyPath: damageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149425662442579203, guid: 33447a1cd43c1e94bb2eb67f4bef5d64, type: 3}
+      propertyPath: damageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149425662442579203, guid: 33447a1cd43c1e94bb2eb67f4bef5d64, type: 3}
+      propertyPath: damageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FlyingEyes, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149425662442579203, guid: 33447a1cd43c1e94bb2eb67f4bef5d64, type: 3}
+      propertyPath: damageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7597332677224489687, guid: 33447a1cd43c1e94bb2eb67f4bef5d64, type: 3}
       propertyPath: m_LocalPosition.x
