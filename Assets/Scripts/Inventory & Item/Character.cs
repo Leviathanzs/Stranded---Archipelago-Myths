@@ -98,25 +98,6 @@ public class Character : MonoBehaviour
     // Method to recalculate base stats based on equipped items
     public void RecalculateBaseStats()
     {
-       // Clear current modifiers from equipped items
-        Strenght.RemoveAllModifiersFromSource(this);
-        Agility.RemoveAllModifiersFromSource(this);
-        Intelligence.RemoveAllModifiersFromSource(this);
-        Vitality.RemoveAllModifiersFromSource(this);
-
-        // Accumulate bonuses from equipped items and add as modifiers
-        foreach (var item in equippedItems.Values)
-        {
-            if (item.StrenghtBonus != 0)
-                Strenght.AddModifier(new StatModifier(item.StrenghtBonus, StatModType.Flat, this));
-            if (item.AgilityBonus != 0)
-                Agility.AddModifier(new StatModifier(item.AgilityBonus, StatModType.Flat, this));
-            if (item.IntelligenceBonus != 0)
-                Intelligence.AddModifier(new StatModifier(item.IntelligenceBonus, StatModType.Flat, this));
-            if (item.VitalityBonus != 0)
-                Vitality.AddModifier(new StatModifier(item.VitalityBonus, StatModType.Flat, this));
-        }
-
         // Update final values based on modifiers
         _strenghtFinalValue = Strenght.Value;
         _agilityFinalValue = Agility.Value;
