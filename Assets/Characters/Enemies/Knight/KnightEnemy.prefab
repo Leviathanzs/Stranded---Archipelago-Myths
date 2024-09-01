@@ -159,7 +159,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.43, y: -1.3738623}
+  m_Offset: {x: 0.4167133, y: -1.3738623}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.47, y: 0.23}
@@ -170,7 +170,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.01955223, y: 0.2436676}
+  m_Size: {x: 0.046225667, y: 0.2436676}
   m_EdgeRadius: 0
 --- !u!50 &3596557017800849118
 Rigidbody2D:
@@ -180,7 +180,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 264139911547560380}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackZone: {fileID: 5241231063430106187}
   walkSpeed: 3
-  walkStopRate: 0.05
+  walkStopRate: 0.5
   _hasTarget: 0
   expAmount: 500
 --- !u!114 &3680550853463660085
@@ -264,6 +264,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  damageableDeath:
+    m_PersistentCalls:
+      m_Calls: []
   _maxHealth: 500
   _health: 500
   _maxMana: 100

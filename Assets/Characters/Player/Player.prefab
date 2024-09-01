@@ -110,8 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 10
-  knocback: {x: 5, y: 0}
-  stats: {fileID: 6217923059183311491}
+  knocback: {x: 3, y: 0}
+  character: {fileID: 0}
 --- !u!1 &3299553266711642218
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,6 +498,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  damageableDeath:
+    m_PersistentCalls:
+      m_Calls: []
   _maxHealth: 100
   _health: 100
   _maxMana: 100
@@ -662,8 +665,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 10
-  knocback: {x: 8, y: 0}
-  stats: {fileID: 6217923059183311491}
+  knocback: {x: 6, y: 0}
+  character: {fileID: 0}
 --- !u!1 &6873327095778328276
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,5 +774,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 10
-  knocback: {x: 5, y: 0}
-  stats: {fileID: 6217923059183311491}
+  knocback: {x: 3, y: 0}
+  character: {fileID: 0}

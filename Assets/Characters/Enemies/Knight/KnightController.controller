@@ -108,6 +108,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeTime: 0.5
+  timeElapsed: 0
+  fadeDelayElapsed: 0
+  fadeDelay: 0
 --- !u!1107 &-7447005735203046047
 AnimatorStateMachine:
   serializedVersion: 6
@@ -222,12 +225,12 @@ AnimatorStateMachine:
   - {fileID: -3421431225608585803}
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: -7447005735203046047}
-    second:
-    - {fileID: 6717437320181619965}
   - first: {fileID: -3472228182209791544}
     second:
     - {fileID: -4730517581619044032}
+  - first: {fileID: -7447005735203046047}
+    second:
+    - {fileID: 6717437320181619965}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 570, y: 50, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}

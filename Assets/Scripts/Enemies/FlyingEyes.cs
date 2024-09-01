@@ -32,6 +32,18 @@ public class FlyingEyes : MonoBehaviour
         }
     }
 
+    public float AttackCooldown 
+    {
+        get 
+        {
+            return animator.GetFloat(AnimationStrings.attackCooldown);
+        } 
+        private set
+        {
+            animator.SetFloat(AnimationStrings.attackCooldown, Mathf.Max(value, 0));  
+        }
+    }
+
     void Awake()
     {
         animator = GetComponent<Animator>();
@@ -52,6 +64,11 @@ public class FlyingEyes : MonoBehaviour
     void Update()
     {
         HasTarget = biteDetectionZone.detectedColliders.Count > 0;
+
+        if(AttackCooldown > 0)
+        {
+            AttackCooldown -= Time.deltaTime;
+        }
     }
 
     private void FixedUpdate() 
