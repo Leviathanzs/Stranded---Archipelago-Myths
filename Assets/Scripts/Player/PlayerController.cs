@@ -154,10 +154,6 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger(AnimationStrings.jumpTrigger);
             rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
         } 
-        else if(!touchingDirections.IsGrounded)
-        {
-            isJumping = true;
-        }
     }
 
     void SetFacingDirection(Vector2 moveInput)
@@ -174,7 +170,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if(context.started && !isJumping && !inventoryInput.IsOpen)
+        if(context.started && !inventoryInput.IsOpen)
         {
             animator.SetTrigger(AnimationStrings.attackTrigger);
 
