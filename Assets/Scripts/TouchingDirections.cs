@@ -7,6 +7,7 @@ public class TouchingDirections : MonoBehaviour
     CapsuleCollider2D touchingCol;
     Animator animator;
     ContactFilter2D castFilter;
+    private string[] groundTags = {"Ground", "Enemies"};
     [SerializeField] float groundDistance = 0.01f;
     [SerializeField] float wallDistance = 0.02f;
     [SerializeField] float ceilingDistance = 0.05f;
@@ -48,6 +49,11 @@ public class TouchingDirections : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    bool IsTagInList (string tag)
+    {
+        return System.Array.Exists(groundTags, element => element == tag);
+    }
+
     void FixedUpdate() 
     {
         // Perform the cast to check for the ground (as before)
@@ -57,7 +63,7 @@ public class TouchingDirections : MonoBehaviour
         {
             for (int i = 0; i < groundHits.Length; i++)
             {
-                if (groundHits[i].collider != null && groundHits[i].collider.CompareTag("Ground"))
+                if (groundHits[i].collider != null && IsTagInList(groundHits[i].collider.tag))
                 {
                     IsGrounded = true;
                     break;
@@ -68,7 +74,7 @@ public class TouchingDirections : MonoBehaviour
         IsOnWall = touchingCol.Cast(wallCheckDirection, castFilter, wallHits, wallDistance) > 0;
         IsOnCeiling = touchingCol.Cast(Vector2.up, castFilter, ceilingHits, ceilingDistance) > 0;
 
-        if (IsOnCeiling)
+        if (animator.GetFloat(AnimationStrings.yVelocity) > 0)
         {
             IsGrounded = false;
         }

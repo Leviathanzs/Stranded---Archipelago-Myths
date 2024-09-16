@@ -8,6 +8,7 @@ TagManager:
   - PlayerHitbox
   - LevelText
   - Freeze
+  - Enemies
   layers:
   - Default
   - TransparentFX
