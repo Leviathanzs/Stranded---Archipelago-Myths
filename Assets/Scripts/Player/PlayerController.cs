@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool _isMoving = false;
     [SerializeField] bool _isRunning = false;
     [SerializeField] bool _isFacingRight = true;
-    [SerializeField] bool isJumping = false;
 
     //get set method
     public float CurrentMoveSpeed 
@@ -117,11 +116,6 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
 
         animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
-
-        if(touchingDirections.IsGrounded)
-        {
-            isJumping = false;
-        }
     }
 
     public void OnMove(InputAction.CallbackContext context)

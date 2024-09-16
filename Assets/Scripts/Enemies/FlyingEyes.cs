@@ -8,6 +8,7 @@ public class FlyingEyes : MonoBehaviour
     [SerializeField] float waypointReachedDistance = .1f;
     [SerializeField] List<Transform> waypoints;
     [SerializeField] DetectionZone biteDetectionZone;
+    [SerializeField] int expAmount = 100;
     public Collider2D deathCollider;
 
     Animator animator;
@@ -143,6 +144,7 @@ public class FlyingEyes : MonoBehaviour
         rb.gravityScale = 2f;
         rb.velocity = new Vector2(0, rb.velocity.y);
         deathCollider.enabled = true;
+        ExperienceManager.Instance.AddExperience(expAmount);
     }
 
 }
