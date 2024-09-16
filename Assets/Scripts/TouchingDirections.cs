@@ -7,11 +7,11 @@ public class TouchingDirections : MonoBehaviour
     CapsuleCollider2D touchingCol;
     Animator animator;
     ContactFilter2D castFilter;
-    [SerializeField] float groundDistance = 0.05f;
+    [SerializeField] float groundDistance = 0.01f;
     [SerializeField] float wallDistance = 0.02f;
     [SerializeField] float ceilingDistance = 0.05f;
 
-    RaycastHit2D[] groundHits = new RaycastHit2D[5];
+    RaycastHit2D[] groundHits = new RaycastHit2D[10];
     RaycastHit2D[] wallHits = new RaycastHit2D[5];
     RaycastHit2D[] ceilingHits = new RaycastHit2D[5];
     [SerializeField] private bool _isGrounded;
@@ -20,7 +20,7 @@ public class TouchingDirections : MonoBehaviour
 
 
     public bool IsGrounded {get {return _isGrounded;} 
-        private set 
+        set 
         {
             _isGrounded = value;
             animator.SetBool(AnimationStrings.isGrounded, value);
@@ -50,9 +50,27 @@ public class TouchingDirections : MonoBehaviour
 
     void FixedUpdate() 
     {
-        IsGrounded = touchingCol.Cast(Vector2.down, castFilter, groundHits, groundDistance) > 0;
+        // Perform the cast to check for the ground (as before)
+        IsGrounded = false;  // Default to not grounded
+
+        if (touchingCol.Cast(Vector2.down, castFilter, groundHits, groundDistance) > 0)
+        {
+            for (int i = 0; i < groundHits.Length; i++)
+            {
+                if (groundHits[i].collider != null && groundHits[i].collider.CompareTag("Ground"))
+                {
+                    IsGrounded = true;
+                    break;
+                }
+            }
+        }
+
         IsOnWall = touchingCol.Cast(wallCheckDirection, castFilter, wallHits, wallDistance) > 0;
         IsOnCeiling = touchingCol.Cast(Vector2.up, castFilter, ceilingHits, ceilingDistance) > 0;
-    }
 
+        if (IsOnCeiling)
+        {
+            IsGrounded = false;
+        }
+    }
 }
