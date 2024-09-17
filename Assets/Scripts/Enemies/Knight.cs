@@ -106,7 +106,7 @@ public class Knight : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         ExperienceManager.Instance.AddExperience(expAmount);
     }
