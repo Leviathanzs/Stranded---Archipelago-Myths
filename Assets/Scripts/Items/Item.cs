@@ -14,6 +14,7 @@ public class Item : ScriptableObject
     [SerializeField] string id;
     public string ID {get { return id; }}
     public string ItemName;
+    public int ItemCost;
     public int DropChance;
     public Sprite Icon;
     [Range(1,999)]
