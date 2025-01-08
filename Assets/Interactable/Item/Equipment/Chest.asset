@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: a2bb2770bc875384aa73c47655f2ca7d
   ItemName: Chest
-  DropChance: 100
+  ItemCost: 0
+  DropChance: 32
   Icon: {fileID: 21300000, guid: e31ff316fef1e324baff054307fb82e9, type: 3}
   MaximumStacks: 1
   StrenghtBonus: 0
