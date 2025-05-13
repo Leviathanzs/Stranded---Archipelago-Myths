@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 603614b28d5fb0a48bcd31651a9fe492
   ItemName: Hp Potion
-  DropChance: 100
+  ItemCost: 0
+  DropChance: 80
   Icon: {fileID: 21300000, guid: f12c2294d0bf63b43a0a803c8c8a42a7, type: 3}
   MaximumStacks: 5
   IsConsumable: 1

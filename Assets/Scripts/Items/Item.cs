@@ -14,6 +14,7 @@ public class Item : ScriptableObject
     [SerializeField] string id;
     public string ID {get { return id; }}
     public string ItemName;
+    public int ItemCost;
     public int DropChance;
     public Sprite Icon;
     [Range(1,999)]
@@ -21,11 +22,13 @@ public class Item : ScriptableObject
 
     protected static readonly StringBuilder sb = new StringBuilder();
 
+    #if UNITY_EDITOR
     private void OnValidate()
     {
         string path = AssetDatabase.GetAssetPath(this);
         id = AssetDatabase.AssetPathToGUID(path);
     }
+    #endif
 
     public virtual Item GetCopy()
     {

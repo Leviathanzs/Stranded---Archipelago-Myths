@@ -81,6 +81,12 @@ public class EquippableItem : Item
         AddStat(IntelligenceBonus, "Intelligence");
         AddStat(VitalityBonus, "Vitality");
 
+        AddStat(StrenghtPercentBonus, "Strenght", true);
+        AddStat(AgilityPercentBonus, "Agility", true);
+        AddStat(IntelligencePercentBonus, "Intelligence", true);
+        AddStat(VitalityPercentBonus, "Vitality", true);
+
+
         return sb.ToString();
     }
 

@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3680550853463660085}
   m_Layer: 8
   m_Name: KnightEnemy
-  m_TagString: Untagged
+  m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,7 +236,7 @@ MonoBehaviour:
   walkSpeed: 3
   walkStopRate: 0.5
   _hasTarget: 0
-  expAmount: 500
+  expAmount: 100
 --- !u!114 &3680550853463660085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,9 +266,21 @@ MonoBehaviour:
         m_CallState: 2
   damageableDeath:
     m_PersistentCalls:
-      m_Calls: []
-  _maxHealth: 500
-  _health: 500
+      m_Calls:
+      - m_Target: {fileID: 6426431943244031769}
+        m_TargetAssemblyTypeName: Knight, Assembly-CSharp
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _maxHealth: 100
+  _health: 100
   _maxMana: 100
   _mana: 100
 --- !u!1 &6234161596713240453
