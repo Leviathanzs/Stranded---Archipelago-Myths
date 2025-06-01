@@ -10,6 +10,7 @@ public class Knight : MonoBehaviour
     Damageable damageable;
 
     [SerializeField] private DetectionZone attackZone;
+    [SerializeField] private AudioSource hitAudioSource;
 
     [SerializeField] private float walkSpeed = 3f;
     [SerializeField] private float walkStopRate = 0.05f;
@@ -109,5 +110,10 @@ public class Knight : MonoBehaviour
     public void Die()
     {
         ExperienceManager.Instance.AddExperience(expAmount);
+    }
+
+    public void playHit()
+    {
+          hitAudioSource.Play();
     }
 }
