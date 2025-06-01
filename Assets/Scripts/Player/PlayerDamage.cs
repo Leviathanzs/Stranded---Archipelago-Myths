@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerDamage : Attack
 {
-     [SerializeField] private Character character;
-     private float damageMultiplier = 1.2f;
+    [SerializeField] private Character character;
+    private float damageMultiplier = 1.2f;
 
     protected override void OnTriggerEnter2D(Collider2D other)
     {

@@ -15,7 +15,10 @@ public class PlayerController : MonoBehaviour
     new Transform transform;
     [SerializeField] HealthBar healthBar;
     [SerializeField] InventoryInput inventoryInput;
+    [SerializeField] AudioSource footstepAudioSource;
+    [SerializeField] AudioSource attackAudioSource;
 
+    private float footstepTimer = 0f;
     [SerializeField] float walkSpeed = 5f;
     [SerializeField] float runSpeed = 8f;
     [SerializeField] float airWalkSpeed = 3f;
@@ -117,6 +120,24 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
 
         animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
+
+        if (IsMoving && touchingDirections.IsGrounded)
+        {
+            // Hitung interval berdasarkan kecepatan gerak
+            float speedFactor = CurrentMoveSpeed / runSpeed; // Normalisasi ke 0-1
+            float interval = Mathf.Lerp(0.5f, 0.2f, speedFactor); // Semakin cepat, semakin pendek
+
+            footstepTimer -= Time.fixedDeltaTime;
+            if (footstepTimer <= 0f)
+            {
+                footstepAudioSource.Play();
+                footstepTimer = interval;
+            }
+        }
+        else
+        {
+            footstepTimer = 0f;
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -184,5 +205,10 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
         healthBar.SetHealth(damageable.Health);
+    }
+
+    public void playAttack()
+    {
+        attackAudioSource.Play();
     }
 }

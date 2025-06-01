@@ -645,8 +645,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00069999695, y: 0.00040000677, z: 0}
-    m_Extent: {x: 0.9977, y: 0.9979, z: 0}
+    m_Center: {x: 0.00055000186, y: -0.00059998035, z: 0}
+    m_Extent: {x: 0.99735, y: 0.9979, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -6820,8 +6820,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00040000677, y: 0.000050008297, z: 0}
-    m_Extent: {x: 0.9976, y: 0.99785, z: 0}
+    m_Center: {x: 0.00034999847, y: 0.000050008297, z: 0}
+    m_Extent: {x: 0.99775, y: 0.99815, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -8269,7 +8269,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 30c91939e6536c545a0c32c541954c63, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -21395,8 +21395,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00014999509, y: 0.00054997206, z: 0}
-    m_Extent: {x: 0.99805, y: 0.99785, z: 0}
+    m_Center: {x: -0.00020000339, y: 0, z: 0}
+    m_Extent: {x: 0.99759996, y: 0.9971, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -25667,8 +25667,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.04100001, y: -1.4355501, z: 0}
-    m_Extent: {x: 1.9636, y: 1.16285, z: 0}
+    m_Center: {x: 0.04064995, y: -1.43635, z: 0}
+    m_Extent: {x: 1.96315, y: 1.16215, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -29223,6 +29223,10 @@ PrefabInstance:
     - target: {fileID: 2110131384607939800, guid: 1e95bd7f02f6e8542b01872abec2a435, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2492197476222444610, guid: 1e95bd7f02f6e8542b01872abec2a435, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -78
       objectReference: {fileID: 0}
     - target: {fileID: 2692680243235919529, guid: 1e95bd7f02f6e8542b01872abec2a435, type: 3}
       propertyPath: m_AnchorMax.y
