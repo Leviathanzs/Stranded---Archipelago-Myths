@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] InventoryInput inventoryInput;
     [SerializeField] AudioSource footstepAudioSource;
     [SerializeField] AudioSource attackAudioSource;
+    [SerializeField] AudioSource hitAudioSource;
 
     private float footstepTimer = 0f;
     [SerializeField] float walkSpeed = 5f;
@@ -210,5 +211,10 @@ public class PlayerController : MonoBehaviour
     public void playAttack()
     {
         attackAudioSource.Play();
+    }
+
+    public void playHit()
+    {
+        hitAudioSource.Play();
     }
 }
