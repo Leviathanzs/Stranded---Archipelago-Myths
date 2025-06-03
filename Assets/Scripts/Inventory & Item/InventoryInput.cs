@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class InventoryInput : MonoBehaviour
@@ -11,57 +8,85 @@ public class InventoryInput : MonoBehaviour
     [SerializeField] KeyCode[] toggleInventoryKeys;
 
     private bool _isOpen;
-    public bool IsOpen {get {return _isOpen;}}
+    public bool IsOpen { get { return _isOpen; } }
 
+    // Variabel untuk menyimpan skala asli panel karakter
+    private Vector3 _originalScale;
+
+    void Start()
+    {
+        // Simpan skala asli sebelum menyembunyikan panel
+        _originalScale = characterPanelGameObject.transform.localScale;
+        HideCharacterPanel(); // mulai dalam keadaan tersembunyi
+    }
+
+    void ShowCharacterPanel()
+    {
+        characterPanelGameObject.transform.localScale = _originalScale;
+    }
+
+    void HideCharacterPanel()
+    {
+        characterPanelGameObject.transform.localScale = Vector3.zero;
+    }
+
+    bool IsCharacterPanelVisible()
+    {
+        return characterPanelGameObject.transform.localScale != Vector3.zero;
+    }
 
     void Update()
     {
-        for(int i = 0; i < toggleCharacterPanelKeys.Length; i++)
+        foreach (KeyCode key in toggleCharacterPanelKeys)
         {
-            if(Input.GetKeyDown(toggleCharacterPanelKeys[i]))
+            if (Input.GetKeyDown(key))
             {
-                characterPanelGameObject.SetActive(!characterPanelGameObject.activeSelf);
-
-                if(characterPanelGameObject.activeSelf)
+                if (!IsCharacterPanelVisible())
                 {
+                    ShowCharacterPanel();
                     equipmentPanelGameObject.SetActive(true);
                     _isOpen = true;
                     ShowMouseCursor();
                 }
                 else
                 {
+                    HideCharacterPanel();
                     _isOpen = false;
                     HideMouseCursor();
                 }
-
                 break;
             }
         }
 
-        for(int i = 0; i < toggleInventoryKeys.Length; i++)
+        foreach (KeyCode key in toggleInventoryKeys)
         {
-            if(Input.GetKeyDown(toggleInventoryKeys[i]))
-            {   
-                if(!characterPanelGameObject.activeSelf)
+            if (Input.GetKeyDown(key))
+            {
+                if (!IsCharacterPanelVisible())
                 {
-                    characterPanelGameObject.SetActive(true);
+                    ShowCharacterPanel();
                     equipmentPanelGameObject.SetActive(false);
                     _isOpen = true;
                     ShowMouseCursor();
                 }
-                else if(equipmentPanelGameObject.activeSelf)
+                else if (equipmentPanelGameObject.activeSelf)
                 {
                     equipmentPanelGameObject.SetActive(false);
                 }
                 else
                 {
+                    HideCharacterPanel();
                     _isOpen = false;
-                    characterPanelGameObject.SetActive(false);
                     HideMouseCursor();
                 }
                 break;
             }
         }
+    }
+
+    public void ToggleEquipmentPanel()
+    {
+        equipmentPanelGameObject.SetActive(!equipmentPanelGameObject.activeSelf);
     }
 
     public void ShowMouseCursor()
@@ -74,10 +99,5 @@ public class InventoryInput : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    public void ToggleEquipmentPanel()
-    {
-        equipmentPanelGameObject.SetActive(!equipmentPanelGameObject.activeSelf);
     }
 }
