@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BoxBreak : MonoBehaviour
 {
+    [SerializeField] AudioSource breakingSFX;
     ParticleSystem particle;
     SpriteRenderer sr;
 
@@ -31,6 +32,7 @@ public class BoxBreak : MonoBehaviour
     IEnumerator Break()
     {
         particle.Play();
+        breakingSFX.Play();
         sr.enabled = false; 
         GetComponent<LootBag>().InstantiateLoot(transform.position);
 

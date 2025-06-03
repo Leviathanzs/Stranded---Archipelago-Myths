@@ -5,6 +5,7 @@ using UnityEngine;
 public class InteractableObject : CollidableObject
 {
     Animator animator;
+    [SerializeField] AudioSource openingSFX;
 
     private bool isInteracted = false;
 
@@ -18,6 +19,7 @@ public class InteractableObject : CollidableObject
         if(Input.GetKey(KeyCode.F))
         {
             OnInteract();
+            openingSFX.Play();
         }
     }
 

@@ -9,6 +9,7 @@ public class FlyingEyes : MonoBehaviour
     [SerializeField] List<Transform> waypoints;
     [SerializeField] DetectionZone biteDetectionZone;
     [SerializeField] int expAmount = 100;
+    [SerializeField] AudioSource hitAudioSource;
     public Collider2D deathCollider;
 
     Animator animator;
@@ -147,4 +148,8 @@ public class FlyingEyes : MonoBehaviour
         ExperienceManager.Instance.AddExperience(expAmount);
     }
 
+    public void playHit()
+    {
+        hitAudioSource.Play();
+    }
 }
