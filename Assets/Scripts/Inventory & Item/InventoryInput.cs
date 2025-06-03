@@ -18,6 +18,8 @@ public class InventoryInput : MonoBehaviour
         // Simpan skala asli sebelum menyembunyikan panel
         _originalScale = characterPanelGameObject.transform.localScale;
         HideCharacterPanel(); // mulai dalam keadaan tersembunyi
+        _isOpen = false;
+        HideMouseCursor();
     }
 
     void ShowCharacterPanel()
