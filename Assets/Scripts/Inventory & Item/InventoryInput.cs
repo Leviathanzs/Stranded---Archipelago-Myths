@@ -6,6 +6,7 @@ public class InventoryInput : MonoBehaviour
     [SerializeField] GameObject equipmentPanelGameObject;
     [SerializeField] KeyCode[] toggleCharacterPanelKeys;
     [SerializeField] KeyCode[] toggleInventoryKeys;
+    [SerializeField] AudioSource inventorySfx;
 
     private bool _isOpen;
     public bool IsOpen { get { return _isOpen; } }
@@ -25,6 +26,7 @@ public class InventoryInput : MonoBehaviour
     void ShowCharacterPanel()
     {
         characterPanelGameObject.transform.localScale = _originalScale;
+        inventorySfx.Play();
     }
 
     void HideCharacterPanel()

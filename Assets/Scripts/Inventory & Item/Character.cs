@@ -40,6 +40,7 @@ public class Character : MonoBehaviour
     [SerializeField] Damageable damageable;
     [SerializeField] DropItemArea dropItemArea;
     [SerializeField] QuestionItem questionItem;
+    [SerializeField] AudioSource equipSfx;
 
     private ItemSlot draggedSlot;
     private Dictionary<EquipmentType, EquippableItem> equippedItems = new Dictionary<EquipmentType, EquippableItem>();
@@ -290,6 +291,8 @@ public class Character : MonoBehaviour
         // Set damageable MaxHealth
         damageable.MaxHealth = newMaxHealth;
         damageable.MaxMana = newMaxMana;
+
+        equipSfx.Play();
     }
 
 

@@ -6,10 +6,16 @@ using UnityEngine;
 public class HealItemEffect : UsableItemEffect
 {
     public int healthAmount;
+    public AudioClip healSfx;
     public override void ExecuteEffect(UsableItem parentItem, Damageable character)
     {
         character.Health += healthAmount;
         HealthBar.barInstance.SetHealth(character.Health);
+
+        if (healSfx != null)
+        {
+            AudioSource.PlayClipAtPoint(healSfx, character.transform.position);
+        }
     }
 
     public override void ExecuteEffect2(UsableItem parentItem, Character character)

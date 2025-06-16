@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 690e1c035d282664b888d269a6a1c978, type: 3}
-  m_Name: HP Potion
+  m_Name: Strenght Potion
   m_EditorClassIdentifier: 
-  id: 603614b28d5fb0a48bcd31651a9fe492
-  ItemName: Hp Potion
+  id: 51e83e7a517304a5293b93cf1386357d
+  ItemName: Test Strenght
   ItemCost: 0
-  DropChance: 100
-  Icon: {fileID: 21300000, guid: f12c2294d0bf63b43a0a803c8c8a42a7, type: 3}
-  MaximumStacks: 3
+  DropChance: 80
+  Icon: {fileID: 21300000, guid: f001d7b93bbc6fe469fb921768373480, type: 3}
+  MaximumStacks: 10
   IsConsumable: 1
-  Effects:
-  - {fileID: 11400000, guid: 06b4c3499c0e97143b4cdc15e110f421, type: 2}
+  Effects: []
   Buff:
-  - {fileID: 11400000, guid: 72b9ff27bc9e979469339f61d6d1d159, type: 2}
+  - {fileID: 11400000, guid: 72d9de7c8cb794d0aba4ae2db051fff6, type: 2}

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Strenght Buff
   m_EditorClassIdentifier: 
   StrenghtBuff: 5
-  Duration: 4
+  Duration: 10

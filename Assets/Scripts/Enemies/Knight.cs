@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Knight : MonoBehaviour
@@ -11,46 +10,39 @@ public class Knight : MonoBehaviour
 
     [SerializeField] private DetectionZone attackZone;
     [SerializeField] private AudioSource hitAudioSource;
-
     [SerializeField] private float walkSpeed = 3f;
     [SerializeField] private float walkStopRate = 0.05f;
-    [SerializeField] private bool _hasTarget = false;
     [SerializeField] int expAmount = 300;
 
-    public bool HasTarget{get {return _hasTarget;} private set 
+    private bool isDead = false;
+
+    public bool HasTarget
     {
-        _hasTarget = value;
-        animator.SetBool(AnimationStrings.hasTarget, value);
-    }}
+        get { return _hasTarget; }
+        private set
+        {
+            _hasTarget = value;
+            animator.SetBool(AnimationStrings.hasTarget, value);
+        }
+    }
+    private bool _hasTarget = false;
 
     public bool CanMove
     {
-        get 
-        {
-            return animator.GetBool(AnimationStrings.canMove);
-        }
+        get { return animator.GetBool(AnimationStrings.canMove); }
     }
 
     public bool IsAlive
     {
-        get
-        {
-            return animator.GetBool(AnimationStrings.isAlive);
-        }
+        get { return animator.GetBool(AnimationStrings.isAlive); }
     }
 
-    public float AttackCooldown 
+    public float AttackCooldown
     {
-        get 
-        {
-            return animator.GetFloat(AnimationStrings.attackCooldown);
-        } 
-        private set
-        {
-            animator.SetFloat(AnimationStrings.attackCooldown, Mathf.Max(value, 0));  
-        }
+        get { return animator.GetFloat(AnimationStrings.attackCooldown); }
+        private set { animator.SetFloat(AnimationStrings.attackCooldown, Mathf.Max(value, 0)); }
     }
-    
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -58,11 +50,17 @@ public class Knight : MonoBehaviour
         damageable = GetComponent<Damageable>();
     }
 
+    private void OnEnable()
+    {
+        isDead = false;
+        damageable.damageableDeath.AddListener(OnDeath);
+    }
+
     void Update()
     {
         HasTarget = attackZone.detectedColliders.Count > 0;
 
-        if(AttackCooldown > 0)
+        if (AttackCooldown > 0)
         {
             AttackCooldown -= Time.deltaTime;
         }
@@ -70,9 +68,9 @@ public class Knight : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(!damageable.LockVelocity)
+        if (!damageable.LockVelocity)
         {
-            if(CanMove && IsAlive)
+            if (CanMove && IsAlive)
             {
                 rb.velocity = new Vector2(walkSpeed, 0f);
             }
@@ -83,13 +81,13 @@ public class Knight : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider2D other) 
+    void OnTriggerExit2D(Collider2D other)
     {
-        if(other.CompareTag("Ground"))
+        if (other.CompareTag("Ground"))
         {
-            FlipEnemyFacing();    
-            walkSpeed = -walkSpeed;    
-        } 
+            FlipEnemyFacing();
+            walkSpeed = -walkSpeed;
+        }
     }
 
     void FlipEnemyFacing()
@@ -101,19 +99,23 @@ public class Knight : MonoBehaviour
     {
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
 
-        if(damageable.Health <= 0)
-        {
-            Die();
-        }
+        // Kurangi health langsung
+        damageable.Health -= damage;
     }
 
-    public void Die()
+    public void OnDeath()
     {
+        if (isDead) return;
+
+        isDead = true;
         ExperienceManager.Instance.AddExperience(expAmount);
+
+        // Tambahkan animasi mati, efek partikel, atau destroy enemy di sini jika perlu
+        // Destroy(gameObject); // contoh: musuh dihancurkan setelah mati
     }
 
     public void playHit()
     {
-          hitAudioSource.Play();
+        hitAudioSource.Play();
     }
 }
