@@ -1,34 +1,43 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class LootChest : LootBag
 {
-    List<Item> GetDroppedItems()
+    protected override List<Item> GetDroppedItems()
     {
-        int randomNumber = Random.Range(1, 101);
         List<Item> possibleItems = new List<Item>();
-        foreach(Item item in lootList)
+
+        foreach (LootEntry entry in lootList)
         {
-            if(randomNumber <= item.DropChance)
+            float roll = Random.Range(0f, 100f);
+            if (roll <= entry.dropChance)
             {
-                possibleItems.Add(item);
+                possibleItems.Add(entry.item);
             }
-        } 
-        Debug.Log("No loot dropped");
+        }
+
+        if (possibleItems.Count == 0)
+        {
+            Debug.Log("No loot dropped from chest.");
+        }
+
         return possibleItems;
     }
 
-    override public void InstantiateLoot(Vector2 spawnPosition)
+    public virtual void InstantiateLoot(Vector2 spawnPosition)
     {
         List<Item> droppedItems = GetDroppedItems();
-        if(droppedItems != null)
+
+        foreach (Item item in droppedItems)
         {
-            foreach (Item loot in droppedItems)
-            {
-               inventory.AddItem(loot.GetCopy());
-            }
+            inventory.AddItem(item.GetCopy());
+            ShowLootNotification(item); 
+        }
+
+        if (droppedItems.Count == 0)
+        {
+            Debug.Log("Tidak ada item yang didapat.");
         }
     }
+
 }
