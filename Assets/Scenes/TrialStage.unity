@@ -9341,6 +9341,30 @@ PrefabInstance:
       propertyPath: lootList.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: e2804e24c6d6b29418d89ec8f46322d5, type: 2}
+    - target: {fileID: 4357605319298852009, guid: 9ba699ce92c112348973a8e1a21d6752, type: 3}
+      propertyPath: lootList.Array.data[0].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 603614b28d5fb0a48bcd31651a9fe492, type: 2}
+    - target: {fileID: 4357605319298852009, guid: 9ba699ce92c112348973a8e1a21d6752, type: 3}
+      propertyPath: lootList.Array.data[1].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 51e83e7a517304a5293b93cf1386357d, type: 2}
+    - target: {fileID: 4357605319298852009, guid: 9ba699ce92c112348973a8e1a21d6752, type: 3}
+      propertyPath: lootList.Array.data[2].item
+      value: 
+      objectReference: {fileID: 11400000, guid: a2bb2770bc875384aa73c47655f2ca7d, type: 2}
+    - target: {fileID: 4357605319298852009, guid: 9ba699ce92c112348973a8e1a21d6752, type: 3}
+      propertyPath: lootList.Array.data[0].dropChance
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357605319298852009, guid: 9ba699ce92c112348973a8e1a21d6752, type: 3}
+      propertyPath: lootList.Array.data[1].dropChance
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357605319298852009, guid: 9ba699ce92c112348973a8e1a21d6752, type: 3}
+      propertyPath: lootList.Array.data[2].dropChance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5582069244916539953, guid: 9ba699ce92c112348973a8e1a21d6752, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -28281,7 +28305,7 @@ PrefabInstance:
       objectReference: {fileID: 1145292369}
     - target: {fileID: 6605500167997384921, guid: 570a330255aa9014f84e28c5e6eceb9c, type: 3}
       propertyPath: lootList.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6605500167997384921, guid: 570a330255aa9014f84e28c5e6eceb9c, type: 3}
       propertyPath: lootList.Array.data[0]
@@ -28295,6 +28319,18 @@ PrefabInstance:
       propertyPath: lootList.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: 0a256d4b496eab846a6eb42030610fb6, type: 2}
+    - target: {fileID: 6605500167997384921, guid: 570a330255aa9014f84e28c5e6eceb9c, type: 3}
+      propertyPath: lootList.Array.data[0].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 603614b28d5fb0a48bcd31651a9fe492, type: 2}
+    - target: {fileID: 6605500167997384921, guid: 570a330255aa9014f84e28c5e6eceb9c, type: 3}
+      propertyPath: lootList.Array.data[1].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 603614b28d5fb0a48bcd31651a9fe492, type: 2}
+    - target: {fileID: 6605500167997384921, guid: 570a330255aa9014f84e28c5e6eceb9c, type: 3}
+      propertyPath: lootList.Array.data[0].dropChance
+      value: 71
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28599,7 +28635,7 @@ PrefabInstance:
       objectReference: {fileID: 1145292369}
     - target: {fileID: 6605500167997384921, guid: 570a330255aa9014f84e28c5e6eceb9c, type: 3}
       propertyPath: lootList.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6605500167997384921, guid: 570a330255aa9014f84e28c5e6eceb9c, type: 3}
       propertyPath: lootList.Array.data[0]
@@ -28613,6 +28649,14 @@ PrefabInstance:
       propertyPath: lootList.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: 0a256d4b496eab846a6eb42030610fb6, type: 2}
+    - target: {fileID: 6605500167997384921, guid: 570a330255aa9014f84e28c5e6eceb9c, type: 3}
+      propertyPath: lootList.Array.data[0].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 603614b28d5fb0a48bcd31651a9fe492, type: 2}
+    - target: {fileID: 6605500167997384921, guid: 570a330255aa9014f84e28c5e6eceb9c, type: 3}
+      propertyPath: lootList.Array.data[0].dropChance
+      value: 70
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29856,18 +29900,18 @@ PrefabInstance:
     - target: {fileID: 4357605319298852009, guid: 9ba699ce92c112348973a8e1a21d6752, type: 3}
       propertyPath: lootList.Array.data[2].item
       value: 
-      objectReference: {fileID: 11400000, guid: f510775b9e1aeaf4587578f6ac0948fd, type: 2}
+      objectReference: {fileID: 11400000, guid: 0027dccb0799e4d40a7347b6b18b23db, type: 2}
     - target: {fileID: 4357605319298852009, guid: 9ba699ce92c112348973a8e1a21d6752, type: 3}
       propertyPath: lootList.Array.data[0].dropChance
-      value: 100
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 4357605319298852009, guid: 9ba699ce92c112348973a8e1a21d6752, type: 3}
       propertyPath: lootList.Array.data[1].dropChance
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 4357605319298852009, guid: 9ba699ce92c112348973a8e1a21d6752, type: 3}
       propertyPath: lootList.Array.data[2].dropChance
-      value: 100
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5582069244916539953, guid: 9ba699ce92c112348973a8e1a21d6752, type: 3}
       propertyPath: m_SortingLayer
