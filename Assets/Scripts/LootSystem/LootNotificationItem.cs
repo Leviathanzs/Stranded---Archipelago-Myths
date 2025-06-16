@@ -6,15 +6,28 @@ public class LootNotificationItem : MonoBehaviour
 {
     public Image iconImage;
     public TextMeshProUGUI itemNameText;
-    public Image backgroundImage;
+
+    private Image backgroundImage;
+    private CanvasGroup canvasGroup;
+    private RectTransform rectTransform;
+
+    private Vector2 startOffset = new Vector2(200f, 0f); 
+    private float fadeDuration = 0.3f;
+    private float displayDuration = 2f;
 
     private void Awake()
     {
         backgroundImage = GetComponent<Image>();
+        canvasGroup = GetComponent<CanvasGroup>();
+        rectTransform = GetComponent<RectTransform>();
+
+        // Mulai transparan dan di posisi offset
+        if (canvasGroup != null) canvasGroup.alpha = 0f;
+        if (rectTransform != null) rectTransform.anchoredPosition += startOffset;
 
         if (backgroundImage != null)
         {
-            backgroundImage.enabled = false; // nonaktifkan saat spawn
+            backgroundImage.enabled = false;
         }
     }
 
@@ -24,8 +37,8 @@ public class LootNotificationItem : MonoBehaviour
 
         if (item.Icon != null)
         {
-            iconImage.enabled = true;
             iconImage.sprite = item.Icon;
+            iconImage.enabled = true;
         }
         else
         {
@@ -34,10 +47,39 @@ public class LootNotificationItem : MonoBehaviour
 
         if (backgroundImage != null)
         {
-            backgroundImage.enabled = true; // aktifkan background
+            backgroundImage.enabled = true;
         }
 
-        Destroy(gameObject, 2f);
+        // Jalankan animasi muncul & hilang
+        StartCoroutine(AnimateAndDestroy());
     }
 
+    private System.Collections.IEnumerator AnimateAndDestroy()
+    {
+        float time = 0f;
+
+        while (time < fadeDuration)
+        {
+            float t = time / fadeDuration;
+            canvasGroup.alpha = Mathf.Lerp(0f, 1f, t);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        canvasGroup.alpha = 1f;
+
+        yield return new WaitForSeconds(displayDuration);
+
+        // Fade-out
+        time = 0f;
+        while (time < fadeDuration)
+        {
+            float t = time / fadeDuration;
+            canvasGroup.alpha = Mathf.Lerp(1f, 0f, t);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(gameObject);
+    }
 }

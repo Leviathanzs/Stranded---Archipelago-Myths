@@ -6227,7 +6227,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iconImage: {fileID: 7176966436190563585}
   itemNameText: {fileID: 5230006215019450123}
-  backgroundImage: {fileID: 1973297932187966780}
 --- !u!114 &8366832513642333957
 MonoBehaviour:
   m_ObjectHideFlags: 0
