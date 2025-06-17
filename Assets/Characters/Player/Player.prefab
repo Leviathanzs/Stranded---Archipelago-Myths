@@ -371,6 +371,7 @@ GameObject:
   - component: {fileID: 2548601927619433442}
   - component: {fileID: 8509478259481154514}
   - component: {fileID: 6217923059183311491}
+  - component: {fileID: 8748042451066776414}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -803,6 +804,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
+--- !u!114 &8748042451066776414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3299553266711642218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d8818340f0d94f31a1f02981d2e4009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killCount: 6
+  completionTime: 40
 --- !u!1 &3683093818280353327
 GameObject:
   m_ObjectHideFlags: 0

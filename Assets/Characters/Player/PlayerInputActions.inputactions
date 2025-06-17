@@ -133,6 +133,17 @@
                     "name": "",
                     "id": "3ea4d645-4504-4529-b061-ab81934c3752",
                     "path": "<Joystick>/stick",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a9df9d43-4f59-4f17-bea8-575d1df5ff74",
+                    "path": "<HID::Twin USB Gamepad      >/stick",
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
@@ -246,6 +257,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6c4e9193-47c0-44a5-b2cf-1dcfa626a639",
+                    "path": "<HID::Twin USB Gamepad      >/button14",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false

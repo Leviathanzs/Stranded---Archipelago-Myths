@@ -10,7 +10,7 @@ public class LootChest : LootBag
         foreach (LootEntry entry in lootList)
         {
             float roll = Random.Range(0f, 100f);
-            if (roll <= entry.dropChance)
+            if (entry.item != null && roll <= entry.dropChance)
             {
                 possibleItems.Add(entry.item);
             }
@@ -24,20 +24,52 @@ public class LootChest : LootBag
         return possibleItems;
     }
 
-    public virtual void InstantiateLoot(Vector2 spawnPosition)
+    public override void InstantiateLoot(Vector2 spawnPosition)
     {
+        if (inventory == null)
+        {
+            inventory = FindObjectOfType<Inventory>();
+        }
+
+        if (inventory == null)
+        {
+            Debug.LogWarning("Inventory tidak ditemukan.");
+            return;
+        }
+
         List<Item> droppedItems = GetDroppedItems();
 
         foreach (Item item in droppedItems)
         {
-            inventory.AddItem(item.GetCopy());
-            ShowLootNotification(item); 
+            if (item == null)
+            {
+                Debug.LogWarning("Item null ditemukan di loot chest.");
+                continue;
+            }
+
+            Item itemCopy = item.GetCopy();
+            if (itemCopy == null)
+            {
+                Debug.LogWarning("GetCopy() dari item menghasilkan null.");
+                continue;
+            }
+
+            bool added = inventory.AddItem(itemCopy);
+            Debug.Log($"Item {item.name} ditambahkan: {added}");
+
+            if (added)
+            {
+                ShowLootNotification(item);
+            }
+            else
+            {
+                Debug.LogWarning($"Inventory penuh atau gagal menambahkan item: {item.name}");
+            }
         }
 
         if (droppedItems.Count == 0)
         {
-            Debug.Log("Tidak ada item yang didapat.");
+            Debug.Log("Tidak ada item yang didapat dari chest.");
         }
     }
-
 }

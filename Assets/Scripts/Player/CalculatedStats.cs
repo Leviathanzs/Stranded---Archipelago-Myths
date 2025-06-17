@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class CalculatedStats : MonoBehaviour
@@ -17,6 +18,18 @@ public class CalculatedStats : MonoBehaviour
     public int StrenghtToDamage {get { return CalculatedStrenghtToDamage();} }
     public int StrenghtToHP {get { return CalculatedStrenghtToHP();}}
     public int IntelligenceToMana {get { return CalculatedIntelligenceToMana();}}
+
+    private void OnEnable()
+    {
+        TryAssignStats();
+        SceneManager.sceneLoaded += (scene, mode) => TryAssignStats();
+    }
+
+    private void TryAssignStats()
+    {
+        if (stats == null)
+            stats = FindObjectOfType<Character>();
+    }
 
     private int CalculatedStrenghtToDamage()
     {

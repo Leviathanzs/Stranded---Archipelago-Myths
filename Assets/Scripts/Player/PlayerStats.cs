@@ -2,74 +2,109 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
-    [SerializeField]Damageable damageable;
-    [SerializeField]StatPanel displayStatValues;
-    [SerializeField]Character statValues;
-    HealthBar healthBar;
-    TextMeshProUGUI levelTextPanel;
-    [SerializeField] int currentExperience, maxExperience, currentLevel;
+    [SerializeField] private Damageable damageable;
+    [SerializeField] private StatPanel displayStatValues;
+    [SerializeField] private Character statValues;
+    private HealthBar healthBar;
+    private TextMeshProUGUI levelTextPanel;
 
-    public int CurrentLevel {get { return currentLevel; } set { currentLevel = value; }}
-
+    [SerializeField] private int currentExperience, maxExperience, currentLevel;
     private bool _isLevelUp = false;
-    public bool IsLevelUp {get { return _isLevelUp; } set { _isLevelUp = value; }}
 
-    float CalculateExperiencePercentage(int currentExp, int maxExp)
+    public int CurrentLevel { get => currentLevel; set => currentLevel = value; }
+    public bool IsLevelUp { get => _isLevelUp; set => _isLevelUp = value; }
+
+    void Awake()
+    {
+        InitializeSceneComponents(); // Inisialisasi awal
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        if (ExperienceManager.Instance != null)
+            ExperienceManager.Instance.OnExperienceChange += HandleExperienceChange;
+        else
+            Debug.LogWarning("ExperienceManager instance is null!");
+
+        TryAssignStatValues();
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        InitializeSceneComponents();
+        TryAssignStatValues();
+    }
+
+    private void TryAssignStatValues()
+    {
+        if (statValues == null)
+            statValues = FindObjectOfType<Character>();
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        if (ExperienceManager.Instance != null)
+            ExperienceManager.Instance.OnExperienceChange -= HandleExperienceChange;
+    }
+
+    private void InitializeSceneComponents()
+    {
+        if (damageable == null)
+            damageable = GetComponent<Damageable>();
+
+        if (healthBar == null)
+            healthBar = FindObjectOfType<HealthBar>();
+
+        if (displayStatValues == null)
+            displayStatValues = FindObjectOfType<StatPanel>();
+
+        if (statValues == null)
+            statValues = GetComponent<Character>();
+
+        if (levelTextPanel == null)
+        {
+            GameObject levelObj = GameObject.Find("Level_Text");
+            if (levelObj != null)
+                levelTextPanel = levelObj.GetComponent<TextMeshProUGUI>();
+            else
+                Debug.LogWarning("UI element 'Level_Text' not found in scene.");
+        }
+    }
+
+    public void UpdateExp()
+    {
+        if (healthBar != null)
+        {
+            healthBar.SetMaxExp(maxExperience, currentExperience);
+            float percentage = CalculateExperiencePercentage(currentExperience, maxExperience);
+            healthBar.ExpPercentage(percentage.ToString("N2") + "%");
+        }
+    }
+
+    private float CalculateExperiencePercentage(int currentExp, int maxExp)
     {
         if (maxExp <= 0)
         {
             Debug.LogError("Max experience points should be greater than zero.");
-            return 0f; 
+            return 0f;
         }
 
         float percentage = (float)currentExp / maxExp * 100f;
-
-        percentage = Mathf.Clamp(percentage, 0f, 100f);
-
-        return percentage;
-    }
-
-    void Awake()
-    {
-        healthBar = FindObjectOfType<HealthBar>();
-        levelTextPanel = GameObject.Find("Level_Text").GetComponent<TextMeshProUGUI>();
-        if (healthBar == null)
-        {
-            Debug.LogError("HealthBar reference not assigned in PlayerStats!");
-        }
-    }
-
-    private void OnEnable()
-    {
-        if (ExperienceManager.Instance != null)
-        {
-            ExperienceManager.Instance.OnExperienceChange += HandleExperienceChange;
-        }
-        else
-        {
-            Debug.LogWarning("ExperienceManager instance is null!");
-        }
-    }
-
-    private void OnDisable() 
-    {
-        if (ExperienceManager.Instance != null)
-        {
-            ExperienceManager.Instance.OnExperienceChange -= HandleExperienceChange;
-        }
-        else
-        {
-            Debug.LogWarning("ExperienceManager instance is null!");
-        }
+        return Mathf.Clamp(percentage, 0f, 100f);
     }
 
     private void HandleExperienceChange(int newExperience)
     {
         currentExperience += newExperience;
-        if(currentExperience >= maxExperience)
+        if (currentExperience >= maxExperience)
         {
             LevelUp();
             IsLevelUp = false;
@@ -87,45 +122,36 @@ public class PlayerStats : MonoBehaviour
 
         HpLevelUp();
         ManaLevelUp();
+
         damageable.Health = damageable.MaxHealth;
         damageable.Mana = damageable.MaxMana;
         currentLevel++;
-        currentExperience -= maxExperience; // Adjusting currentExperience after leveling up
+        currentExperience -= maxExperience;
         maxExperience += 100;
 
-        displayStatValues.UpdateStatValues();
         statValues.RecalculateBaseStats();
+        displayStatValues?.UpdateStatValues();
 
-        // Ensure healthBar reference is not null before calling methods on it
-        if (healthBar != null)
-        {
-            healthBar.SetMaxHealth(damageable.MaxHealth, damageable.Health);
-            healthBar.LevelText(currentLevel.ToString());
-        }
+        healthBar?.SetMaxHealth(damageable.MaxHealth, damageable.Health);
+        healthBar?.LevelText(currentLevel.ToString());
 
-        levelTextPanel.text = currentLevel.ToString();
+        if (levelTextPanel != null)
+            levelTextPanel.text = currentLevel.ToString();
+
         statValues.originalMaxHealth = damageable.MaxHealth;
         statValues.originalMaxMana = damageable.MaxMana;
     }
 
-    public void UpdateExp()
-    {
-        healthBar.SetMaxExp(maxExperience, currentExperience);
-        healthBar.ExpPercentage(CalculateExperiencePercentage(currentExperience, maxExperience).ToString("N2") + "%");
-    }
-
     public void HpLevelUp()
     {
-        int strenghtHP = (int)statValues.Strenght.BaseValue * 2;
-        int vitalityHP = (int)statValues.Vitality.BaseValue * 5;
-
-        damageable.MaxHealth += strenghtHP + vitalityHP; 
+        int strengthHP = (int)(statValues.Strenght.BaseValue * 2);
+        int vitalityHP = (int)(statValues.Vitality.BaseValue * 5);
+        damageable.MaxHealth += strengthHP + vitalityHP;
     }
 
     public void ManaLevelUp()
     {
-        int intelligenceMana = (int)statValues.Intelligence.BaseValue * 3;
-
+        int intelligenceMana = (int)(statValues.Intelligence.BaseValue * 3);
         damageable.MaxMana += intelligenceMana;
-    } 
+    }
 }

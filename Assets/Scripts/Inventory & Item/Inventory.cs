@@ -58,17 +58,46 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void ClearInventory()
+    {
+        for (int i = 0; i < itemSlots.Length; i++)
+        {
+            if (itemSlots[i] != null)
+            {
+                itemSlots[i].Clear(); 
+            }
+        }
+    }
+
     public bool AddItem(Item item)
     {
-        for(int i =  0; i <itemSlots.Length; i++)
+        if (item == null)
         {
-            if(itemSlots[i].Item == null || (itemSlots[i].Item.ID == item.ID && itemSlots[i].Amount < item.MaximumStacks))
+            Debug.LogWarning("Tried to add null item to inventory");
+            return false;
+        }
+
+        for (int i = 0; i < itemSlots.Length; i++)
+        {
+            // Jika slot kosong atau stackable
+            if (itemSlots[i].Item == null ||
+                (itemSlots[i].Item.ID == item.ID && itemSlots[i].Amount < item.MaximumStacks))
             {
-                itemSlots[i].Item = item;
-                itemSlots[i].Amount++;
+                if (itemSlots[i].Item == null)
+                {
+                    itemSlots[i].Item = item.GetCopy(); 
+                    itemSlots[i].Amount = 1;
+                }
+                else
+                {
+                    itemSlots[i].Amount++;
+                }
+
                 return true;
             }
         }
+
+        Debug.LogWarning($"Inventory penuh atau tidak bisa menampung item: {item.ID}");
         return false;
     }
 

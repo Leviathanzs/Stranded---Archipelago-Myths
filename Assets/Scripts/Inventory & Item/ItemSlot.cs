@@ -1,16 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using System;
-using System.Data.Common;
 using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
+public class ItemSlot : MonoBehaviour,
+    IPointerClickHandler,
+    IPointerEnterHandler,
+    IPointerExitHandler,
+    IBeginDragHandler,
+    IEndDragHandler,
+    IDragHandler,
+    IDropHandler
 {
-    [SerializeField] Image Image;
-    [SerializeField] TextMeshProUGUI amountText;
+    [SerializeField] private Image Image;
+    [SerializeField] private TextMeshProUGUI amountText;
 
     public event Action<ItemSlot> OnPointerEnterEvent;
     public event Action<ItemSlot> OnPointerExitEvent;
@@ -22,23 +26,37 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     protected bool isPointerOver;
 
-    private Color normalColor = Color.white;
-    private Color disabledColor = new Color(1, 1, 1, 0);
+    private readonly Color normalColor = Color.white;
+    private readonly Color disabledColor = new Color(1, 1, 1, 0);
 
     private Item _item;
-    public Item Item {
-        get {return _item;}
-        set {
+    public Item Item
+    {
+        get => _item;
+        set
+        {
             _item = value;
-            if (_item == null && Amount != 0) Amount = 0;
 
-            if(_item == null)
+            // Hindari akses komponen jika object sudah dihancurkan
+            if (this == null || gameObject == null || !gameObject.activeInHierarchy)
+                return;
+
+            if (Image != null)
             {
-                Image.color = disabledColor;
-            } else {
-                Image.sprite = _item.Icon;
-                Image.color = normalColor;
+                if (_item == null)
+                {
+                    Image.color = disabledColor;
+                    Image.sprite = null;
+                }
+                else
+                {
+                    Image.sprite = _item.Icon;
+                    Image.color = normalColor;
+                }
             }
+
+            if (_item == null && Amount != 0)
+                Amount = 0;
 
             if (isPointerOver)
             {
@@ -49,92 +67,99 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     }
 
     private int _amount;
-    public int Amount {
-        get { return _amount;}
-        set {
-            _amount = value;
-            if (_amount < 0) _amount = 0;
-            if (_amount == 0 && Item != null) Item = null;
-            
-            if(amountText != null)
+    public int Amount
+    {
+        get => _amount;
+        set
+        {
+            _amount = Mathf.Max(0, value);
+
+            if (_amount == 0 && _item != null)
+                _item = null;
+
+            if (this == null || gameObject == null || !gameObject.activeInHierarchy)
+                return;
+
+            if (amountText != null)
             {
-                amountText.enabled = _item != null && _item.MaximumStacks > 1 && _amount > 1;
-                if (amountText.enabled) {
+                bool shouldShow = _item != null && _item.MaximumStacks > 1 && _amount > 1;
+                amountText.enabled = shouldShow;
+                if (shouldShow)
                     amountText.text = _amount.ToString();
-                }
             }
         }
     }
 
     protected virtual void OnValidate()
     {
-        if(Image == null)
+        if (Image == null)
             Image = GetComponent<Image>();
 
-        if(amountText == null)
+        if (amountText == null)
             amountText = GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    protected private void OnDisable() 
+    protected void OnDisable()
     {
         if (isPointerOver)
-        {
             OnPointerExit(null);
-        }
     }
 
-    public virtual bool CanReceiveItem(Item item)
-    {
-        return true;
-    }
+    public virtual bool CanReceiveItem(Item item) => true;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(eventData != null && eventData.button == PointerEventData.InputButton.Right)
-        {
-            if(OnRightClickEvent != null)
-                OnRightClickEvent(this);
-            
-        }
+        if (eventData != null && eventData.button == PointerEventData.InputButton.Right)
+            OnRightClickEvent?.Invoke(this);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         isPointerOver = true;
-
-        if(OnPointerEnterEvent != null)
-            OnPointerEnterEvent(this);
+        OnPointerEnterEvent?.Invoke(this);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         isPointerOver = false;
-
-        if(OnPointerExitEvent != null)
-            OnPointerExitEvent(this);
+        OnPointerExitEvent?.Invoke(this);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if(OnBeginDragEvent != null)
-            OnBeginDragEvent(this);
+        OnBeginDragEvent?.Invoke(this);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if(OnEndDragEvent != null)
-            OnEndDragEvent(this);
+        OnEndDragEvent?.Invoke(this);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if(OnDragEvent != null)
-            OnDragEvent(this);
+        OnDragEvent?.Invoke(this);
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-        if(OnDropEvent != null)
-            OnDropEvent(this);
+        OnDropEvent?.Invoke(this);
     }
+
+    public void Clear()
+    {
+        _item = null;
+        _amount = 0;
+
+        if (Image != null)
+        {
+            Image.sprite = null;
+            Image.color = disabledColor;
+        }
+
+        if (amountText != null)
+        {
+            amountText.enabled = false;
+        }
+    }
+
 }

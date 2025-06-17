@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; 
 
 public class ExperienceManager : MonoBehaviour
 {
@@ -23,9 +24,28 @@ public class ExperienceManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        if (playerObj != null)
+        {
+            playerStats = playerObj.GetComponent<PlayerStats>();
+        }
+    }
+
     public void AddExperience(int amount)
     {
         OnExperienceChange?.Invoke(amount);
-        playerStats.UpdateExp();
+        playerStats?.UpdateExp(); // safe call
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Character : MonoBehaviour
 {
@@ -81,6 +82,38 @@ public class Character : MonoBehaviour
         equipmentPanel.OnDropEvent += Drop;
         dropItemArea.OnDropEvent +=  DropItemOutsideUI;
 
+    }
+
+     void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        TryAutoAssign();
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        TryAutoAssign();
+    }
+
+    private void TryAutoAssign()
+    {
+        if (damageable == null)
+            damageable = FindObjectOfType<Damageable>();
+
+        if (equipSfx == null)
+            equipSfx = GetComponent<AudioSource>();
+
+        // Tambahkan log kalau masih gagal
+        if (damageable == null)
+            Debug.LogWarning($"{gameObject.name}: Damageable belum ditemukan.");
+
+        if (equipSfx == null)
+            Debug.LogWarning($"{gameObject.name}: AudioSource (equipSfx) belum ditemukan.");
     }
 
    private void Start() 

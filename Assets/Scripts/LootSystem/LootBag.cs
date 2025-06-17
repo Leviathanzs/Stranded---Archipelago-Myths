@@ -34,17 +34,46 @@ public class LootBag : MonoBehaviour
     // Fungsi ini dipanggil saat loot dilakukan
     public virtual void GiveLootToPlayer()
     {
+        // Update referensi inventory sebelum memberi item
+        if (inventory == null)
+        {
+            inventory = FindObjectOfType<Inventory>();
+        }
+
+        if (inventory == null)
+        {
+            Debug.LogWarning("Inventory tidak ditemukan.");
+            return;
+        }
+
         List<Item> droppedItems = GetDroppedItems();
 
         foreach (Item item in droppedItems)
         {
-            inventory.AddItem(item.GetCopy());
-            ShowLootNotification(item);
-        }
+            if (item == null)
+            {
+                Debug.LogWarning("Item hasil drop bernilai null.");
+                continue;
+            }
 
-        if (droppedItems.Count == 0)
-        {
-            Debug.Log("Tidak ada item yang didapat.");
+            Item itemCopy = item.GetCopy();
+            if (itemCopy == null)
+            {
+                Debug.LogWarning("GetCopy() dari item menghasilkan null.");
+                continue;
+            }
+
+            bool added = inventory.AddItem(itemCopy);
+            Debug.Log($"Item {item.name} ditambahkan: {added}");
+
+            if (added)
+            {
+                ShowLootNotification(item);
+            }
+            else
+            {
+                Debug.LogWarning($"Inventory penuh atau gagal menambahkan item: {item.name}");
+            }
         }
     }
 

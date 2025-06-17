@@ -9,6 +9,7 @@ TagManager:
   - LevelText
   - Freeze
   - Enemies
+  - PlayerSpawn
   layers:
   - Default
   - TransparentFX
