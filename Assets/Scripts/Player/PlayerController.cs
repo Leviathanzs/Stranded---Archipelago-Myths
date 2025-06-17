@@ -216,6 +216,15 @@ public class PlayerController : MonoBehaviour
             IsFacingRight = false;
     }
 
+    private void ReconnectDamageableEvents()
+    {
+        if (damageable != null)
+        {
+            damageable.damageableHit.RemoveListener(OnHit);
+            damageable.damageableHit.AddListener(OnHit);
+        }
+    }
+
     public void ResetPlayer()
     {
         // Reset position ke spawn point
@@ -253,14 +262,17 @@ public class PlayerController : MonoBehaviour
         {
             inventory.ClearInventory();
         }
-        
+
         // Matikan UI kematian
         if (deathUI != null)
             deathUI.SetActive(false);
 
+        ReconnectDamageableEvents();
+
         // Sembunyikan mouse kembali
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        damageable.Revive();
     }
 
 }

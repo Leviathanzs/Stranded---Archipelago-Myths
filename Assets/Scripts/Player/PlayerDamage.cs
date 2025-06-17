@@ -36,6 +36,7 @@ public class PlayerDamage : Attack
 
     protected override void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log($"PlayerDamage: Menyentuh {other.name}");
         Damageable damageable = other.GetComponent<Damageable>();
 
         Vector2 deliveredKnockback = transform.parent.localScale.x > 0 ?

@@ -58,6 +58,7 @@ public class Damageable : MonoBehaviour
     {
         if(IsAlive)
         {
+            Debug.Log($"Musuh terkena hit: {damage}");
             Health -= damage;
 
             animator.SetTrigger(AnimationStrings.hitTrigger);
@@ -68,4 +69,10 @@ public class Damageable : MonoBehaviour
         }
         return false;
     }
+
+    public void Revive()
+    {
+        IsAlive = true;
+    }
+
 }

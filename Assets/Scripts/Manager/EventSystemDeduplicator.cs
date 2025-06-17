@@ -1,16 +1,18 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class EventSystemDeduplicator : MonoBehaviour
+public class AutoEventSystemCleanup : MonoBehaviour
 {
     void Awake()
     {
-        EventSystem[] systems = FindObjectsOfType<EventSystem>();
-        if (systems.Length > 1)
+        EventSystem[] allEventSystems = FindObjectsOfType<EventSystem>();
+
+        if (allEventSystems.Length > 1)
         {
-            for (int i = 1; i < systems.Length; i++)
+            Debug.LogWarning($"Terdeteksi {allEventSystems.Length} EventSystem. Menghapus duplikat...");
+            for (int i = 1; i < allEventSystems.Length; i++)
             {
-                Destroy(systems[i].gameObject);
+                Destroy(allEventSystems[i].gameObject);
             }
         }
     }
