@@ -145,6 +145,13 @@ public class FlyingEyes : MonoBehaviour
         rb.gravityScale = 2f;
         rb.velocity = new Vector2(0, rb.velocity.y);
         deathCollider.enabled = true;
+
+        StageController stageController = FindObjectOfType<StageController>();
+        if(stageController != null)
+        {
+            stageController.OnEnemyKilled();
+        }
+
         ExperienceManager.Instance.AddExperience(expAmount);
     }
 

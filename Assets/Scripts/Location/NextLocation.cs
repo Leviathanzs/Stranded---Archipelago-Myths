@@ -10,11 +10,23 @@ public class NextLocation : MonoBehaviour
     public string sceneToLoad;
     public Slider loadingBar;
 
+    private StageController stageController;
+
+    void Awake()
+    {
+        stageController = FindObjectOfType<StageController>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
+            // panggil stage selesai sebelum load scene
+            if(stageController != null)
+            {
+                stageController.OnStageEnd();
+            }
+
             StartCoroutine(LoadSceneAsync());
         }
     }
@@ -35,15 +47,13 @@ public class NextLocation : MonoBehaviour
         {
             elapsed += Time.deltaTime;
 
-            // progress dari 0 ke 0.9 → kita buat jadi 0 ke 1
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
             loadingBar.value = progress;
 
-            // Syarat ganti scene: progress selesai & delay terpenuhi
             if (operation.progress >= 0.9f && elapsed >= minLoadingTime)
             {
-                loadingBar.value = 1f; // penuh
-                yield return new WaitForSeconds(0.5f); // jeda sebentar sebelum masuk scene
+                loadingBar.value = 1f;
+                yield return new WaitForSeconds(0.5f);
                 operation.allowSceneActivation = true;
             }
 

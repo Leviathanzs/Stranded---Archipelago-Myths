@@ -444,5 +444,43 @@ public class Character : MonoBehaviour
         RecalculateBaseStats();
     }
 
+    public void ApplyFuzzyStats(FuzzyStatGenerator.Stats newStats)
+    {
+        // overwrite base value
+        Strenght.BaseValue = newStats.strength;
+        Agility.BaseValue = newStats.agility;
+        Intelligence.BaseValue = newStats.intelligence;
+        Vitality.BaseValue = newStats.vitality;
 
+        // hitung ulang final value
+        StrenghtFinalValue = Strenght.Value;
+        AgilityFinalValue = Agility.Value;
+        IntelligenceFinalValue = Intelligence.Value;
+        VitalityFinalValue = Vitality.Value;
+
+        // Recalculate HP & Mana
+        originalMaxHealth = (int)(StrenghtFinalValue * 2 + VitalityFinalValue * 5);
+        currentMaxHealth = originalMaxHealth;
+        currentHealth = currentMaxHealth;
+
+        originalMaxMana = (int)(IntelligenceFinalValue * 3);
+        currentMaxMana = originalMaxMana;
+        currentMana = currentMaxMana;
+
+        // kalau ada Damageable, sinkronkan juga
+        if (damageable != null)
+        {
+            damageable.MaxHealth = currentMaxHealth;
+            damageable.Health = currentHealth;
+            damageable.MaxMana = currentMaxMana;
+            damageable.Mana = currentMana;
+        }
+
+        // update panel UI
+        statPanel?.UpdateStatValues();
+
+        Debug.Log($"[Fuzzy Stats Applied] STR={StrenghtFinalValue}, AGI={AgilityFinalValue}, " +
+                $"INT={IntelligenceFinalValue}, VIT={VitalityFinalValue}, " +
+                $"HP={currentMaxHealth}, Mana={currentMaxMana}");
+    }
 }

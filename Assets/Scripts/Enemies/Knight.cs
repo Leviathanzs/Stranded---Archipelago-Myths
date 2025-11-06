@@ -107,6 +107,12 @@ public class Knight : MonoBehaviour
         isDead = true;
         ExperienceManager.Instance.AddExperience(expAmount);
 
+        StageController stageController = FindObjectOfType<StageController>();
+        if(stageController != null)
+        {
+            stageController.OnEnemyKilled();
+        }
+
         // Tambahkan animasi mati, efek partikel, atau destroy enemy di sini jika perlu
         // Destroy(gameObject); // contoh: musuh dihancurkan setelah mati
     }

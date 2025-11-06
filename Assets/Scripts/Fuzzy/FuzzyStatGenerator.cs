@@ -1,11 +1,8 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class FuzzyStatGenerator : MonoBehaviour
 {
-    [Header("Input")]
-    public int killCount = 10;
-    public float completionTime = 80f;
-
     [System.Serializable]
     public struct Stats
     {
@@ -15,60 +12,49 @@ public class FuzzyStatGenerator : MonoBehaviour
         public int vitality;
     }
 
-    void Start()
+    public Stats GenerateStats(int killCount, float completionTime)
     {
         float attributeValue = GetAttributeValue(killCount, completionTime);
         string category = GetAttributeCategory(attributeValue);
 
-        Debug.Log($"Kill: {killCount}, Time: {completionTime} sec");
-        Debug.Log($"Attribute value: {attributeValue:F2} → Category: {category}");
-
         Stats stat = GenerateStatsFromCategory(category);
-        Debug.Log($"[Generated Stats]");
-        Debug.Log($"Strength     : {stat.strength}");
-        Debug.Log($"Intelligence : {stat.intelligence}");
-        Debug.Log($"Agility      : {stat.agility}");
-        Debug.Log($"Vitality     : {stat.vitality}");
+
+        Debug.Log($"[Fuzzy Result] Kill={killCount}, Time={completionTime:F2}, Category={category}");
+        return stat; // ← penting, supaya bisa dikembalikan ke StageController
     }
 
-    // Main Fuzzy Logic
+    // Membership + Rule base + Defuzzification (pakai versi refactor sebelumnya)
     float GetAttributeValue(int kill, float time)
     {
-        // Membership player_kills
-        float pkLow = TrapMF(kill, 0, 0, 3, 7);
+        float pkLow = TrapMF(kill, 0, 0, 4, 7);
         float pkMed = TriMF(kill, 4, 7, 10);
-        float pkHigh = TrapMF(kill, 7, 10, 15, 15);
+        float pkHigh = TrapMF(kill, 7, 10, 14, 14);
 
-        // Membership completion_time
-        float ctFast = TrapMF(time, 0, 0, 30, 90);
+        float ctFast = TrapMF(time, 0, 0, 45, 90);
         float ctMed = TriMF(time, 45, 90, 135);
-        float ctSlow = TrapMF(time, 90, 150, 180, 180);
+        float ctSlow = TrapMF(time, 90, 135, 180, 180);
 
-        // Apply fuzzy rules with adjusted weight priority
-        float weak = Mathf.Max(
-            Mathf.Min(pkLow, ctFast),
-            Mathf.Min(pkLow, ctMed),
-            Mathf.Min(pkLow, ctSlow),
-            Mathf.Min(pkMed, ctSlow)
-        );
+        List<(float antecedent, float consequent)> rules = new List<(float, float)>
+        {
+            (Mathf.Min(pkLow, ctFast), 0.25f),
+            (Mathf.Min(pkLow, ctMed), 0.25f),
+            (Mathf.Min(pkLow, ctSlow), 0.25f),
+            (Mathf.Min(pkMed, ctSlow), 0.25f),
+            (Mathf.Min(pkMed, ctMed), 0.5f),
+            (Mathf.Min(pkHigh, ctSlow), 0.5f),
+            (Mathf.Min(pkHigh, ctFast), 0.85f),
+            (Mathf.Min(pkHigh, ctMed), 0.85f),
+            (Mathf.Min(pkMed, ctFast), 0.7f)
+        };
 
-        float average = Mathf.Max(
-            Mathf.Min(pkHigh, ctSlow),
-            Mathf.Min(pkMed, ctMed)
-        );
+        float numerator = 0f, denominator = 0f;
+        foreach (var rule in rules)
+        {
+            numerator += rule.antecedent * rule.consequent;
+            denominator += rule.antecedent;
+        }
 
-        float strong = Mathf.Max(
-            Mathf.Min(pkHigh, ctFast),
-            Mathf.Min(pkHigh, ctMed),
-            Mathf.Min(pkMed, ctFast) * 0.7f  // weakened medium+fast
-        );
-
-        float sum = weak + average + strong;
-
-        // Defuzzification using weighted average
-        return (sum == 0) ? 0.5f : (
-            (weak * 0.25f + average * 0.5f + strong * 0.85f) / sum
-        );
+        return (denominator == 0f) ? 0.5f : numerator / denominator;
     }
 
     string GetAttributeCategory(float value)
@@ -93,7 +79,6 @@ public class FuzzyStatGenerator : MonoBehaviour
         };
     }
 
-    // Membership functions
     float TrapMF(float x, float a, float b, float c, float d)
     {
         if (x <= a || x >= d) return 0f;
@@ -105,7 +90,7 @@ public class FuzzyStatGenerator : MonoBehaviour
     float TriMF(float x, float a, float b, float c)
     {
         if (x <= a || x >= c) return 0f;
-        if (x == b) return 1f;
+        if (Mathf.Approximately(x, b)) return 1f;
         if (x > a && x < b) return (x - a) / (b - a);
         return (c - x) / (c - b);
     }
