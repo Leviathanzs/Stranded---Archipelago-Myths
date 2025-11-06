@@ -25,7 +25,7 @@ public class SetupBackgroundBlocker : MonoBehaviour
         rt.offsetMax = Vector2.zero;
 
         Image img = blockerPanel.GetComponent<Image>();
-        img.color = new Color(0f, 0f, 0f, 0.5f); // hitam transparan
+        img.color = new Color(0f, 0f, 0f, 0.5f); 
         img.raycastTarget = true;
 
         // Posisikan blocker di paling bawah

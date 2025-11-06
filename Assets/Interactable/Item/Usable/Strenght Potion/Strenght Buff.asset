@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2c3a9d639fe7ce4080f6474640dd2a9, type: 3}
   m_Name: Strenght Buff
   m_EditorClassIdentifier: 
-  StrenghtBuff: 10
+  StrengthBuff: 20
   Duration: 60

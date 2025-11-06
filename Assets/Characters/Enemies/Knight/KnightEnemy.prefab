@@ -237,7 +237,6 @@ MonoBehaviour:
   hitAudioSource: {fileID: 5189808537933006383}
   walkSpeed: 3
   walkStopRate: 0.5
-  _hasTarget: 0
   expAmount: 100
 --- !u!114 &3680550853463660085
 MonoBehaviour:
@@ -608,5 +607,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f95f00175a98a4942971a41eeffa3b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 10
-  knocback: {x: 5, y: 0}
+  attackDamage: 90
+  knocback: {x: 5, y: 10}

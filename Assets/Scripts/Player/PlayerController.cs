@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool _isRunning = false;
     [SerializeField] private bool _isFacingRight = true;
 
+    private PauseController pauseController;
+
     // Properti eksternal
     public float CurrentMoveSpeed => (CanMove && IsAlive && IsMoving && !touchingDirections.IsOnWall)
         ? (touchingDirections.IsGrounded ? (_isRunning ? runSpeed : walkSpeed) : airWalkSpeed)
@@ -95,6 +97,9 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (pauseController != null && pauseController.IsGamePaused())
+            return;
+
         if (!damageable.LockVelocity)
             rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
 
@@ -196,7 +201,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
         healthBar?.SetHealth(damageable.Health);
 
-         if (!IsAlive && deathUI != null)
+        if (!IsAlive && deathUI != null)
         {
             deathUI.SetActive(true);
             ShowMouseCursor();

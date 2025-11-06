@@ -15,16 +15,23 @@ public class StatModifier
     public readonly StatModType Type;
     public readonly int Order;
     public readonly object Source;
+    public float Duration;
 
-    public StatModifier(float value, StatModType type, int order, object source)
+    public StatModifier(float value, StatModType type, int order, object source, float duration = 0f)
     {
         Value = value;
         Type = type;
         Order = order;
         Source = source;
+        Duration = duration;
     }
 
     public StatModifier(float value, StatModType type) : this(value, type, (int)type, null) { }
     public StatModifier(float value, StatModType type, int order) : this(value, type, order, null) { }
     public StatModifier(float value, StatModType type, object source) : this(value, type, (int)type, source) { }
+
+    public void ResetDuration(float newDuration)
+    {
+        Duration = newDuration;
+    }
 }

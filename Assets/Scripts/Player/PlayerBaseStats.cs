@@ -7,15 +7,15 @@ using System;
 [Serializable]
 public class PlayerBaseStats
 {
-   protected readonly List<StatModifier> statModifiers;
-   public readonly ReadOnlyCollection<StatModifier> StatModifiers;
+    protected readonly List<StatModifier> statModifiers;
+    public readonly ReadOnlyCollection<StatModifier> StatModifiers;
 
-   public float BaseValue;
-   protected float lastBasevalue = float.MinValue;
-   protected bool isDirty = true;
-   protected float _value;
+    public float BaseValue;
+    protected float lastBasevalue = float.MinValue;
+    protected bool isDirty = true;
+    protected float _value;
 
-   public virtual float Value {
+    public virtual float Value {
         get 
         {
             if(isDirty || BaseValue != lastBasevalue) {
@@ -33,39 +33,52 @@ public class PlayerBaseStats
         StatModifiers = statModifiers.AsReadOnly();
     }
 
-   public PlayerBaseStats(float baseValue) : this() 
-   {
+    public PlayerBaseStats(float baseValue) : this() 
+    {
         BaseValue = baseValue;
-   }
+    }
 
-   public virtual void AddModifier(StatModifier mod)
-   {
+    public virtual void AddModifier(StatModifier mod)
+    {
         isDirty = true;
         statModifiers.Add(mod);
         statModifiers.Sort(CompareModifierOrder);
-   }
+    }
 
-   protected virtual int CompareModifierOrder(StatModifier a, StatModifier b)
-   {
+    public StatModifier GetModifierByItem(UsableItem item)
+    {
+        foreach (var modifier in statModifiers)
+        {
+            // Make sure 'item' is being used correctly here
+            if (modifier.Source == item)
+            {
+                return modifier;
+            }
+        }
+        return null;
+    }
+
+    protected virtual int CompareModifierOrder(StatModifier a, StatModifier b)
+    {
         if(a.Order < b.Order)
             return -1;
         else if(a.Order > b.Order)
             return 1;
         return 0; // a == b
-   }
+    }
 
-   public virtual bool RemoveModifier(StatModifier mod)
-   {
-       if(statModifiers.Remove(mod))
-       {
+    public virtual bool RemoveModifier(StatModifier mod)
+    {
+        if(statModifiers.Remove(mod))
+        {
             isDirty = true;
             return true;
-       }
-       return false;
-   }
+        }
+        return false;
+    }
 
-   public virtual bool RemoveAllModifiersFromSource(object source)
-   {
+    public virtual bool RemoveAllModifiersFromSource(object source)
+    {
         bool didRemove = false;
 
         for(int i = statModifiers.Count - 1; i >= 0; i--)
@@ -78,10 +91,10 @@ public class PlayerBaseStats
             }
         }
         return didRemove;
-   }
+    }
 
-   protected virtual float CalculatedFinalValue()
-   {
+    protected virtual float CalculatedFinalValue()
+    {
         float finalValue = BaseValue;
         float sumPercentAdd = 0;
 
@@ -110,5 +123,5 @@ public class PlayerBaseStats
             
         }
         return Mathf.RoundToInt(finalValue);
-   }
+    }
 }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8eff2c1612991e459b3e22c7203afd3, type: 3}
   m_Name: HP Potion - Heal Effect
   m_EditorClassIdentifier: 
-  healthAmount: 20
+  healthAmount: 100
   healSfx: {fileID: 8300000, guid: 7014050fe8bab0647898a4ba2607856c, type: 3}
