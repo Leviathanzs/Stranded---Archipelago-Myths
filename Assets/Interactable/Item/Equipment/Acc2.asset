@@ -27,3 +27,4 @@ MonoBehaviour:
   IntelligencePercentBonus: 0
   VitalityPercentBonus: 0
   EquipmentType: 1
+  Rarity: 0

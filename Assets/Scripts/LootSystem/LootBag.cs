@@ -34,11 +34,8 @@ public class LootBag : MonoBehaviour
     // Fungsi ini dipanggil saat loot dilakukan
     public virtual void GiveLootToPlayer()
     {
-        // Update referensi inventory sebelum memberi item
         if (inventory == null)
-        {
             inventory = FindObjectOfType<Inventory>();
-        }
 
         if (inventory == null)
         {
@@ -48,32 +45,41 @@ public class LootBag : MonoBehaviour
 
         List<Item> droppedItems = GetDroppedItems();
 
+        // Ambil referensi PlayerStats
+        PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+        int playerLevel = playerStats != null ? playerStats.CurrentLevel : 1;
+
         foreach (Item item in droppedItems)
         {
-            if (item == null)
-            {
-                Debug.LogWarning("Item hasil drop bernilai null.");
-                continue;
-            }
+            if (item == null) continue;
 
             Item itemCopy = item.GetCopy();
-            if (itemCopy == null)
+            if (itemCopy == null) continue;
+
+            // Jika item adalah EquippableItem → randomize stats dengan fuzzy
+            EquippableItem equip = itemCopy as EquippableItem;
+            if (equip != null)
             {
-                Debug.LogWarning("GetCopy() dari item menghasilkan null.");
-                continue;
+                float rarityValue = (float)equip.Rarity;
+
+                FuzzyItemStatGenerator generator = new FuzzyItemStatGenerator();
+                var stats = generator.GenerateStats(playerLevel, rarityValue);
+
+                // Flat bonus
+                equip.StrenghtBonus = stats.strength;
+                equip.AgilityBonus = stats.agility;
+                equip.IntelligenceBonus = stats.intelligence;
+                equip.VitalityBonus = stats.vitality;
+
+                // Percent bonus
+                equip.StrenghtPercentBonus = stats.strengthPercent;
+                equip.AgilityPercentBonus = stats.agilityPercent;
+                equip.IntelligencePercentBonus = stats.intelligencePercent;
+                equip.VitalityPercentBonus = stats.vitalityPercent;
             }
 
             bool added = inventory.AddItem(itemCopy);
-            Debug.Log($"Item {item.name} ditambahkan: {added}");
-
-            if (added)
-            {
-                ShowLootNotification(item);
-            }
-            else
-            {
-                Debug.LogWarning($"Inventory penuh atau gagal menambahkan item: {item.name}");
-            }
+            if (added) ShowLootNotification(itemCopy);
         }
     }
 

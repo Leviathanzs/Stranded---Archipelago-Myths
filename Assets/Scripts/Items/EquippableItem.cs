@@ -29,6 +29,10 @@ public class EquippableItem : Item
     [Space]
     public EquipmentType EquipmentType;
 
+    [Space]
+    public ItemRarity Rarity;
+
+
     public override Item GetCopy()
     {
         return Instantiate(this);
@@ -111,6 +115,6 @@ public class EquippableItem : Item
                 sb.Append(" ");
             }
             sb.Append(statName);
-        }
+       }
     }
 }

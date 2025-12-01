@@ -39,6 +39,10 @@ public class LootChest : LootBag
 
         List<Item> droppedItems = GetDroppedItems();
 
+        // Ambil level player dari PlayerStats
+        PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+        int playerLevel = playerStats != null ? playerStats.CurrentLevel : 1;
+
         foreach (Item item in droppedItems)
         {
             if (item == null)
@@ -54,12 +58,34 @@ public class LootChest : LootBag
                 continue;
             }
 
+            // 🔥 Integrasi fuzzy di sini
+            EquippableItem equip = itemCopy as EquippableItem;
+            if (equip != null)
+            {
+                float rarityValue = (float)equip.Rarity;
+
+                FuzzyItemStatGenerator generator = new FuzzyItemStatGenerator();
+                var stats = generator.GenerateStats(playerLevel, rarityValue);
+
+                // Flat bonus
+                equip.StrenghtBonus = stats.strength;
+                equip.AgilityBonus = stats.agility;
+                equip.IntelligenceBonus = stats.intelligence;
+                equip.VitalityBonus = stats.vitality;
+
+                // Percent bonus
+                equip.StrenghtPercentBonus = stats.strengthPercent;
+                equip.AgilityPercentBonus = stats.agilityPercent;
+                equip.IntelligencePercentBonus = stats.intelligencePercent;
+                equip.VitalityPercentBonus = stats.vitalityPercent;
+            }
+
             bool added = inventory.AddItem(itemCopy);
             Debug.Log($"Item {item.name} ditambahkan: {added}");
 
             if (added)
             {
-                ShowLootNotification(item);
+                ShowLootNotification(itemCopy);
             }
             else
             {
@@ -72,4 +98,5 @@ public class LootChest : LootBag
             Debug.Log("Tidak ada item yang didapat dari chest.");
         }
     }
+
 }
